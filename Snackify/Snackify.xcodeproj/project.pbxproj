@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9936AF452383371D00A9F99C /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF442383371D00A9F99C /* Bearer.swift */; };
 		9936AF47238337B100A9F99C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF46238337B100A9F99C /* NetworkManager.swift */; };
+		9936AF4B2383533E00A9F99C /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF4A2383533E00A9F99C /* Subscription.swift */; };
 		99D8270A23831AEF00E147C7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D8270923831AEF00E147C7 /* User.swift */; };
 		99D8270D23831B3000E147C7 /* Snack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D8270C23831B3000E147C7 /* Snack.swift */; };
 		99D8270F23831B3600E147C7 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D8270E23831B3600E147C7 /* Organization.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		9936AF442383371D00A9F99C /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		9936AF46238337B100A9F99C /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = "Model Controllers/NetworkManager.swift"; sourceTree = SOURCE_ROOT; };
+		9936AF4A2383533E00A9F99C /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		99D8270923831AEF00E147C7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		99D8270C23831B3000E147C7 /* Snack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snack.swift; sourceTree = "<group>"; };
 		99D8270E23831B3600E147C7 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 				99D8270C23831B3000E147C7 /* Snack.swift */,
 				99D8270E23831B3600E147C7 /* Organization.swift */,
 				9936AF442383371D00A9F99C /* Bearer.swift */,
+				9936AF4A2383533E00A9F99C /* Subscription.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 			files = (
 				FA806A4923830A92003907EE /* AppDelegate.swift in Sources */,
 				FA806A4B23830A92003907EE /* SceneDelegate.swift in Sources */,
+				9936AF4B2383533E00A9F99C /* Subscription.swift in Sources */,
 				9936AF452383371D00A9F99C /* Bearer.swift in Sources */,
 				9936AF47238337B100A9F99C /* NetworkManager.swift in Sources */,
 				99D8270D23831B3000E147C7 /* Snack.swift in Sources */,
