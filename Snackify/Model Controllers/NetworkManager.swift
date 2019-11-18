@@ -19,6 +19,60 @@ class NetworkManager {
     
     // MARK: - Public API
     
+    /// Sign up or log in.
+    func handleAuth(_ callType: AuthType, with user: User, completion: @escaping (Result<Bearer,NetworkError>) -> Void) {
+        let call = callComponents[callType]
+        
+        guard let authURLComponent = call?.url else {
+            completion(.failure(.badAuthURL))
+            return
+        }
+        let authURL = baseURL.appendingPathComponent(authURLComponent)
+        
+        var request = URLRequest(url: authURL)
+            request.httpMethod = call?.httpMethod
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        do {
+            let jsonData = try JSONEncoder().encode(user)
+            request.httpBody = jsonData
+        } catch {
+            completion(.failure(.noEncode))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let response = response as? HTTPURLResponse {
+                self.handleResponse(response)
+                completion(.failure(.otherError))
+                return
+            }
+            
+            if let error = error {
+                print(error)
+                completion(.failure(.otherError))
+                return
+            }
+            
+            if callType == .logIn {
+                guard let data = data else {
+                    completion(.failure(.badData))
+                    return
+                }
+                
+                let decoder = JSONDecoder()
+                do {
+                    let receivedBearer = try decoder.decode(Bearer.self, from: data)
+                    completion(.success(receivedBearer))
+                } catch {
+                    print(error)
+                    completion(.failure(.noDecode))
+                    return
+                }
+            }
+        }.resume()
+    }
+    
     func fetchSnacks(completion: @escaping (Result<[Snack],NetworkError>) -> Void) {
         #warning("This URL is currently invalid. Modify with actual URL component(s) before using.")
         let fetchURL = baseURL.appendingPathComponent("INSERT PATH COMPONENT(s) HERE")
