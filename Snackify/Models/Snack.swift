@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - Snack
 
-struct Snack {
+struct Snack: Codable {
     let name: String
     let type: String
     let numberOfServings: Int
@@ -22,7 +22,7 @@ struct Snack {
 
 // MARK: - Nutrition Info
 
-struct NutritionInfo {
+struct NutritionInfo: Codable {
     let calories: Double
     let totalFat: Double
     let totalSugars: Double
@@ -33,7 +33,7 @@ struct NutritionInfo {
 
 // MARK: - Allergen
 
-enum Allergen: String {
+enum Allergen: String, Codable {
     case peanuts
     case dairy
     case egg
