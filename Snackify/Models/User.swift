@@ -21,6 +21,7 @@ class User: Codable {
     let state: String
     let zipCode: String
     let organization: Organization
+    var isAdmin: Bool
     
     init(firstName: String, lastName: String, username: String, email: String, phoneNumber: String, streetAddress: String, state: String, zipCode: String, organization: Organization) {
         self.firstName = firstName
@@ -32,5 +33,6 @@ class User: Codable {
         self.state = state
         self.zipCode = zipCode
         self.organization = organization
+        self.isAdmin = false
     }
 }
