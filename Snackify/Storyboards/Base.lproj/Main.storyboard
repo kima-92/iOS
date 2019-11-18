@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Snacks Main View Controller-->
         <scene sceneID="0Ha-J3-t8q">
             <objects>
-                <viewController id="o00-jL-cHu" sceneMemberID="viewController">
+                <viewController id="o00-jL-cHu" customClass="SnacksMainViewController" customModule="Snackify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cr7-Wa-7ds">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -110,10 +110,10 @@
             </objects>
             <point key="canvasLocation" x="1218.840579710145" y="-14.0625"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Snacks Table View Controller-->
         <scene sceneID="cyo-1G-OZG">
             <objects>
-                <tableViewController id="krH-DD-96s" sceneMemberID="viewController">
+                <tableViewController id="krH-DD-96s" customClass="SnacksTableViewController" customModule="Snackify" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="RB6-mL-yvs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -149,10 +149,10 @@
             </objects>
             <point key="canvasLocation" x="2074" y="-14"/>
         </scene>
-        <!--View Controller-->
+        <!--Snacks Order View Controller-->
         <scene sceneID="XzW-br-Koq">
             <objects>
-                <viewController id="dZZ-Jn-TD8" sceneMemberID="viewController">
+                <viewController id="dZZ-Jn-TD8" customClass="SnacksOrderViewController" customModule="Snackify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2oG-RP-GFQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -258,10 +258,10 @@
             </objects>
             <point key="canvasLocation" x="2074" y="714"/>
         </scene>
-        <!--View Controller-->
+        <!--Snack Detail View Controller-->
         <scene sceneID="Iep-Gg-R2Y">
             <objects>
-                <viewController id="0TB-hm-mlU" sceneMemberID="viewController">
+                <viewController id="0TB-hm-mlU" customClass="SnackDetailViewController" customModule="Snackify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7yT-Pa-4kc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -488,10 +488,10 @@
             </objects>
             <point key="canvasLocation" x="2904" y="-14"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="1iw-vX-aJb">
             <objects>
-                <viewController id="I5M-1g-OVi" sceneMemberID="viewController">
+                <viewController id="I5M-1g-OVi" customClass="LoginViewController" customModule="Snackify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cnU-qe-bm4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -619,7 +619,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ZSh-dE-Ra8"/>
+        <segue reference="v0N-VP-cFr"/>
         <segue reference="dGe-qK-TqM"/>
     </inferredMetricsTieBreakers>
 </document>

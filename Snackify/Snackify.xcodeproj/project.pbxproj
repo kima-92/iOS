@@ -17,6 +17,11 @@
 		FA806A5023830A92003907EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA806A4E23830A92003907EE /* Main.storyboard */; };
 		FA806A5223830A94003907EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA806A5123830A94003907EE /* Assets.xcassets */; };
 		FA806A5523830A94003907EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA806A5323830A94003907EE /* LaunchScreen.storyboard */; };
+		FA806A5F2383532E003907EE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA806A5E2383532E003907EE /* LoginViewController.swift */; };
+		FA806A612383536C003907EE /* SnacksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA806A602383536C003907EE /* SnacksTableViewController.swift */; };
+		FA806A63238353AB003907EE /* SnackDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA806A62238353AB003907EE /* SnackDetailViewController.swift */; };
+		FA806A65238353FC003907EE /* SnacksOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA806A64238353FC003907EE /* SnacksOrderViewController.swift */; };
+		FA806A6723835462003907EE /* SnacksMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA806A6623835462003907EE /* SnacksMainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +37,11 @@
 		FA806A5123830A94003907EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA806A5423830A94003907EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA806A5623830A94003907EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA806A5E2383532E003907EE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FA806A602383536C003907EE /* SnacksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnacksTableViewController.swift; sourceTree = "<group>"; };
+		FA806A62238353AB003907EE /* SnackDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackDetailViewController.swift; sourceTree = "<group>"; };
+		FA806A64238353FC003907EE /* SnacksOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnacksOrderViewController.swift; sourceTree = "<group>"; };
+		FA806A6623835462003907EE /* SnacksMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnacksMainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +78,7 @@
 		FA806A3C23830A92003907EE = {
 			isa = PBXGroup;
 			children = (
+				FA806A5D2383510C003907EE /* View Controllers */,
 				FA806A5C23830AA8003907EE /* Storyboards */,
 				99D8270B23831B0100E147C7 /* Models */,
 				99D82715238327EB00E147C7 /* Model Controllers */,
@@ -102,6 +113,18 @@
 				FA806A5323830A94003907EE /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		FA806A5D2383510C003907EE /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA806A5E2383532E003907EE /* LoginViewController.swift */,
+				FA806A602383536C003907EE /* SnacksTableViewController.swift */,
+				FA806A62238353AB003907EE /* SnackDetailViewController.swift */,
+				FA806A64238353FC003907EE /* SnacksOrderViewController.swift */,
+				FA806A6623835462003907EE /* SnacksMainViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,12 +198,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA806A6723835462003907EE /* SnacksMainViewController.swift in Sources */,
 				FA806A4923830A92003907EE /* AppDelegate.swift in Sources */,
+				FA806A65238353FC003907EE /* SnacksOrderViewController.swift in Sources */,
+				FA806A612383536C003907EE /* SnacksTableViewController.swift in Sources */,
 				FA806A4B23830A92003907EE /* SceneDelegate.swift in Sources */,
 				9936AF452383371D00A9F99C /* Bearer.swift in Sources */,
 				9936AF47238337B100A9F99C /* NetworkManager.swift in Sources */,
+				FA806A5F2383532E003907EE /* LoginViewController.swift in Sources */,
 				99D8270D23831B3000E147C7 /* Snack.swift in Sources */,
 				99D8270F23831B3600E147C7 /* Organization.swift in Sources */,
+				FA806A63238353AB003907EE /* SnackDetailViewController.swift in Sources */,
 				99D8270A23831AEF00E147C7 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
