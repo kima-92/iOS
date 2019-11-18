@@ -132,7 +132,37 @@ class NetworkManager {
     }
     
     func fetchSubscription(completion: @escaping (Result<Subscription,NetworkError>) -> Void) {
+        #warning("This URL is currently invalid. Modify with actual URL component(s) before using.")
+        let request = newRequest(
+            url: baseURL.appendingPathComponent("TEMP"),
+            method: .get)
         
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let response = response as? HTTPURLResponse {
+                self.handleResponse(response)
+                completion(.failure(.otherError))
+                return
+            }
+            
+            if let error = error {
+                print(error)
+                completion(.failure(.otherError))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            do {
+                let subscription = try JSONDecoder().decode(Subscription.self, from: data)
+                completion(.success(subscription))
+            } catch {
+                print(error)
+                completion(.failure(.noDecode))
+            }
+        }
     }
     
     // MARK: - Private Methods
