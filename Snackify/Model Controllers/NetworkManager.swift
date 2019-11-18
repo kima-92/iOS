@@ -107,6 +107,7 @@ class NetworkManager {
         }.resume()
     }
     
+    /// For regular/non-admin employees, make one-time purchases or request additions to the organization snack subscription. If user is an authorized organization administrator, purchase snacks as one-time orders or add them to their regular subscription.
     func handleSnackPurchase(snacks: [Snack], isOneTimePurchase: Bool, completion: @escaping (NetworkError?) -> Void) {
         #warning("This URL is currently invalid. Modify with actual URL component(s) before using.")
         let requestURL = baseURL.appendingPathComponent("INSERT PATH COMPONENT(s) HERE")
@@ -114,16 +115,12 @@ class NetworkManager {
         if isOneTimePurchase {
             // TODO: handle one-time purchases
         } else {
-            //if !user.isAdmin {
+            if let user = user, !user.isAdmin {
                 // TODO: handle 'request' for purchase
-            //} else {
+            } else {
                 // TODO: handle subscriptions
-            // }
+             }
         }
-        
-        //if !user.isAdmin {
-            // TODO: handle 'request' for purchase
-        //}
         
         var request = URLRequest(url: requestURL)
         request.httpMethod = HTTPMethod.post
