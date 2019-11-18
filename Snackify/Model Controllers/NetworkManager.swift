@@ -9,11 +9,15 @@
 import Foundation
 
 class NetworkManager {
-    #warning("This URL is currently invalid. Replace with API URL before using.")
-    let baseURL: URL = URL(string: "INSERT VALID URL HERE")!
+    // MARK: - Properties
     
-    var user: User?
-    var Bearer: Bearer?
+    #warning("This URL is currently invalid. Replace with API URL before using.")
+    private let baseURL: URL = URL(string: "INSERT VALID URL HERE")!
+    
+    private(set) var user: User?
+    private(set) var bearer: Bearer?
+    
+    // MARK: - Public API
     
     func fetchSnacks(completion: @escaping (Result<[Snack],NetworkError>) -> Void) {
         #warning("This URL is currently invalid. Modify with actual URL component(s) before using.")
@@ -23,9 +27,8 @@ class NetworkManager {
         request.httpMethod = HTTPMethod.get
         
         URLSession.shared.dataTask(with: request) { data, response, error in
-            if let response = response as? HTTPURLResponse,
-                response.statusCode < 200 || response.statusCode >= 300 {
-                print(NSError(domain: "", code: response.statusCode, userInfo: nil))
+            if let response = response as? HTTPURLResponse {
+                self.handleResponse(response)
                 completion(.failure(.otherError))
                 return
             }
@@ -50,9 +53,17 @@ class NetworkManager {
             }
         }.resume()
     }
+    
+    // MARK: - Private Methods
+    
+    private func handleResponse(_ response: HTTPURLResponse) {
+        if response.statusCode < 200 || response.statusCode >= 300 {
+            print(NSError(domain: "", code: response.statusCode, userInfo: nil))
+        }
+    }
 }
 
-// MARK: - HTTP Methods
+// MARK: - Helper Types
 
 struct HTTPMethod {
     static let get = "GET"
@@ -61,11 +72,28 @@ struct HTTPMethod {
     static let delete = "DELETE"
 }
 
-// MARK: - Network Errors
-
 enum NetworkError: String, Error {
     case otherError = "Unknown error occurred: see log for details."
     case badData = "No data received, or data corrupted."
     case noDecode = "JSON could not be decoded. See log for details."
+    case noEncode = "JSON could not be encoded. See log for details."
     case badImageURL = "The image URL could not be found."
+    case badAuthURL = "The authorization URL could not be found."
 }
+
+enum AuthType: String {
+    case signUp = "Sign up"
+    case logIn = "Log in"
+}
+
+#warning("This URL is currently invalid. Modify with actual URL component(s) before using.")
+fileprivate let callComponents: [AuthType: (url: String, httpMethod: String)] = [
+    .signUp: (
+        url: "/users/signup",
+        httpMethod: HTTPMethod.post
+    ),
+    .logIn: (
+        url: "/users/login",
+        httpMethod: HTTPMethod.post
+    )
+]
