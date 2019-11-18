@@ -22,11 +22,16 @@ class NetworkManager {
     /// Sign up or log in.
     func handleAuth(_ callType: AuthType, with user: User, completion: @escaping (Result<Bearer,NetworkError>) -> Void) {
         let call = authComponents[callType]!
+        
+        guard let userData = user.toJSONData() else {
+            completion(.failure(.noEncode))
+            return
+        }
 
         let request = newRequest(
             url: baseURL.appendingPathComponent(call.url),
             method: call.httpMethod,
-            body: user.toJSONData())
+            body: userData)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let response = response as? HTTPURLResponse {
@@ -98,15 +103,16 @@ class NetworkManager {
     
     /// For regular/non-admin employees, make one-time purchases or request additions to the organization snack subscription. If user is an authorized organization administrator, purchase snacks as one-time orders or add them to their regular subscription.
     func handleOneTimeSnackPurchase(snacks: [Snack], completion: @escaping (NetworkError?) -> Void) {
-        #warning("This URL is currently invalid. Modify with actual URL component(s) before using.")
-        let requestURL = baseURL.appendingPathComponent("INSERT PATH COMPONENT(s) HERE")
-        
         guard let userData = user?.toJSONData() else {
             completion(.noEncode)
             return
         }
         
-        let request = newRequest(url: requestURL, method: .post, body: userData)
+        #warning("This URL is currently invalid. Modify with actual URL component(s) before using.")
+        let request = newRequest(
+            url: baseURL.appendingPathComponent("INSERT PATH COMPONENT(s) HERE"),
+            method: .post,
+            body: userData)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let response = response as? HTTPURLResponse {
