@@ -160,7 +160,33 @@ class NetworkManager {
             }
         }.resume()
     }
+    
+    func updateSubscription(_ subscription: Subscription, completion: @escaping (Result<Bool,NetworkError>) -> Void) {
+        guard let userData = user?.toJSONData() else {
+            completion(.failure(.noEncode))
+            return
         }
+        
+        #warning("This URL is currently invalid. Modify with actual URL component(s) before using.")
+        let request = newRequest(
+            url: baseURL.appendingPathComponent("INSERT PATH COMPONENT(s) HERE"),
+            method: .post,
+            body: userData)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if !self.dataTaskDidSucceed(with: response) {
+                completion(.failure(.otherError))
+                return
+            }
+            
+            if let error = error {
+                print(error)
+                completion(.failure(.otherError))
+                return
+            }
+            // TODO: Add any further handling of response, data
+            completion(.success(true))
+        }.resume()
     }
     
     // MARK: - Private Methods
