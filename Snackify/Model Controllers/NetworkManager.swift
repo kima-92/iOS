@@ -15,7 +15,7 @@ class NetworkManager {
     private let baseURL: URL = URL(string: "INSERT VALID URL HERE")!
     
     private(set) var user: User?
-    private(set) var bearer: Bearer?
+    private var bearer: Bearer?
     
     // MARK: - Public API
     
@@ -34,8 +34,7 @@ class NetworkManager {
             body: userData)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
-            if let response = response as? HTTPURLResponse {
-                self.handleResponse(response)
+            if !self.dataTaskDidSucceed(with: response) {
                 completion(.failure(.otherError))
                 return
             }
@@ -72,8 +71,7 @@ class NetworkManager {
             method: .get)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
-            if let response = response as? HTTPURLResponse {
-                self.handleResponse(response)
+            if !self.dataTaskDidSucceed(with: response) {
                 completion(.failure(.otherError))
                 return
             }
@@ -102,9 +100,9 @@ class NetworkManager {
     // MARK: - CRUD
     
     /// For regular/non-admin employees, make one-time purchases or request additions to the organization snack subscription. If user is an authorized organization administrator, purchase snacks as one-time orders or add them to their regular subscription.
-    func handleOneTimeSnackPurchase(snacks: [Snack], completion: @escaping (NetworkError?) -> Void) {
+    func handleOneTimeSnackPurchase(snacks: [Snack], completion: @escaping (Result<Bool,NetworkError>) -> Void) {
         guard let userData = user?.toJSONData() else {
-            completion(.noEncode)
+            completion(.failure(.noEncode))
             return
         }
         
@@ -115,19 +113,18 @@ class NetworkManager {
             body: userData)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
-            if let response = response as? HTTPURLResponse {
-                self.handleResponse(response)
-                completion(.otherError)
+            if !self.dataTaskDidSucceed(with: response) {
+                completion(.failure(.otherError))
                 return
             }
             
             if let error = error {
                 print(error)
-                completion(.otherError)
+                completion(.failure(.otherError))
                 return
             }
-            
             // TODO: Add any further handling of response, data
+            completion(.success(true))
         }.resume()
     }
     
@@ -138,8 +135,7 @@ class NetworkManager {
             method: .get)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
-            if let response = response as? HTTPURLResponse {
-                self.handleResponse(response)
+            if !self.dataTaskDidSucceed(with: response) {
                 completion(.failure(.otherError))
                 return
             }
@@ -162,15 +158,20 @@ class NetworkManager {
                 print(error)
                 completion(.failure(.noDecode))
             }
+        }.resume()
+    }
         }
     }
     
     // MARK: - Private Methods
     
-    private func handleResponse(_ response: HTTPURLResponse) {
-        if response.statusCode < 200 || response.statusCode >= 300 {
+    private func dataTaskDidSucceed(with response: URLResponse?) -> Bool {
+        if let response = response as? HTTPURLResponse,
+            response.statusCode < 200 || response.statusCode >= 300 {
             print(NSError(domain: "", code: response.statusCode, userInfo: nil))
+            return false
         }
+        return true
     }
     
     private func newRequest(url: URL, method: HTTPMethod, body: Data? = nil) -> URLRequest {
