@@ -63,39 +63,6 @@ class NetworkManager {
         }.resume()
     }
     
-    func fetchSnackOptions(completion: @escaping (Result<[Snack],NetworkError>) -> Void) {
-        #warning("This URL is currently invalid. Modify with actual URL component(s) before using.")
-        let request = newRequest(
-            url: baseURL.appendingPathComponent("INSERT PATH COMPONENT(s) HERE"),
-            method: .get)
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if !self.dataTaskDidSucceed(with: response) {
-                completion(.failure(.otherError))
-                return
-            }
-            
-            if let error = error {
-                print(error)
-                completion(.failure(.otherError))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(.badData))
-                return
-            }
-            
-            do {
-                let snacks = try JSONDecoder().decode([Snack].self, from: data)
-                completion(.success(snacks))
-            } catch {
-                print(error)
-                completion(.failure(.noDecode))
-            }
-        }.resume()
-    }
-    
     // MARK: - Helper Methods
     
     func dataTaskDidSucceed(with response: URLResponse?) -> Bool {

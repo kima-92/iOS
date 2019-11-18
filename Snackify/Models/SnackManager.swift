@@ -12,10 +12,45 @@ class SnackManager {
     let networkManager: NetworkManager
     let baseURL: URL
     
+    var allSnacksOptions: [Snack]?
     
     init(networkManager: NetworkManager) {
         self.networkManager = networkManager
         self.baseURL = networkManager.baseURL
+        self.allSnacksOptions = 
+    }
+    
+    func fetchSnackOptions(completion: @escaping (Result<[Snack],NetworkError>) -> Void) {
+        #warning("This URL is currently invalid. Modify with actual URL component(s) before using.")
+        let request = networkManager.newRequest(
+            url: baseURL.appendingPathComponent("INSERT PATH COMPONENT(s) HERE"),
+            method: .get)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if !self.networkManager.dataTaskDidSucceed(with: response) {
+                completion(.failure(.otherError))
+                return
+            }
+            
+            if let error = error {
+                print(error)
+                completion(.failure(.otherError))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.badData))
+                return
+            }
+            
+            do {
+                let snacks = try JSONDecoder().decode([Snack].self, from: data)
+                completion(.success(snacks))
+            } catch {
+                print(error)
+                completion(.failure(.noDecode))
+            }
+        }.resume()
     }
     
     /// For regular/non-admin employees, make one-time purchases or request additions to the organization snack subscription. If user is an authorized organization administrator, purchase snacks as one-time orders or add them to their regular subscription.
