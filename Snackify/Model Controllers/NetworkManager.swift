@@ -34,8 +34,7 @@ class NetworkManager {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         do {
-            let jsonData = try JSONEncoder().encode(user)
-            request.httpBody = jsonData
+            request.httpBody = try JSONEncoder().encode(user)
         } catch {
             completion(.failure(.noEncode))
             return
@@ -108,12 +107,51 @@ class NetworkManager {
         }.resume()
     }
     
-    func requestSnackOrder(of snacks: [Snack], completion: @escaping (NetworkError) -> Void) {
+    func handleSnackPurchase(snacks: [Snack], isOneTimePurchase: Bool, completion: @escaping (NetworkError?) -> Void) {
+        #warning("This URL is currently invalid. Modify with actual URL component(s) before using.")
+        let requestURL = baseURL.appendingPathComponent("INSERT PATH COMPONENT(s) HERE")
         
-    }
-    
-    func handleSnackPurchase() {
+        if isOneTimePurchase {
+            // TODO: handle one-time purchases
+        } else {
+            //if !user.isAdmin {
+                // TODO: handle 'request' for purchase
+            //} else {
+                // TODO: handle subscriptions
+            // }
+        }
         
+        //if !user.isAdmin {
+            // TODO: handle 'request' for purchase
+        //}
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.post
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        do {
+            request.httpBody = try JSONEncoder().encode(user)
+        } catch {
+            print(error)
+            completion(.noEncode)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let response = response as? HTTPURLResponse {
+                self.handleResponse(response)
+                completion(.otherError)
+                return
+            }
+            
+            if let error = error {
+                print(error)
+                completion(.otherError)
+                return
+            }
+            
+            // TODO: Add any further handling of response, data
+        }.resume()
     }
     
     // MARK: - Private Methods
