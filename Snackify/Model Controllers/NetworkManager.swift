@@ -11,13 +11,12 @@ import Foundation
 class NetworkManager {
     // MARK: - Properties
     
-    #warning("This URL is currently invalid. Replace with API URL before using.")
-    private let baseURL: URL = URL(string: "INSERT VALID URL HERE")!
+    let baseURL: URL = URL(string: "https://snackify7.herokuapp.com")!
     
     private(set) var user: User?
-    private var bearer: Bearer?
+    private(set) var bearer: Bearer?
     
-    // MARK: - Public API
+    // MARK: - Users
     
     /// Sign up or log in.
     func handleAuth(_ callType: AuthType, with user: User, completion: @escaping (Result<Bearer,NetworkError>) -> Void) {
@@ -97,101 +96,9 @@ class NetworkManager {
         }.resume()
     }
     
-    // MARK: - CRUD
+    // MARK: - Helper Methods
     
-    /// For regular/non-admin employees, make one-time purchases or request additions to the organization snack subscription. If user is an authorized organization administrator, purchase snacks as one-time orders or add them to their regular subscription.
-    func handleOneTimeSnackPurchase(snacks: [Snack], completion: @escaping (Result<Bool,NetworkError>) -> Void) {
-        guard let userData = user?.toJSONData() else {
-            completion(.failure(.noEncode))
-            return
-        }
-        
-        #warning("This URL is currently invalid. Modify with actual URL component(s) before using.")
-        let request = newRequest(
-            url: baseURL.appendingPathComponent("INSERT PATH COMPONENT(s) HERE"),
-            method: .post,
-            body: userData)
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if !self.dataTaskDidSucceed(with: response) {
-                completion(.failure(.otherError))
-                return
-            }
-            
-            if let error = error {
-                print(error)
-                completion(.failure(.otherError))
-                return
-            }
-            // TODO: Add any further handling of response, data
-            completion(.success(true))
-        }.resume()
-    }
-    
-    func fetchSubscription(completion: @escaping (Result<Subscription,NetworkError>) -> Void) {
-        #warning("This URL is currently invalid. Modify with actual URL component(s) before using.")
-        let request = newRequest(
-            url: baseURL.appendingPathComponent("TEMP"),
-            method: .get)
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if !self.dataTaskDidSucceed(with: response) {
-                completion(.failure(.otherError))
-                return
-            }
-            
-            if let error = error {
-                print(error)
-                completion(.failure(.otherError))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(.badData))
-                return
-            }
-            
-            do {
-                let subscription = try JSONDecoder().decode(Subscription.self, from: data)
-                completion(.success(subscription))
-            } catch {
-                print(error)
-                completion(.failure(.noDecode))
-            }
-        }.resume()
-    }
-    
-    func updateSubscription(_ subscription: Subscription, completion: @escaping (Result<Bool,NetworkError>) -> Void) {
-        guard let userData = user?.toJSONData() else {
-            completion(.failure(.noEncode))
-            return
-        }
-        
-        #warning("This URL is currently invalid. Modify with actual URL component(s) before using.")
-        let request = newRequest(
-            url: baseURL.appendingPathComponent("INSERT PATH COMPONENT(s) HERE"),
-            method: .post,
-            body: userData)
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if !self.dataTaskDidSucceed(with: response) {
-                completion(.failure(.otherError))
-                return
-            }
-            
-            if let error = error {
-                print(error)
-                completion(.failure(.otherError))
-                return
-            }
-            // TODO: Add any further handling of response, data
-            completion(.success(true))
-        }.resume()
-    }
-    
-    // MARK: - Private Methods
-    
-    private func dataTaskDidSucceed(with response: URLResponse?) -> Bool {
+    func dataTaskDidSucceed(with response: URLResponse?) -> Bool {
         if let response = response as? HTTPURLResponse,
             response.statusCode < 200 || response.statusCode >= 300 {
             print(NSError(domain: "", code: response.statusCode, userInfo: nil))
@@ -200,7 +107,7 @@ class NetworkManager {
         return true
     }
     
-    private func newRequest(url: URL, method: HTTPMethod, body: Data? = nil) -> URLRequest {
+    func newRequest(url: URL, method: HTTPMethod, body: Data? = nil) -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         
