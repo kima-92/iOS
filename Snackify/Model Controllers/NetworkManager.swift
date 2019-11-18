@@ -72,7 +72,7 @@ class NetworkManager {
         }.resume()
     }
     
-    func fetchSnacks(completion: @escaping (Result<[Snack],NetworkError>) -> Void) {
+    func fetchSnackOptions(completion: @escaping (Result<[Snack],NetworkError>) -> Void) {
         #warning("This URL is currently invalid. Modify with actual URL component(s) before using.")
         let fetchURL = baseURL.appendingPathComponent("INSERT PATH COMPONENT(s) HERE")
         
