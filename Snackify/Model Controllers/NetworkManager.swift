@@ -21,7 +21,7 @@ class NetworkManager {
     
     /// Sign up or log in.
     func handleAuth(_ callType: AuthType, with user: User, completion: @escaping (Result<Bearer,NetworkError>) -> Void) {
-        let call = callComponents[callType]
+        let call = authComponents[callType]
         
         guard let authURLComponent = call?.url else {
             completion(.failure(.badAuthURL))
@@ -108,6 +108,14 @@ class NetworkManager {
         }.resume()
     }
     
+    func requestSnackOrder(of snacks: [Snack], completion: @escaping (NetworkError) -> Void) {
+        
+    }
+    
+    func handleSnackPurchase() {
+        
+    }
+    
     // MARK: - Private Methods
     
     private func handleResponse(_ response: HTTPURLResponse) {
@@ -141,7 +149,7 @@ enum AuthType: String {
 }
 
 #warning("This URL is currently invalid. Modify with actual URL component(s) before using.")
-fileprivate let callComponents: [AuthType: (url: String, httpMethod: String)] = [
+fileprivate let authComponents: [AuthType: (url: String, httpMethod: String)] = [
     .signUp: (
         url: "/users/signup",
         httpMethod: HTTPMethod.post
