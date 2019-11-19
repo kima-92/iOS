@@ -10,6 +10,8 @@ import UIKit
 
 class SnacksMainViewController: UIViewController {
     
+    var networkManager = NetworkManager()
+    
     //MARK: Outlets
     @IBOutlet weak var welcomeUserLabel: UILabel!
     @IBOutlet weak var placeNewOrderButton: UIButton!
@@ -19,7 +21,12 @@ class SnacksMainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // transition to login view if conditions require
+        if networkManager.bearer == nil {
+            performSegue(withIdentifier: "LoginModalSegue", sender: self)
+            
+        }
         
     }
     
@@ -27,14 +34,17 @@ class SnacksMainViewController: UIViewController {
     @IBAction func LogOutButtonTapped(_ sender: UIBarButtonItem) {
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "LoginModalSegue" {
+            if let loginVC = segue.destination as? LoginViewController {
+                loginVC.networkManager = networkManager
+            }
+        }
     }
-    */
+    
 
 }
