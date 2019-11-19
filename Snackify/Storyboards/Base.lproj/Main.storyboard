@@ -241,6 +241,9 @@
                                         <state key="normal" title="Place Order">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="placeOrderButtonTapped:" destination="dZZ-Jn-TD8" eventType="touchUpInside" id="kVC-Xs-khw"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -270,6 +273,11 @@
                         <viewLayoutGuide key="safeArea" id="mee-Mt-aVb"/>
                     </view>
                     <navigationItem key="navigationItem" id="XaY-CP-EmV"/>
+                    <connections>
+                        <outlet property="OrderDeadlineLabel" destination="J2D-og-8Yy" id="Jku-Mx-Obc"/>
+                        <outlet property="amountOfSnacksLabel" destination="r5h-iA-IZQ" id="fpT-De-1Ma"/>
+                        <outlet property="priceTotalLabel" destination="hCX-Ws-UcD" id="oY5-PL-WVe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FyN-8J-csp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
