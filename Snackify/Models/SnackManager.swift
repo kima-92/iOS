@@ -17,7 +17,15 @@ class SnackManager {
     init(networkManager: NetworkManager) {
         self.networkManager = networkManager
         self.baseURL = networkManager.baseURL
-        self.allSnacksOptions = 
+        fetchSnackOptions { result in
+            do {
+                self.allSnacksOptions = try result.get()
+            } catch {
+                if let error = error as? NetworkError {
+                    print(error.rawValue)
+                }
+            }
+        }
     }
     
     func fetchSnackOptions(completion: @escaping (Result<[Snack],NetworkError>) -> Void) {
@@ -142,5 +150,4 @@ class SnackManager {
             completion(.success(true))
         }.resume()
     }
-    
 }
