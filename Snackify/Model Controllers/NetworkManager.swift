@@ -149,19 +149,6 @@ enum AuthType: String {
     case signUp = "Sign up"
     case logIn = "Log in"
 }
-
-#warning("This URL is currently invalid. Modify with actual URL component(s) before using.")
-fileprivate let authComponents: [AuthType: (url: String, httpMethod: HTTPMethod)] = [
-    .signUp: (
-        url: "/auth/register/employee",
-        httpMethod: HTTPMethod.post
-    ),
-    .logIn: (
-        url: "/auth/login/employee",
-        httpMethod: HTTPMethod.post
-    )
-]
-
 extension Encodable {
     func toJSONData() -> Data? {
         return try? JSONEncoder().encode(self)
