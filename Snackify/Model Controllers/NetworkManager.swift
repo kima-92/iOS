@@ -18,9 +18,9 @@ class NetworkManager {
     
     // MARK: - Login/Sign-up
     
-    /// Handles sign-up for both organizations and users.
+    /// Handles sign-up for employees.
     func signUp(with user: User, completion: @escaping (Result<Data,NetworkError>) -> Void) {
-        guard let userData = user.toJSONData() else {
+        guard let userData = user.representation.toJSONData() else {
             completion(.failure(.noEncode))
             return
         }
@@ -32,7 +32,7 @@ class NetworkManager {
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             self.handleDataTaskResponse(data: data, response: response, error: error, dataHandler: completion)
-        }
+        }.resume()
     }
     
     func logIn(with username: String, password: String, completion: @escaping (Result<Bearer,NetworkError>) -> Void) {
@@ -61,13 +61,14 @@ class NetworkManager {
                 
                 do {
                     let token = try JSONDecoder().decode(Bearer.self, from: data)
+                    self.bearer = token
                     completion(.success(token))
                 } catch {
                     print(error)
                     completion(.failure(.noDecode))
                 }
             }
-        }
+        }.resume()
     }
     
     // MARK: - Helper Methods
