@@ -16,10 +16,9 @@ class NetworkManager {
     private(set) var user: User?
     private(set) var bearer: Bearer?
     
-    // MARK: - Users
+    // MARK: - Login/Sign-up
     
-    /// Sign up or log in.
-    
+    /// Handles sign-up for both organizations and users.
     func signUp(with user: User, completion: @escaping (Result<Data,NetworkError>) -> Void) {
         guard let userData = user.toJSONData() else {
             completion(.failure(.noEncode))
@@ -36,48 +35,39 @@ class NetworkManager {
         }
     }
     
-    func handleAuth(_ callType: AuthType, with user: User, completion: @escaping (Result<Bearer,NetworkError>) -> Void) {
-        let call = authComponents[callType]!
-        
-        guard let userData = user.toJSONData() else {
+    func logIn(with username: String, password: String, completion: @escaping (Result<Bearer,NetworkError>) -> Void) {
+        let userData: Data
+        do {
+            userData = try JSONEncoder().encode([
+                "username": username,
+                "password": password])
+        } catch {
+            print(error)
             completion(.failure(.noEncode))
             return
         }
-
+        
         let request = newRequest(
-            url: baseURL.appendingPathComponent(call.url),
-            method: call.httpMethod,
+            url: baseURL.appendingPathComponent("/auth/login/employee"),
+            method: .post,
             body: userData)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
-            if !self.dataTaskDidSucceed(with: response) {
-                completion(.failure(.otherError))
-                return
-            }
-            
-            if let error = error {
-                print(error)
-                completion(.failure(.otherError))
-                return
-            }
-            
-            if callType == .logIn {
+            self.handleDataTaskResponse(data: data, response: response, error: error) { result in
                 guard let data = data else {
                     completion(.failure(.badData))
                     return
                 }
                 
-                let decoder = JSONDecoder()
                 do {
-                    let receivedBearer = try decoder.decode(Bearer.self, from: data)
-                    completion(.success(receivedBearer))
+                    let token = try JSONDecoder().decode(Bearer.self, from: data)
+                    completion(.success(token))
                 } catch {
                     print(error)
                     completion(.failure(.noDecode))
-                    return
                 }
             }
-        }.resume()
+        }
     }
     
     // MARK: - Helper Methods
