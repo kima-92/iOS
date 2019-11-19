@@ -19,6 +19,23 @@ class NetworkManager {
     // MARK: - Users
     
     /// Sign up or log in.
+    
+    func signUp(with user: User, completion: @escaping (Result<Data,NetworkError>) -> Void) {
+        guard let userData = user.toJSONData() else {
+            completion(.failure(.noEncode))
+            return
+        }
+        
+        let request = newRequest(
+            url: baseURL.appendingPathComponent("/auth/register/employee"),
+            method: .post,
+            body: userData)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            self.handleDataTaskResponse(data: data, response: response, error: error, dataHandler: completion)
+        }
+    }
+    
     func handleAuth(_ callType: AuthType, with user: User, completion: @escaping (Result<Bearer,NetworkError>) -> Void) {
         let call = authComponents[callType]!
         
