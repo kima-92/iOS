@@ -10,7 +10,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    var networkManager: NetworkManager? = NetworkManager.shared
+    var networkManager: NetworkManager?
     var authType = AuthType.logIn
     
     //MARK: Outlets
@@ -28,10 +28,10 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.hidesBackButton = true
         updateViews()
     }
     
@@ -41,11 +41,9 @@ class LoginViewController: UIViewController {
         
         if sender.selectedSegmentIndex == 0 {
             authType = .signUp
-            //            loginButton.setTitle("Sign Up", for: .normal)
             updateViews()
         } else {
             authType = .logIn
-            //            loginButton.setTitle("Log In", for: .normal)
             updateViews()
         }
     }
@@ -60,7 +58,6 @@ class LoginViewController: UIViewController {
             else { return }
         
         // perform login or sign up operation based on loginType
-        
         if authType == .signUp {
             guard let fullname = fullNameTextField.text,
                 let email = emailTextField.text,
@@ -135,6 +132,7 @@ class LoginViewController: UIViewController {
     func updateViews() {
         
         loginButton.layer.cornerRadius = 8.0
+        passwordTextField.isSecureTextEntry = true
         
         if authType == .logIn {
             loginSegmentedControl.selectedSegmentIndex = 1
