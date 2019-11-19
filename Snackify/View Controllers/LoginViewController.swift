@@ -132,6 +132,7 @@ class LoginViewController: UIViewController {
     func updateViews() {
         
         loginButton.layer.cornerRadius = 8.0
+        passwordTextField.isSecureTextEntry = true
         
         if authType == .logIn {
             loginSegmentedControl.selectedSegmentIndex = 1
