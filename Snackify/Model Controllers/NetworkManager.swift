@@ -65,6 +65,23 @@ class NetworkManager {
     
     // MARK: - Helper Methods
     
+    func handleDataTaskResponse(data: Data?, response: URLResponse?, error: Error?, dataHandler: @escaping (Result<Data,NetworkError>) -> Void) {
+        if !dataTaskDidSucceed(with: response) {
+            dataHandler(.failure(.otherError))
+            return
+        }
+        if let error = error {
+            print(error)
+            dataHandler(.failure(.otherError))
+            return
+        }
+        if let data = data {
+            dataHandler(.success(data))
+        } else {
+            dataHandler(.failure(.badData))
+        }
+    }
+    
     func dataTaskDidSucceed(with response: URLResponse?) -> Bool {
         if let response = response as? HTTPURLResponse,
             response.statusCode < 200 || response.statusCode >= 300 {
