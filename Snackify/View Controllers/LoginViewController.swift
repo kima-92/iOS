@@ -33,6 +33,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        updateViews()
     }
     
     //MARK: Actions
@@ -41,10 +42,12 @@ class LoginViewController: UIViewController {
         
         if sender.selectedSegmentIndex == 0 {
             authType = .signUp
-            loginButton.setTitle("Sign Up", for: .normal)
+//            loginButton.setTitle("Sign Up", for: .normal)
+            updateViews()
         } else {
             authType = .logIn
-            loginButton.setTitle("Log In", for: .normal)
+//            loginButton.setTitle("Log In", for: .normal)
+            updateViews()
         }
     }
     
@@ -70,6 +73,8 @@ class LoginViewController: UIViewController {
             zipcode != "",
             organization != "" else { return }
         
+        //TODO : WR -> Create a user with out id IF id will be provited by back-end
+        
         //        let user = User(id: <#T##Int#>, firstName: <#T##String#>, lastName: <#T##String#>, username: <#T##String#>, email: <#T##String#>, phoneNumber: <#T##String#>, streetAddress: <#T##String#>, state: <#T##String#>, zipCode: <#T##String#>, organization: <#T##Organization#>, isAdmin: <#T##Bool#>)
         
         // perform login or sign up operation based on loginType
@@ -83,7 +88,7 @@ class LoginViewController: UIViewController {
     
     func signUp(with user: User) {
         
-        //TODO: Implement sign Up in the NetworkManager
+        //TODO: WR -> Implement sign Up in the NetworkManager
 
 //        networkManager?.signUp(with: user, completion: { (error) in
 //
@@ -111,7 +116,7 @@ class LoginViewController: UIViewController {
     
     func login(with user: User) {
         
-        //TODO: Implement login in the NetworkManager
+        //TODO: WR -> Implement login in the NetworkManager
         
 //        networkManager?.signIn(with: user, completion: { (error) in
 //            if let error = error {
@@ -127,8 +132,61 @@ class LoginViewController: UIViewController {
     func updateViews() {
         
         loginButton.layer.cornerRadius = 8.0
+        
+        if authType == .logIn {
+            loginSegmentedControl.selectedSegmentIndex = 1
+            
+            fullNameTextField.alpha = 0
+            emailTextField.alpha = 0
+            phoneNumberTextField.alpha = 0
+            addressTextField.alpha = 0
+            stateTextField.alpha = 0
+            zipcodeTextField.alpha = 0
+            organizationTextField.alpha = 0
+            
+            fullNameTextField.isEnabled = false
+            emailTextField.isEnabled = false
+            phoneNumberTextField.isEnabled = false
+            addressTextField.isEnabled = false
+            stateTextField.isEnabled = false
+            zipcodeTextField.isEnabled = false
+            organizationTextField.isEnabled = false
+            
+            loginButton.setTitle("Log In", for: .normal)
+            
+            // TODO: WR  try to programmatically Constrain the logIn button under the password textfield
+            
+//            loginButton.translatesAutoresizingMaskIntoConstraints = false
+//            NSLayoutConstraint(item: loginButton,
+//                               attribute: .top,
+//                               relatedBy: .bottomAnchor,
+//                               toItem: passwordTextField,
+//                               attribute: <#T##NSLayoutConstraint.Attribute#>,
+//                               multiplier: <#T##CGFloat#>,
+//                               constant: <#T##CGFloat#>)
+        
+        } else {
+            
+            loginSegmentedControl.selectedSegmentIndex = 0
+
+            
+            fullNameTextField.alpha = 1
+            emailTextField.alpha = 1
+            phoneNumberTextField.alpha = 1
+            addressTextField.alpha = 1
+            stateTextField.alpha = 1
+            zipcodeTextField.alpha = 1
+            organizationTextField.alpha = 1
+            
+            fullNameTextField.isEnabled = true
+            emailTextField.isEnabled = true
+            phoneNumberTextField.isEnabled = true
+            addressTextField.isEnabled = true
+            stateTextField.isEnabled = true
+            zipcodeTextField.isEnabled = true
+            organizationTextField.isEnabled = true
+            
+            loginButton.setTitle("Sign Up", for: .normal)
+        }
     }
-    
-    
-    
 }
