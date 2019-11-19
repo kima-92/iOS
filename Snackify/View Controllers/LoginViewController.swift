@@ -42,11 +42,11 @@ class LoginViewController: UIViewController {
         
         if sender.selectedSegmentIndex == 0 {
             authType = .signUp
-//            loginButton.setTitle("Sign Up", for: .normal)
+            //            loginButton.setTitle("Sign Up", for: .normal)
             updateViews()
         } else {
             authType = .logIn
-//            loginButton.setTitle("Log In", for: .normal)
+            //            loginButton.setTitle("Log In", for: .normal)
             updateViews()
         }
     }
@@ -75,58 +75,53 @@ class LoginViewController: UIViewController {
         
         //TODO : WR -> Create a user with out id IF id will be provited by back-end
         
-//                let user = User(username: username, password: password, email: email, phoneNumber: phoneNum, streetAddress: address, state: state, zipCode: zipcode, orgId: <#T##Int#>, contactPerson: <#T##String#>, role: <#T##String#>, organizationName: organization, fullName: fullname, orgID: <#T##Int?#>, isAdmin: <#T##Bool?#>)
-        
+//        let user = 
         // perform login or sign up operation based on loginType
         
         if authType == .signUp {
-            //            signUp(with: user)
+            signUp(with: user)
         } else {
-            //            signIn(with: user)
+            login(username: username, password: password)
         }
     }
     
     func signUp(with user: User) {
-        
-        //TODO: WR -> Implement sign Up in the NetworkManager
-
-//        networkManager?.signUp(with: user, completion: { (error) in
-//
-//            if let error = error {
-//                NSLog("Error occurred during sign up: \(error)")
-//            } else {
-//                let alert = UIAlertController(title: "Sign Up Successful",
-//                                              message: "Please log in",
-//                                              preferredStyle: .alert)
-//
-//                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-//
-//                alert.addAction(okAction)
-//
-//                DispatchQueue.main.async {
-//                    self.present(alert, animated: true) {
-//                        self.authType = .signIn
-//                        self.loginSegmentedControl.selectedSegmentIndex = 1
-//                        self.loginButton.setTitle("Log In", for: .normal)
-//                    }
-//                }
-//            }
-//        })
+                
+        networkManager?.signUp(with: user, completion: { (error) in
+           
+            let alert = UIAlertController(title: "Sign Up Successful!",
+                                          message: "Please log in",
+                                          preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            
+            alert.addAction(okAction)
+            
+            DispatchQueue.main.async {
+                self.present(alert, animated: true) {
+                    self.authType = .logIn
+                    self.loginSegmentedControl.selectedSegmentIndex = 1
+                    self.loginButton.setTitle("Log In", for: .normal)
+                }
+            }
+        })
     }
     
-    func login(with user: User) {
+    func login(username: String, password: String) {
         
-        //TODO: WR -> Implement login in the NetworkManager
         
-//        networkManager?.signIn(with: user, completion: { (error) in
-//            if let error = error {
-//                NSLog("Error occurred during sign in: \(error)")
-//            } else {
-//                DispatchQueue.main.async {
-//                    self.dismiss(animated: true, completion: nil)
-//                }
-//            }
-//        })
+        networkManager?.logIn(with: username, password: password) { result in
+            
+            do {
+                let _ = try result.get()
+                
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            } catch {
+                NSLog("Error login in user")
+            }
+        }
     }
     
     func updateViews() {
@@ -156,19 +151,19 @@ class LoginViewController: UIViewController {
             
             // TODO: WR  try to programmatically Constrain the logIn button under the password textfield
             
-//            loginButton.translatesAutoresizingMaskIntoConstraints = false
-//            NSLayoutConstraint(item: loginButton,
-//                               attribute: .top,
-//                               relatedBy: .bottomAnchor,
-//                               toItem: passwordTextField,
-//                               attribute: <#T##NSLayoutConstraint.Attribute#>,
-//                               multiplier: <#T##CGFloat#>,
-//                               constant: <#T##CGFloat#>)
-        
+            //            loginButton.translatesAutoresizingMaskIntoConstraints = false
+            //            NSLayoutConstraint(item: loginButton,
+            //                               attribute: .top,
+            //                               relatedBy: .bottomAnchor,
+            //                               toItem: passwordTextField,
+            //                               attribute: <#T##NSLayoutConstraint.Attribute#>,
+            //                               multiplier: <#T##CGFloat#>,
+            //                               constant: <#T##CGFloat#>)
+            
         } else {
             
             loginSegmentedControl.selectedSegmentIndex = 0
-
+            
             
             fullNameTextField.alpha = 1
             emailTextField.alpha = 1
