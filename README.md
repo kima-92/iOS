@@ -26,7 +26,7 @@ iOS Engineers
 		- `allergens` - String
 	 * `totalWeight` - Double/Float
 	 * `price` - Double/Float
-- [ ] Authenticated `Employees`/organizations/orgadmins can make "one-time purchases of `snack`s that can be delivered with the next upcoming `Organization` subscription order.
+- [ ] Authenticated `Employees`/organizations/orgadmins can make "one-time purchases" of `snack`s that can be delivered with the next upcoming `Organization` subscription order.
 - [ ] Authenticated `Employees` can request `snack` choices to request to be added to the next upcoming `Organization` subscription order.
 - [ ] organization can sign up/log in
 - [ ] Authenticated `Organization` or `orgAdmin` can create, read, update and delete a list of `snack`s that they would like to have included in their order/subscription.
