@@ -119,11 +119,11 @@ enum AuthType: String {
 #warning("This URL is currently invalid. Modify with actual URL component(s) before using.")
 fileprivate let authComponents: [AuthType: (url: String, httpMethod: HTTPMethod)] = [
     .signUp: (
-        url: "/users/signup",
+        url: "/auth/register/employee",
         httpMethod: HTTPMethod.post
     ),
     .logIn: (
-        url: "/users/login",
+        url: "/auth/login/employee",
         httpMethod: HTTPMethod.post
     )
 ]

@@ -15,10 +15,9 @@ struct Snack: Codable {
     let name: String
     let type: String
     let numberOfServings: Int
-    let nutritionInfo: NutritionInfo
+    let nutritionInfo: NutritionInfo?
     let totalWeight: Double
     let price: Double
-    let imageData: Data
 }
 
 // MARK: - Nutrition Info
@@ -30,7 +29,7 @@ struct NutritionInfo: Codable {
     let totalSugars: Double
     let protein: Double
     let carbs: Double
-    let allergens: [Allergen]
+    let allergens: String
 }
 
 // MARK: - Allergen
