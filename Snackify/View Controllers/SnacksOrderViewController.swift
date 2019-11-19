@@ -9,14 +9,22 @@
 import UIKit
 
 class SnacksOrderViewController: UIViewController {
-
+    
+    //MARK: Outlets
+    @IBOutlet weak var amountOfSnacksLabel: UILabel!
+    @IBOutlet weak var priceTotalLabel: UILabel!
+    @IBOutlet weak var OrderDeadlineLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
+    //MARK: Actions
+    @IBAction func placeOrderButtonTapped(_ sender: UIButton) {
+    }
+    
     /*
     // MARK: - Navigation
 

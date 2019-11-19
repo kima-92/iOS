@@ -24,6 +24,7 @@
 		FA806A63238353AB003907EE /* SnackDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA806A62238353AB003907EE /* SnackDetailViewController.swift */; };
 		FA806A65238353FC003907EE /* SnacksOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA806A64238353FC003907EE /* SnacksOrderViewController.swift */; };
 		FA806A6723835462003907EE /* SnacksMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA806A6623835462003907EE /* SnacksMainViewController.swift */; };
+		FAA7C8AA238456BD00F46C0E /* CRUDMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA7C8A9238456BD00F46C0E /* CRUDMethods.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		FA806A62238353AB003907EE /* SnackDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackDetailViewController.swift; sourceTree = "<group>"; };
 		FA806A64238353FC003907EE /* SnacksOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnacksOrderViewController.swift; sourceTree = "<group>"; };
 		FA806A6623835462003907EE /* SnacksMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnacksMainViewController.swift; sourceTree = "<group>"; };
+		FAA7C8A9238456BD00F46C0E /* CRUDMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CRUDMethods.swift; path = Models/CRUDMethods.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 			children = (
 				9936AF46238337B100A9F99C /* NetworkManager.swift */,
 				9936AF4C2383605300A9F99C /* SnackManager.swift */,
+				FAA7C8A9238456BD00F46C0E /* CRUDMethods.swift */,
 			);
 			name = "Model Controllers";
 			path = "Models/Model Controllers";
@@ -216,6 +219,7 @@
 				FA806A5F2383532E003907EE /* LoginViewController.swift in Sources */,
 				99D8270D23831B3000E147C7 /* Snack.swift in Sources */,
 				99D8270F23831B3600E147C7 /* Organization.swift in Sources */,
+				FAA7C8AA238456BD00F46C0E /* CRUDMethods.swift in Sources */,
 				FA806A63238353AB003907EE /* SnackDetailViewController.swift in Sources */,
 				9936AF4D2383605300A9F99C /* SnackManager.swift in Sources */,
 			);
