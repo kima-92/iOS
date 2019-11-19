@@ -9,22 +9,36 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    
+    
+    //MARK: Outlets
+    @IBOutlet weak var loginSegmentedControl: UISegmentedControl!
+    
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var fullNameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var phoneNumberTextField: UITextField!
+    @IBOutlet weak var addressTextField: UITextField!
+    @IBOutlet weak var stateTextField: UITextField!
+    @IBOutlet weak var zipcodeTextField: UITextField!
+    @IBOutlet weak var organizationTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    //MARK: Actions
+    
+    @IBAction func loginSegmentedControlChanged(_ sender: UISegmentedControl) {
     }
-    */
+    
+    @IBAction func loginButtonTapped(_ sender: UIButton) {
+    }
+    
+    
 
 }
