@@ -72,10 +72,10 @@ class LoginViewController: UIViewController {
             state != "",
             zipcode != "",
             organization != "" else { return }
+                
+        let user = User(username: username, password: password, email: email, phoneNumber: phoneNum, streetAddress: address, state: state, zipCode: zipcode, isAdmin: false)
         
-        //TODO : WR -> Create a user with out id IF id will be provited by back-end
         
-//        let user = 
         // perform login or sign up operation based on loginType
         
         if authType == .signUp {
