@@ -75,7 +75,7 @@ class LoginViewController: UIViewController {
         
         //TODO : WR -> Create a user with out id IF id will be provited by back-end
         
-        //        let user = User(id: <#T##Int#>, firstName: <#T##String#>, lastName: <#T##String#>, username: <#T##String#>, email: <#T##String#>, phoneNumber: <#T##String#>, streetAddress: <#T##String#>, state: <#T##String#>, zipCode: <#T##String#>, organization: <#T##Organization#>, isAdmin: <#T##Bool#>)
+//                let user = User(username: username, password: password, email: email, phoneNumber: phoneNum, streetAddress: address, state: state, zipCode: zipcode, orgId: <#T##Int#>, contactPerson: <#T##String#>, role: <#T##String#>, organizationName: organization, fullName: fullname, orgID: <#T##Int?#>, isAdmin: <#T##Bool?#>)
         
         // perform login or sign up operation based on loginType
         
