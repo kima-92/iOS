@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		993032142384440900C3F7D4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF4E238373A200A9F99C /* User.swift */; };
 		9936AF452383371D00A9F99C /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF442383371D00A9F99C /* Bearer.swift */; };
 		9936AF47238337B100A9F99C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF46238337B100A9F99C /* NetworkManager.swift */; };
 		9936AF4B2383533E00A9F99C /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF4A2383533E00A9F99C /* Subscription.swift */; };
 		9936AF4D2383605300A9F99C /* SnackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF4C2383605300A9F99C /* SnackManager.swift */; };
-		9936AF4F238373A200A9F99C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF4E238373A200A9F99C /* User.swift */; };
 		99D8270D23831B3000E147C7 /* Snack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D8270C23831B3000E147C7 /* Snack.swift */; };
 		99D8270F23831B3600E147C7 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D8270E23831B3600E147C7 /* Organization.swift */; };
 		FA806A4923830A92003907EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA806A4823830A92003907EE /* AppDelegate.swift */; };
@@ -210,13 +210,13 @@
 				FA806A612383536C003907EE /* SnacksTableViewController.swift in Sources */,
 				FA806A4B23830A92003907EE /* SceneDelegate.swift in Sources */,
 				9936AF4B2383533E00A9F99C /* Subscription.swift in Sources */,
+				993032142384440900C3F7D4 /* User.swift in Sources */,
 				9936AF452383371D00A9F99C /* Bearer.swift in Sources */,
 				9936AF47238337B100A9F99C /* NetworkManager.swift in Sources */,
 				FA806A5F2383532E003907EE /* LoginViewController.swift in Sources */,
 				99D8270D23831B3000E147C7 /* Snack.swift in Sources */,
 				99D8270F23831B3600E147C7 /* Organization.swift in Sources */,
 				FA806A63238353AB003907EE /* SnackDetailViewController.swift in Sources */,
-				99D8270A23831AEF00E147C7 /* User.swift in Sources */,
 				9936AF4D2383605300A9F99C /* SnackManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
