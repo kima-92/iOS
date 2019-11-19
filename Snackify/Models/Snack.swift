@@ -10,14 +10,34 @@ import Foundation
 
 // MARK: - Snack
 
-struct Snack: Codable {
+struct Snack {
     let id: Int
     let name: String
-    let type: String
+    let type: String = "??" // not sure what to do with this
     let numberOfServings: Int
-    let nutritionInfo: NutritionInfo?
-    let totalWeight: Double
+    let nutritionInfo: NutritionInfo? = nil // fetched when needed
+    let totalWeight: Double // grams
     let price: Double
+    
+    var representation: Representation?
+    
+    struct Representation: Codable {
+        let id: Int
+        let name: String
+        let numberOfServings: Int
+        let totalWeight: Double
+        let price: Double
+        let subId: Int
+    }
+    
+    init(fromRepresentation rep: Representation) {
+        self.id = rep.id
+        self.name = rep.name
+        self.numberOfServings = rep.numberOfServings
+        self.totalWeight = rep.totalWeight
+        self.price = rep.price
+    }
+    
 }
 
 // MARK: - Nutrition Info

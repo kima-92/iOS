@@ -134,6 +134,7 @@ enum NetworkError: String, Error {
     case noEncode = "JSON could not be encoded. See log for details."
     case badImageURL = "The image URL could not be found."
     case badAuthURL = "The authorization URL could not be found."
+    case noBearer = "The JSON web token is missing."
 }
 
 enum AuthType: String {
