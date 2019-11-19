@@ -9,7 +9,10 @@
 import Foundation
 
 class SnackManager {
-    let networkManager: NetworkManager
+    static let shared = SnackManager(networkManager: NetworkManager.shared)
+    
+    var networkManager: NetworkManager = NetworkManager.shared
+    
     let baseURL: URL
     
     var allSnacksOptions: [Snack]?

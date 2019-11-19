@@ -16,6 +16,8 @@ class NetworkManager {
     private(set) var user: User?
     private(set) var bearer: Bearer?
     
+    static let shared = NetworkManager()
+    
     // MARK: - Login/Sign-up
     
     /// Handles sign-up for employees.
