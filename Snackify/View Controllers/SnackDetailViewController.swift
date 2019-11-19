@@ -34,9 +34,10 @@ class SnackDetailViewController: UIViewController {
     
     func updateViews() {
         
-        guard let snack = snack else { return }
+        guard let snack = snack,
+            let nutriInfo = snack.nutritionInfo else { return }
         
-        var allergens = snack.nutritionInfo.allergens.compactMap({ $0.rawValue })
+//        var allergens = snack.nutritionInfo.allergens.compactMap({ $0.rawValue })
         
         snackNameLabel.text = snack.name
         typeLabel.text = snack.type
@@ -44,11 +45,11 @@ class SnackDetailViewController: UIViewController {
         priceLabel.text = String(snack.price)
         totalWeightLabel.text = String(snack.totalWeight)
         
-        caloriesLabel.text = String(snack.nutritionInfo.calories)
-        totalFatLabel.text = String(snack.nutritionInfo.totalFat)
-        totalSugarLabel.text = String(snack.nutritionInfo.totalSugars)
-        proteinLabel.text = String(snack.nutritionInfo.protein)
-        carbsLabel.text = String(snack.nutritionInfo.carbs)
-        allergensLabel.text = allergens.joined(separator: ", ")
+        caloriesLabel.text = String(nutriInfo.calories)
+        totalFatLabel.text = String(nutriInfo.totalFat)
+        totalSugarLabel.text = String(nutriInfo.totalSugars)
+        proteinLabel.text = String(nutriInfo.protein)
+        carbsLabel.text = String(nutriInfo.carbs)
+        allergensLabel.text = String(nutriInfo.allergens)
     }
 }

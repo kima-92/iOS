@@ -9,14 +9,24 @@
 import UIKit
 
 class SnacksMainViewController: UIViewController {
-
+    
+    //MARK: Outlets
+    @IBOutlet weak var welcomeUserLabel: UILabel!
+    @IBOutlet weak var placeNewOrderButton: UIButton!
+    @IBOutlet weak var NextOrderDeadlineLabel: UILabel!
+    @IBOutlet weak var subscribeButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
     
-
+    //MARK: Actions
+    @IBAction func LogOutButtonTapped(_ sender: UIBarButtonItem) {
+    }
+    
     /*
     // MARK: - Navigation
 
