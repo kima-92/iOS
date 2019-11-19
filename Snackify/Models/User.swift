@@ -13,6 +13,7 @@ struct User {
     
     let username: String
     let password: String
+    let fullName: String
     let email: String
     let phoneNumber: String
     let streetAddress: String
@@ -24,12 +25,13 @@ struct User {
     
     var representation: Representation {
         #warning("Currently returns temporary values for `contactPerson`")
-        return Representation(username: username, password: password, email: email, phoneNumber: phoneNumber, streetAddress: streetAddress, state: state, zipcode: zipCode, orgId: orgId, contactPerson: "person", role: isAdmin ? "orgAdmin" : "employee")
+        return Representation(username: username, password: password, fullName: fullName, email: email, phoneNumber: phoneNumber, streetAddress: streetAddress, state: state, zipcode: zipCode, orgId: orgId, contactPerson: "person", role: isAdmin ? "orgAdmin" : "employee")
     }
     
     struct Representation: Codable {
         let username: String
         let password: String
+        let fullName: String
         let email: String
         let phoneNumber: String
         let streetAddress: String
