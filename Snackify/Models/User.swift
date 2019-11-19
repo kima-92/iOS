@@ -9,16 +9,24 @@
 import Foundation
 
 struct User: Codable {
-    let id: Int
-    let firstName: String
-    let lastName: String
+    let id: Int? = nil
+    
     let username: String
+    let password: String
     let email: String
     let phoneNumber: String
     let streetAddress: String
-    // let streetAddress2: String
     let state: String
     let zipCode: String
-    let organization: Organization
-    var isAdmin: Bool
+    let orgId: Int
+    let contactPerson: String
+    let role: String
+    
+    // employee only
+    let organizationName: String?
+    
+    // org only
+    let fullName: String?
+    let orgID: Int?
+    var isAdmin: Bool?
 }
