@@ -29,14 +29,23 @@ class SnackManager {
     }
     
     func fetchSnackOptions(completion: @escaping (Result<[Snack],NetworkError>) -> Void) {
-        let request = networkManager.newRequest(
+        var request = networkManager.newRequest(
             url: baseURL.appendingPathComponent("snacks"),
             method: .get)
+        
+        guard let bearer = networkManager.bearer else {
+            completion(.failure(.noBearer))
+            return
+        }
+        request.addValue(bearer.token, forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             self.networkManager.handleDataTaskResponse(data: data, response: response, error: error) { (result) in
                 do {
-                    let snacks = try JSONDecoder().decode([Snack].self, from: try result.get())
+                    let snackReps = try JSONDecoder().decode([Snack.Representation].self, from: try result.get())
+                    let snacks = snackReps.map { snackRep -> Snack in
+                        return Snack(fromRepresentation: snackRep)
+                    }
                     completion(.success(snacks))
                 } catch {
                     print(error)
@@ -46,7 +55,24 @@ class SnackManager {
         }.resume()
     }
     
+    func getSnackNutritionInfo(for snack: Snack, completion: @escaping (Result<NutritionInfo,NetworkError>) -> Void) {
+        let url = networkManager.baseURL.appendingPathComponent("snacks/\(snack.id)/nutrition")
+        let request = networkManager.newRequest(url: url, method: .get)
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            self.networkManager.handleDataTaskResponse(data: data, response: response, error: error) { (result) in
+                do {
+                    let nutritionInfo = try JSONDecoder().decode(NutritionInfo.self, from: try result.get())
+                    completion(.success(nutritionInfo))
+                } catch {
+                    if let networkError = error as? NetworkError {
+                        completion(.failure(networkError))
+                    } else {
+                        print(error)
+                        completion(.failure(.otherError))
+                    }
+                }
             }
+        }
     }
     
     /// For regular/non-admin employees, make one-time purchases or request additions to the organization snack subscription. If user is an authorized organization administrator, purchase snacks as one-time orders or add them to their regular subscription.
