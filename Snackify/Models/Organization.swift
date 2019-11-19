@@ -8,12 +8,8 @@
 
 import Foundation
 
-class Organization: Codable {
+struct Organization: Codable {
+    let id: Int
     let name: String
-    let contactPerson: User
-    
-    init(name: String, contactPerson: User) {
-        self.name = name
-        self.contactPerson = contactPerson
-    }
+    let contactPerson: String
 }
