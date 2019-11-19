@@ -22,7 +22,8 @@ class NetworkManager {
     
     /// Handles sign-up for employees.
     func signUp(with user: User, completion: @escaping (Result<Data,NetworkError>) -> Void) {
-        guard let userData = user.representation.toJSONData() else {
+        let userRep = user.representation
+        guard let userData = userRep.toJSONData() else {
             completion(.failure(.noEncode))
             return
         }
@@ -95,6 +96,7 @@ class NetworkManager {
     func dataTaskDidSucceed(with response: URLResponse?) -> Bool {
         if let response = response as? HTTPURLResponse,
             response.statusCode < 200 || response.statusCode >= 300 {
+            print(response)
             print(NSError(domain: "", code: response.statusCode, userInfo: nil))
             return false
         }

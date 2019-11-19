@@ -77,7 +77,7 @@ class LoginViewController: UIViewController {
                 zipcode != "",
                 organization != ""
                 else { return }
-            let user = User(username: username, password: password, email: email, phoneNumber: phoneNum, streetAddress: address, state: state, zipCode: zipcode, isAdmin: false)
+            let user = User(username: username, password: password, fullName: fullname, email: email, phoneNumber: phoneNum, streetAddress: address, state: state, zipCode: zipcode, isAdmin: false)
             signUp(with: user)
         } else {
             logIn(username: username, password: password)
@@ -119,9 +119,11 @@ class LoginViewController: UIViewController {
         networkManager?.logIn(with: username, password: password) { result in
             
             do {
-                let _ = try result.get()
+                let bearer = try result.get()
+                print("Success! Bearer: \(bearer.token)")
                 
                 DispatchQueue.main.async {
+                    #warning("dismissing currently not working")
                     self.dismiss(animated: true, completion: nil)
                 }
             } catch {
