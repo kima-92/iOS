@@ -10,9 +10,8 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    var networkManager: NetworkManager?
+    var networkManager: NetworkManager? = NetworkManager.shared
     var authType = AuthType.logIn
-    
     
     //MARK: Outlets
     @IBOutlet weak var loginSegmentedControl: UISegmentedControl!
@@ -56,39 +55,47 @@ class LoginViewController: UIViewController {
         // Creating a user
         guard let username = usernameTextField.text,
             let password = passwordTextField.text,
-            let fullname = fullNameTextField.text,
-            let email = emailTextField.text,
-            let phoneNum = phoneNumberTextField.text,
-            let address = addressTextField.text,
-            let state = stateTextField.text,
-            let zipcode = zipcodeTextField.text,
-            let organization = organizationTextField.text,
             username != "",
-            password != "",
-            fullname != "",
-            email != "",
-            phoneNum != "",
-            address != "",
-            state != "",
-            zipcode != "",
-            organization != "" else { return }
-                
-        let user = User(username: username, password: password, email: email, phoneNumber: phoneNum, streetAddress: address, state: state, zipCode: zipcode, isAdmin: false)
-        
+            password != ""
+            else { return }
         
         // perform login or sign up operation based on loginType
         
         if authType == .signUp {
+            guard let fullname = fullNameTextField.text,
+                let email = emailTextField.text,
+                let phoneNum = phoneNumberTextField.text,
+                let address = addressTextField.text,
+                let state = stateTextField.text,
+                let zipcode = zipcodeTextField.text,
+                let organization = organizationTextField.text,
+                fullname != "",
+                email != "",
+                phoneNum != "",
+                address != "",
+                state != "",
+                zipcode != "",
+                organization != ""
+                else { return }
+            let user = User(username: username, password: password, email: email, phoneNumber: phoneNum, streetAddress: address, state: state, zipCode: zipcode, isAdmin: false)
             signUp(with: user)
         } else {
-            login(username: username, password: password)
+            logIn(username: username, password: password)
         }
     }
     
     func signUp(with user: User) {
-                
-        networkManager?.signUp(with: user, completion: { (error) in
-           
+        networkManager?.signUp(with: user, completion: { (result) in
+            do {
+                let _ = try result.get()
+            } catch {
+                if let error = error as? NetworkError {
+                    NSLog("Error signing up: \(error.rawValue)")
+                } else {
+                    NSLog("Error signing up: \(error)")
+                }
+                return
+            }
             let alert = UIAlertController(title: "Sign Up Successful!",
                                           message: "Please log in",
                                           preferredStyle: .alert)
@@ -107,8 +114,7 @@ class LoginViewController: UIViewController {
         })
     }
     
-    func login(username: String, password: String) {
-        
+    func logIn(username: String, password: String) {
         
         networkManager?.logIn(with: username, password: password) { result in
             
@@ -119,7 +125,7 @@ class LoginViewController: UIViewController {
                     self.dismiss(animated: true, completion: nil)
                 }
             } catch {
-                NSLog("Error login in user")
+                NSLog("Error loginng in: \(error)")
             }
         }
     }
