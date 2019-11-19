@@ -11,39 +11,29 @@ import Foundation
 class NetworkManager {
     // MARK: - Properties
     
-    #warning("This URL is currently invalid. Replace with API URL before using.")
-    private let baseURL: URL = URL(string: "INSERT VALID URL HERE")!
+    let baseURL: URL = URL(string: "https://snackify7.herokuapp.com")!
     
     private(set) var user: User?
     private(set) var bearer: Bearer?
     
-    // MARK: - Public API
+    // MARK: - Users
     
     /// Sign up or log in.
     func handleAuth(_ callType: AuthType, with user: User, completion: @escaping (Result<Bearer,NetworkError>) -> Void) {
-        let call = callComponents[callType]
+        let call = authComponents[callType]!
         
-        guard let authURLComponent = call?.url else {
-            completion(.failure(.badAuthURL))
-            return
-        }
-        let authURL = baseURL.appendingPathComponent(authURLComponent)
-        
-        var request = URLRequest(url: authURL)
-            request.httpMethod = call?.httpMethod
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        do {
-            let jsonData = try JSONEncoder().encode(user)
-            request.httpBody = jsonData
-        } catch {
+        guard let userData = user.toJSONData() else {
             completion(.failure(.noEncode))
             return
         }
+
+        let request = newRequest(
+            url: baseURL.appendingPathComponent(call.url),
+            method: call.httpMethod,
+            body: userData)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
-            if let response = response as? HTTPURLResponse {
-                self.handleResponse(response)
+            if !self.dataTaskDidSucceed(with: response) {
                 completion(.failure(.otherError))
                 return
             }
@@ -73,57 +63,43 @@ class NetworkManager {
         }.resume()
     }
     
-    func fetchSnacks(completion: @escaping (Result<[Snack],NetworkError>) -> Void) {
-        #warning("This URL is currently invalid. Modify with actual URL component(s) before using.")
-        let fetchURL = baseURL.appendingPathComponent("INSERT PATH COMPONENT(s) HERE")
-        
-        var request = URLRequest(url: fetchURL)
-        request.httpMethod = HTTPMethod.get
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let response = response as? HTTPURLResponse {
-                self.handleResponse(response)
-                completion(.failure(.otherError))
-                return
-            }
-            
-            if let error = error {
-                print(error)
-                completion(.failure(.otherError))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(.badData))
-                return
-            }
-            
-            do {
-                let snacks = try JSONDecoder().decode([Snack].self, from: data)
-                completion(.success(snacks))
-            } catch {
-                print(error)
-                completion(.failure(.noDecode))
-            }
-        }.resume()
+    // MARK: - Helper Methods
+    
+    func dataTaskDidSucceed(with response: URLResponse?) -> Bool {
+        if let response = response as? HTTPURLResponse,
+            response.statusCode < 200 || response.statusCode >= 300 {
+            print(NSError(domain: "", code: response.statusCode, userInfo: nil))
+            return false
+        }
+        return true
     }
     
-    // MARK: - Private Methods
-    
-    private func handleResponse(_ response: HTTPURLResponse) {
-        if response.statusCode < 200 || response.statusCode >= 300 {
-            print(NSError(domain: "", code: response.statusCode, userInfo: nil))
+    func newRequest(url: URL, method: HTTPMethod, body: Data? = nil) -> URLRequest {
+        var request = URLRequest(url: url)
+        request.httpMethod = method.rawValue
+        
+        switch method {
+        case .post, .put:
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        default:
+            break
         }
+        
+        if let body = body {
+            request.httpBody = body
+        }
+        
+        return request
     }
 }
 
 // MARK: - Helper Types
 
-struct HTTPMethod {
-    static let get = "GET"
-    static let post = "POST"
-    static let put = "PUT"
-    static let delete = "DELETE"
+enum HTTPMethod: String {
+    case get = "GET"
+    case post = "POST"
+    case put = "PUT"
+    case delete = "DELETE"
 }
 
 enum NetworkError: String, Error {
@@ -141,7 +117,7 @@ enum AuthType: String {
 }
 
 #warning("This URL is currently invalid. Modify with actual URL component(s) before using.")
-fileprivate let callComponents: [AuthType: (url: String, httpMethod: String)] = [
+fileprivate let authComponents: [AuthType: (url: String, httpMethod: HTTPMethod)] = [
     .signUp: (
         url: "/users/signup",
         httpMethod: HTTPMethod.post
@@ -151,3 +127,9 @@ fileprivate let callComponents: [AuthType: (url: String, httpMethod: String)] = 
         httpMethod: HTTPMethod.post
     )
 ]
+
+extension Encodable {
+    func toJSONData() -> Data? {
+        return try? JSONEncoder().encode(self)
+    }
+}

@@ -11,6 +11,7 @@ import Foundation
 // MARK: - Snack
 
 struct Snack: Codable {
+    let id: Int
     let name: String
     let type: String
     let numberOfServings: Int
@@ -23,6 +24,7 @@ struct Snack: Codable {
 // MARK: - Nutrition Info
 
 struct NutritionInfo: Codable {
+    let id: Int
     let calories: Double
     let totalFat: Double
     let totalSugars: Double
