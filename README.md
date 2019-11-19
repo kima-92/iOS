@@ -3,7 +3,7 @@ iOS Engineers
 
 ## To-do
 
-- [x] User can signup/register for an authenticated account as ~~either a `Organization` or ~~an `Employee` of a currently registered `Organization`. Each account must have the following properties at a minimum:
+- [x] User can signup/register for an authenticated account as ~~either a `Organization` or~~ an `Employee` of a currently registered `Organization`. Each account must have the following properties at a minimum:
   * a unique `username` - String
 	* a strong `password` - String
 	* a unique and valid `email` - String
