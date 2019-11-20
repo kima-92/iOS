@@ -10,7 +10,7 @@ import UIKit
 
 class SnackDetailViewController: UIViewController {
     
-    var  snack: Snack?
+    var snack: Snack?
     
     //MARK: Outlets
     @IBOutlet weak var snackNameLabel: UILabel!
@@ -33,7 +33,6 @@ class SnackDetailViewController: UIViewController {
     }
     
     func updateViews() {
-        
         guard let snack = snack,
             let nutriInfo = snack.nutritionInfo
             else { return }

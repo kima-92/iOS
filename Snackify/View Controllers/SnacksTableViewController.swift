@@ -79,7 +79,12 @@ class SnacksTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if segue.identifier == "ShowSnackDetailSegue" {
+            guard let detailVC = segue.destination as? SnackDetailViewController,
+                let selectedRow = tableView.indexPathForSelectedRow?.row
+                else { return }
+            detailVC.snack = snackManager?.allSnacksOptions?[selectedRow]
+        }
     }
 
 }
