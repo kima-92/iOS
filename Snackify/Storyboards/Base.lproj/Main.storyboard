@@ -136,7 +136,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <color key="sectionIndexBackgroundColor" red="0.40000000000000002" green="0.92549019610000005" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="teC-2e-B8t">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SnackCell" id="teC-2e-B8t">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="teC-2e-B8t" id="Cdk-tH-xpb">
@@ -692,6 +692,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="v0N-VP-cFr"/>
-        <segue reference="dGe-qK-TqM"/>
+        <segue reference="mXu-nw-wcf"/>
     </inferredMetricsTieBreakers>
 </document>
