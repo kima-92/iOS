@@ -15,8 +15,7 @@ class SnacksMainViewController: UIViewController {
     
     //MARK: Outlets
     @IBOutlet weak var welcomeUserLabel: UILabel!
-    @IBOutlet weak var placeNewOrderButton: UIButton!
-    @IBOutlet weak var NextOrderDeadlineLabel: UILabel!
+    @IBOutlet weak var nextOrderDeadlineLabel: UILabel!
     @IBOutlet weak var subscribeButton: UIButton!
     
     override func viewDidLoad() {
@@ -31,7 +30,7 @@ class SnacksMainViewController: UIViewController {
     }
     
     //MARK: Actions
-    @IBAction func LogOutButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func logOutButtonTapped(_ sender: UIBarButtonItem) {
         networkManager.logOut()
         performSegue(withIdentifier: "LoginModalSegue", sender: self)
     }

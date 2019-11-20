@@ -11,9 +11,11 @@ import UIKit
 class SnacksOrderViewController: UIViewController {
     
     //MARK: Outlets
+    
     @IBOutlet weak var amountOfSnacksLabel: UILabel!
+    @IBOutlet weak var snacksListLabel: UILabel!
     @IBOutlet weak var priceTotalLabel: UILabel!
-    @IBOutlet weak var OrderDeadlineLabel: UILabel!
+    @IBOutlet weak var subscriptionEndLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
