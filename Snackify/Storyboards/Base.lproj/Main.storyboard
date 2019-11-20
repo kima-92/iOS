@@ -265,9 +265,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="XaY-CP-EmV"/>
                     <connections>
-                        <outlet property="OrderDeadlineLabel" destination="J2D-og-8Yy" id="Jku-Mx-Obc"/>
                         <outlet property="amountOfSnacksLabel" destination="r5h-iA-IZQ" id="fpT-De-1Ma"/>
                         <outlet property="priceTotalLabel" destination="hCX-Ws-UcD" id="oY5-PL-WVe"/>
+                        <outlet property="snacksListLabel" destination="tCB-jP-frT" id="qoc-Vv-RBx"/>
+                        <outlet property="subscriptionEndLabel" destination="J2D-og-8Yy" id="Jku-Mx-Obc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FyN-8J-csp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
