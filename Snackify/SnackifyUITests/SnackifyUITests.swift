@@ -144,6 +144,35 @@ class SnackifyUITests: XCTestCase {
     }
     
 
+        func testSubsDeadlineIsNotBlank() {
+            
+            app.buttons["Employee"].tap()
+            app.segmentedControls.buttons["Log In"].tap()
+            
+    //        app.textFields["Username"].tap()
+            
+            let usernameTextField = app.staticTexts["usernameTextField"]
+            usernameTextField.tap()
+            usernameTextField.typeText("user90")
+            
+    //        app.secureTextFields["passwordTextField"].tap()
+            
+            let passwordTextField = app.staticTexts["passwordTextField"]
+            passwordTextField.tap()
+            passwordTextField.typeText("user90")
+            
+            app.staticTexts["Log In"].tap()
+            
+            XCTAssertNotEqual(app.staticTexts["deadlineLabel"].title, "00/00/0000")
+            XCTAssertNotEqual(app.staticTexts["welcomeLabel"].title, "Welcome User!")
+            
+            
+            
+        }
+    
+    
+    
+    
     
     
     
