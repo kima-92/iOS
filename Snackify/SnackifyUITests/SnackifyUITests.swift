@@ -37,27 +37,27 @@ class SnackifyUITests: XCTestCase {
         let passwordSecureTextField = app.secureTextFields["Password"]
         passwordSecureTextField.tap()
         passwordSecureTextField.typeText("company1")
-        passwordSecureTextField.tap()
+//        passwordSecureTextField.tap()
         
         let fullNameTextField = app.textFields["Full Name"]
         fullNameTextField.tap()
         fullNameTextField.typeText("company1")
-        fullNameTextField.tap()
+//        fullNameTextField.tap()
         
         let emailTextField = app.textFields["Email"]
         emailTextField.tap()
         emailTextField.typeText("company1@gmail.com")
-        emailTextField.tap()
+//        emailTextField.tap()
         
         let phoneNumberTextField = app.textFields["Phone Number"]
         phoneNumberTextField.tap()
         phoneNumberTextField.typeText("000-000-0000")
-        phoneNumberTextField.tap()
+//        phoneNumberTextField.tap()
         
         let streetAddressTextField = app.textFields["Street Address"]
         streetAddressTextField.tap()
         streetAddressTextField.typeText("123 Street")
-        streetAddressTextField.tap()
+//        streetAddressTextField.tap()
         
         streetAddressTextField.swipeUp()
         streetAddressTextField.swipeUp()
@@ -66,17 +66,17 @@ class SnackifyUITests: XCTestCase {
         let stateTextField = app.textFields["State"]
         stateTextField.tap()
         stateTextField.typeText("florida")
-        stateTextField.tap()
+//        stateTextField.tap()
         
         let zipcodeTextField = app.textFields["Zipcode"]
         zipcodeTextField.tap()
         zipcodeTextField.typeText("55555")
-        zipcodeTextField.tap()
+//        zipcodeTextField.tap()
         
         let organizationTextField = app.textFields["Organization"]
         organizationTextField.tap()
         organizationTextField.typeText("company1")
-        organizationTextField.tap()
+//        organizationTextField.tap()
         
         
         app/*@START_MENU_TOKEN@*/.staticTexts["Sign Up"]/*[[".buttons.matching(identifier: \"Sign Up\").staticTexts[\"Sign Up\"]",".staticTexts[\"Sign Up\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
@@ -101,6 +101,12 @@ class SnackifyUITests: XCTestCase {
 //        stateTextField.accessibilityIdentifier = "stateTextField"
 //        zipcodeTextField.accessibilityIdentifier = "zipcodeTextField"
 //        organizationTextField.accessibilityIdentifier = "organizationTextField"
+        
+//        @IBOutlet weak var welcomeLabel: UILabel!
+//        @IBOutlet weak var deadlineLabel: UILabel!
+        
+//        welcomeLabel.accessibilityIdentifier = "welcomeUserLabel"
+//        deadlineLabel.accessibilityIdentifier = "dealineLabel"
 
 //        If this works for userName, I should use "statict text for everything else like :
 //        let usernameTextField = app.staticTexts["usernameTextField"]
@@ -112,24 +118,42 @@ class SnackifyUITests: XCTestCase {
         
     }
     
-    
- 
-    
-    
-    
-    
-    
-    
-    
-    
+    func testDisplayingSnacksList() {
+        
+        app/*@START_MENU_TOKEN@*/.buttons["Employee"]/*[[".segmentedControls.buttons[\"Employee\"]",".buttons[\"Employee\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.segmentedControls.buttons["Log In"].tap()
+        
+//        app.textFields["Username"].tap()
+        
+        let usernameTextField = app.staticTexts["usernameTextField"]
+        usernameTextField.tap()
+        usernameTextField.typeText("user90")
+        
+//        app.secureTextFields["passwordTextField"].tap()
+        
+        let passwordTextField = app.staticTexts["passwordTextField"]
+        passwordTextField.tap()
+        passwordTextField.typeText("user90")
+        
+        app/*@START_MENU_TOKEN@*/.staticTexts["Log In"]/*[[".buttons.matching(identifier: \"Log In\").staticTexts[\"Log In\"]",".staticTexts[\"Log In\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app.buttons["Available Snacks"].tap()
+        
+        XCTAssertNotNil(app.tableRows)
+        XCTAssertNotNil(app.tableColumns)
+
+    }
     
 
-//    func testLaunchPerformance() {
-//        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-//            // This measures how long it takes to launch your application.
-//            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
-//                XCUIApplication().launch()
-//            }
-//        }
-//    }
+    
+    
+    
+    
+    //    func testLaunchPerformance() {
+    //        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
+    //            // This measures how long it takes to launch your application.
+    //            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
+    //                XCUIApplication().launch()
+    //            }
+    //        }
+    //    }
 }
