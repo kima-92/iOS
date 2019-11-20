@@ -15,7 +15,7 @@ struct Subscription: Codable {
     let nameOfSubscription: String
     let monthlyFee: Double
     let lengthOfSubscription: DateInterval // Date()  ?
-    let snacks: [Snack.Representation]
+    var snacks: [Snack.Representation]?
     
     var representation: Representation?
     
