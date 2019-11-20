@@ -9,35 +9,127 @@
 import XCTest
 
 class SnackifyUITests: XCTestCase {
+    
+    //MARK: Properties
+    var app = XCUIApplication()
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        super.setUp()
+                  
+                  continueAfterFailure = false
+                  app = XCUIApplication()
+                  
+//                  app.launchArguments = ["UITesting"]
+                  app.launch()
     }
+    
+    func testRegisteringAnOrganization() {
+        
+        app/*@START_MENU_TOKEN@*/.buttons["Organization"]/*[[".segmentedControls.buttons[\"Organization\"]",".buttons[\"Organization\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let signUpButton = app/*@START_MENU_TOKEN@*/.buttons["Sign Up"]/*[[".segmentedControls.buttons[\"Sign Up\"]",".buttons[\"Sign Up\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        signUpButton.tap()
+        
+        let usernameTextField = app.staticTexts["usernameTextField"]
+        usernameTextField.tap()
+        usernameTextField.typeText("Company 1")
+        
+        let passwordSecureTextField = app.secureTextFields["Password"]
+        passwordSecureTextField.tap()
+        passwordSecureTextField.typeText("company1")
+        passwordSecureTextField.tap()
+        
+        let fullNameTextField = app.textFields["Full Name"]
+        fullNameTextField.tap()
+        fullNameTextField.typeText("company1")
+        fullNameTextField.tap()
+        
+        let emailTextField = app.textFields["Email"]
+        emailTextField.tap()
+        emailTextField.typeText("company1@gmail.com")
+        emailTextField.tap()
+        
+        let phoneNumberTextField = app.textFields["Phone Number"]
+        phoneNumberTextField.tap()
+        phoneNumberTextField.typeText("000-000-0000")
+        phoneNumberTextField.tap()
+        
+        let streetAddressTextField = app.textFields["Street Address"]
+        streetAddressTextField.tap()
+        streetAddressTextField.typeText("123 Street")
+        streetAddressTextField.tap()
+        
+        streetAddressTextField.swipeUp()
+        streetAddressTextField.swipeUp()
+        streetAddressTextField.swipeUp()
+        
+        let stateTextField = app.textFields["State"]
+        stateTextField.tap()
+        stateTextField.typeText("florida")
+        stateTextField.tap()
+        
+        let zipcodeTextField = app.textFields["Zipcode"]
+        zipcodeTextField.tap()
+        zipcodeTextField.typeText("55555")
+        zipcodeTextField.tap()
+        
+        let organizationTextField = app.textFields["Organization"]
+        organizationTextField.tap()
+        organizationTextField.typeText("company1")
+        organizationTextField.tap()
+        
+        
+        app/*@START_MENU_TOKEN@*/.staticTexts["Sign Up"]/*[[".buttons.matching(identifier: \"Sign Up\").staticTexts[\"Sign Up\"]",".staticTexts[\"Sign Up\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+//        XCTAssertEqual(app.alerts["Sign Up Successful!"].title, "Sign Up Successful!")
+        XCTAssertTrue(app.alerts["Sign Up Successful!"].waitForExistence(timeout: 5))
+        
+        app.alerts["Sign Up Successful!"].scrollViews.otherElements.buttons["OK"].tap()
+        
+        XCTAssertEqual(app.segmentedControls.buttons["Log In"].title, "Log In")
+        XCTAssertEqual(app.buttons["Log In"].title, "Log In")
+        
+        
+        // TODO: Add this to the LoginVC :
+        
+//        usernameTextField.accessibilityIdentifier = "usernameTextField"
+//        passwordTextField.accessibilityIdentifier = "passwordTextField"
+//        fullNameTextField.accessibilityIdentifier = "fullNameTextField"
+//        emailTextField.accessibilityIdentifier = "emailTextField"
+//        phoneNumberTextField.accessibilityIdentifier = "phoneNumberTextField"
+//        addressTextField.accessibilityIdentifier = "addressTextField"
+//        stateTextField.accessibilityIdentifier = "stateTextField"
+//        zipcodeTextField.accessibilityIdentifier = "zipcodeTextField"
+//        organizationTextField.accessibilityIdentifier = "organizationTextField"
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+//        If this works for userName, I should use "statict text for everything else like :
+//        let usernameTextField = app.staticTexts["usernameTextField"]
+
+    
     }
-
-    func testExample() {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testLogInAnEmployee() {
+        
     }
+    
+    
+ 
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-    func testLaunchPerformance() {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
-                XCUIApplication().launch()
-            }
-        }
-    }
+//    func testLaunchPerformance() {
+//        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
+//            // This measures how long it takes to launch your application.
+//            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
+//                XCUIApplication().launch()
+//            }
+//        }
+//    }
 }
