@@ -64,8 +64,11 @@ class SnackManager {
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             self.networkManager.handleDataTaskResponse(data: data, response: response, error: error) { (result) in
                 do {
-                    let nutritionInfo = try JSONDecoder().decode(NutritionInfo.self, from: try result.get())
-                    completion(.success(nutritionInfo))
+                    let nutritionInfo = try JSONDecoder().decode(
+                        [NutritionInfo].self,
+                        from: try result.get())
+                    snack.nutritionInfo = nutritionInfo[0]
+                    completion(.success(nutritionInfo[0]))
                 } catch {
                     if let networkError = error as? NetworkError {
                         completion(.failure(networkError))
@@ -75,7 +78,7 @@ class SnackManager {
                     }
                 }
             }
-        }
+        }.resume()
     }
     
     /// For regular/non-admin employees, make one-time purchases or request additions to the organization snack subscription. If user is an authorized organization administrator, purchase snacks as one-time orders or add them to their regular subscription.

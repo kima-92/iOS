@@ -74,6 +74,10 @@ class NetworkManager {
         }.resume()
     }
     
+    func logOut() {
+        bearer = nil
+    }
+    
     // MARK: - Helper Methods
     
     func handleDataTaskResponse(data: Data?, response: URLResponse?, error: Error?, dataHandler: @escaping (Result<Data,NetworkError>) -> Void) {
@@ -112,6 +116,10 @@ class NetworkManager {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         default:
             break
+        }
+        
+        if let bearer = bearer {
+            request.setValue(bearer.token, forHTTPHeaderField: "Authorization")
         }
         
         if let body = body {
