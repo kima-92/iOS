@@ -74,6 +74,10 @@ class NetworkManager {
         }.resume()
     }
     
+    func logOut() {
+        bearer = nil
+    }
+    
     // MARK: - Helper Methods
     
     func handleDataTaskResponse(data: Data?, response: URLResponse?, error: Error?, dataHandler: @escaping (Result<Data,NetworkError>) -> Void) {
