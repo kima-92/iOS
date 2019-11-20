@@ -30,3 +30,4 @@ iOS Engineers
 - [ ] Authenticated `Employees` can request `snack` choices to request to be added to the next upcoming `Organization` subscription order.
 - [ ] organization can sign up/log in
 - [ ] Authenticated `Organization` or `orgAdmin` can create, read, update and delete a list of `snack`s that they would like to have included in their order/subscription.
+- [ ] save bearer token in UserDefaults to stay signed in

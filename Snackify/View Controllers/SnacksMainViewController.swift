@@ -11,6 +11,7 @@ import UIKit
 class SnacksMainViewController: UIViewController {
     
     var networkManager = NetworkManager()
+    var snackManager: SnackManager?
     
     //MARK: Outlets
     @IBOutlet weak var welcomeUserLabel: UILabel!
@@ -18,22 +19,22 @@ class SnacksMainViewController: UIViewController {
     @IBOutlet weak var NextOrderDeadlineLabel: UILabel!
     @IBOutlet weak var subscribeButton: UIButton!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // transition to login view if conditions require
         if networkManager.bearer == nil {
             performSegue(withIdentifier: "LoginModalSegue", sender: self)
-            
+        } else {
+            snackManager = SnackManager(networkManager: networkManager)
         }
-        
     }
     
     //MARK: Actions
     @IBAction func LogOutButtonTapped(_ sender: UIBarButtonItem) {
+        networkManager.logOut()
+        performSegue(withIdentifier: "LoginModalSegue", sender: self)
     }
-    
     
     // MARK: - Navigation
 
@@ -43,8 +44,28 @@ class SnacksMainViewController: UIViewController {
             if let loginVC = segue.destination as? LoginViewController {
                 loginVC.networkManager = networkManager
             }
+            return
+        }
+        if snackManager == nil {
+            snackManager = SnackManager(networkManager: networkManager)
+        }
+        if segue.identifier == "ShowAvailableSnacksSegue" {
+            if let tableVC = segue.destination as? SnacksTableViewController {
+                tableVC.snackManager = snackManager
+                if snackManager?.allSnacksOptions == nil {
+                    snackManager?.fetchSnackOptions(completion: { (result) in
+                        do {
+                            let _ = try result.get()
+                            DispatchQueue.main.async {
+                                tableVC.tableView.reloadData()
+                            }
+                        } catch {
+                            NSLog((error as? NetworkError)?.rawValue ?? "")
+                            return
+                        }
+                    })
+                }
+            }
         }
     }
-    
-
 }
