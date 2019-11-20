@@ -78,7 +78,7 @@ class SnackManager {
                     }
                 }
             }
-        }
+        }.resume()
     }
     
     /// For regular/non-admin employees, make one-time purchases or request additions to the organization snack subscription. If user is an authorized organization administrator, purchase snacks as one-time orders or add them to their regular subscription.
