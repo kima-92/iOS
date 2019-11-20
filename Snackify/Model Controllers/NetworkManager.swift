@@ -118,6 +118,10 @@ class NetworkManager {
             break
         }
         
+        if let bearer = bearer {
+            request.setValue(bearer.token, forHTTPHeaderField: "Authorization")
+        }
+        
         if let body = body {
             request.httpBody = body
         }
