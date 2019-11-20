@@ -10,12 +10,12 @@ import Foundation
 
 // MARK: - Snack
 
-struct Snack {
+class Snack {
     let id: Int
     let name: String
     let type: String = "??" // not sure what to do with this
     let numberOfServings: Int
-    let nutritionInfo: NutritionInfo? = nil // fetched when needed
+    var nutritionInfo: NutritionInfo? = nil // fetched when needed
     let totalWeight: Double // grams
     let price: Double
     
@@ -37,28 +37,27 @@ struct Snack {
         self.totalWeight = rep.totalWeight
         self.price = rep.price
     }
-    
 }
 
 // MARK: - Nutrition Info
 
 struct NutritionInfo: Codable {
-    let id: Int
-    let calories: Double
-    let totalFat: Double
-    let totalSugars: Double
-    let protein: Double
-    let carbs: Double
-    let allergens: String
+    let snackId: Int
+    let calories: Double?
+    let totalFat: Double?
+    let totalSugars: Double? // cannot get from backend currently (2019-11-19 15:29)
+    let protein: Double?
+    let carbs: Double?
+    let allergens: String?
 }
 
-// MARK: - Allergen
-
-enum Allergen: String, Codable {
-    case peanuts
-    case dairy
-    case egg
-    case gluten
-    case meat
-    case shellfish
-}
+//// MARK: - Allergen
+//
+//enum Allergen: String, Codable {
+//    case peanuts
+//    case dairy
+//    case egg
+//    case gluten
+//    case meat
+//    case shellfish
+//}
