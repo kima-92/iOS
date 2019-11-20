@@ -85,7 +85,7 @@ class LoginViewController: UIViewController {
                 zipcode != "",
                 organization != ""
                 else { return }
-            let user = User(username: username, password: password, fullName: fullname, email: email, phoneNumber: phoneNum, streetAddress: address, state: state, zipCode: zipcode, isAdmin: false)
+            let user = User(username: username, password: password, fullName: fullname, email: email, phoneNumber: phoneNum, streetAddress: address, state: state, zipCode: zipcode, isAdmin: false, isOrganization: userType == .organization)
             signUp(with: user)
         } else {
             logIn(username: username, password: password)
@@ -93,7 +93,7 @@ class LoginViewController: UIViewController {
     }
     
     func signUp(with user: User) {
-        networkManager?.signUp(with: user, isOrganization: userType == .organization, completion: { (result) in
+        networkManager?.signUp(with: user, completion: { (result) in
             do {
                 let _ = try result.get()
             } catch {
@@ -123,7 +123,7 @@ class LoginViewController: UIViewController {
     }
     
     func logIn(username: String, password: String) {
-        networkManager?.logIn(with: username, password: password, isOrganization: userType == .organization) { result in
+        networkManager?.logIn(with: username, password: password) { result in
             
             do {
                 let bearer = try result.get()
