@@ -23,6 +23,7 @@ class SnackManager {
         fetchSnackOptions { result in
             do {
                 self.allSnacksOptions = try result.get()
+                print("Fetched all snacks")
             } catch {
                 if let error = error as? NetworkError {
                     print(error.rawValue)
@@ -36,18 +37,25 @@ class SnackManager {
             url: baseURL.appendingPathComponent("snacks"),
             method: .get)
         
-        guard let bearer = networkManager.bearer else {
-            completion(.failure(.noBearer))
-            return
-        }
-        request.addValue(bearer.token, forHTTPHeaderField: "Authorization")
-        
         URLSession.shared.dataTask(with: request) { data, response, error in
             self.networkManager.handleDataTaskResponse(data: data, response: response, error: error) { (result) in
                 do {
                     let snackReps = try JSONDecoder().decode([Snack.Representation].self, from: try result.get())
                     let snacks = snackReps.map { snackRep -> Snack in
                         return Snack(fromRepresentation: snackRep)
+                    }
+                    self.allSnacksOptions = snacks
+                    for snack in snacks {
+                        let queue = DispatchQueue(label: "\(snack.id)")
+                        queue.async {
+                            self.getSnackNutritionInfo(for: snack) { (result) in
+                                do {
+                                    let _ = try result.get()
+                                } catch {
+                                    NSLog((error as? NetworkError)?.rawValue ?? "\(error)")
+                                }
+                            }
+                        }
                     }
                     completion(.success(snacks))
                 } catch {
