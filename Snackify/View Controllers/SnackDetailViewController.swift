@@ -12,6 +12,17 @@ class SnackDetailViewController: UIViewController {
     
     var snack: Snack?
     
+    lazy var priceFormatter: NumberFormatter = {
+        var formatter = NumberFormatter()
+        formatter.currencySymbol = "$"
+        formatter.numberStyle = .currency
+        return formatter
+    }()
+    
+    lazy var priceText: String = {
+        return self.priceFormatter.string(from: NSNumber(value: snack?.price ?? 0.0)) ?? ""
+    }()
+    
     //MARK: - Outlets
     
     @IBOutlet weak var snackNameLabel: UILabel!
@@ -48,12 +59,10 @@ class SnackDetailViewController: UIViewController {
             let nutriInfo = snack.nutritionInfo
             else { return }
         
-//        var allergens = snack.nutritionInfo.allergens.compactMap({ $0.rawValue })
-        
         snackNameLabel.text = snack.name
         typeLabel.text = snack.type
         servingsLabel.text = String(snack.numberOfServings)
-        priceLabel.text = String(snack.price)
+        priceLabel.text = priceText
         totalWeightLabel.text = String(snack.totalWeight)
         
         caloriesLabel.text = String(nutriInfo.calories ?? 0)
