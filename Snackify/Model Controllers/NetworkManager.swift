@@ -136,15 +136,7 @@ class NetworkManager {
 
 
 
-enum NetworkError: String, Error {
-    case otherError = "Unknown error occurred: see log for details."
-    case badData = "No data received, or data corrupted."
-    case noDecode = "JSON could not be decoded. See log for details."
-    case noEncode = "JSON could not be encoded. See log for details."
-    case badImageURL = "The image URL could not be found."
-    case badAuthURL = "The authorization URL could not be found."
-    case noBearer = "The JSON web token is missing."
-}
+
 
 enum AuthType: String {
     case signUp = "Sign up"
