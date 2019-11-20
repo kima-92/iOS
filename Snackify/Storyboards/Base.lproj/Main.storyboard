@@ -91,12 +91,12 @@
                     <navigationItem key="navigationItem" id="X2F-tb-Hvr">
                         <barButtonItem key="leftBarButtonItem" title="Log Out" id="bPg-dk-TRa">
                             <connections>
-                                <action selector="LogOutButtonTapped:" destination="o00-jL-cHu" id="UEn-Nx-wS2"/>
+                                <action selector="logOutButtonTapped:" destination="o00-jL-cHu" id="UEn-Nx-wS2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="NextOrderDeadlineLabel" destination="ABy-75-GcM" id="jte-fl-xxA"/>
+                        <outlet property="nextOrderDeadlineLabel" destination="ABy-75-GcM" id="jte-fl-xxA"/>
                         <outlet property="subscribeButton" destination="fwj-jc-bjw" id="kcV-3N-XOK"/>
                         <outlet property="welcomeUserLabel" destination="Jfp-OJ-0CL" id="Iy7-dk-sh1"/>
                         <segue destination="I5M-1g-OVi" kind="presentation" identifier="LoginModalSegue" id="ySq-gQ-wig"/>
@@ -744,6 +744,6 @@
         <image name="cart" catalog="system" width="64" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Q3S-FL-222"/>
+        <segue reference="ueE-77-U8b"/>
     </inferredMetricsTieBreakers>
 </document>
