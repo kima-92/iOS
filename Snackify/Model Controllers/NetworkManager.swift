@@ -128,33 +128,98 @@ class NetworkManager {
         
         return request
     }
-}
-
-// MARK: - Helper Types
-
-enum HTTPMethod: String {
-    case get = "GET"
-    case post = "POST"
-    case put = "PUT"
-    case delete = "DELETE"
-}
-
-enum NetworkError: String, Error {
-    case otherError = "Unknown error occurred: see log for details."
-    case badData = "No data received, or data corrupted."
-    case noDecode = "JSON could not be decoded. See log for details."
-    case noEncode = "JSON could not be encoded. See log for details."
-    case badImageURL = "The image URL could not be found."
-    case badAuthURL = "The authorization URL could not be found."
-    case noBearer = "The JSON web token is missing."
-}
-
-enum AuthType: String {
-    case signUp = "Sign up"
-    case logIn = "Log in"
-}
-extension Encodable {
-    func toJSONData() -> Data? {
-        return try? JSONEncoder().encode(self)
+    
+    //MARK: Subscription Methods
+    
+    func addNewSubscription(subscription: Subscription, completion: @escaping () -> Void = { }) {
+        
+        //        let id = subscription.id
+        //        subscription.identifier = identifier
+        
+        let requestURL = baseURL
+            .appendingPathComponent("subs")
+            .appendingPathExtension("json")
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.post.rawValue
+        
+        guard let subsRepresentation = subscription.representation else {
+            NSLog("Subscription Representation is nil")
+            completion()
+            return
+        }
+        
+        do {
+            request.httpBody = try JSONEncoder().encode(subsRepresentation)
+        } catch {
+            NSLog("Error encoding subcription representation: \(error)")
+            completion()
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (_, _, error) in
+            
+            if let error = error {
+                NSLog("Error PUTting subscription: \(error)")
+                completion()
+                return
+            }
+            
+            completion()
+        }.resume()
+    }
+    
+    
+    func getSnacksInSubscription(subscription: Subscription, completion: @escaping (Result<[Snack.Representation], NetworkError>) -> Void) {
+        
+        guard let bearer = bearer else {
+            completion(Result.failure(NetworkError.noBearer))
+            return
+        }
+        
+        guard let subsRepresentation = subscription.representation else {
+            completion(Result.failure(NetworkError.badSubsRepresentation))
+            return
+        }
+        
+        let requestURL = baseURL
+            .appendingPathComponent("subs")
+            .appendingPathComponent("\(subsRepresentation.id)")
+            .appendingPathComponent("snacks")
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
+        
+        //MARK: DataTask
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if let error = error {
+                NSLog("Error fetching snacks from subscription: \(error)")
+                completion(Result.failure(NetworkError.otherError))
+                return
+            }
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(Result.failure(NetworkError.unexpectedStatusCode))
+            }
+            
+            guard let data = data else {
+                completion(Result.failure(NetworkError.badData))
+                return
+            }
+            
+            do {
+                let snacks = try JSONDecoder().decode([Snack.Representation].self, from: data)
+                completion(Result.success(snacks))
+            } catch {
+                NSLog("Error decoding snacks: \(error)")
+                completion(Result.failure(NetworkError.noDecode))
+            }
+        }.resume()
     }
 }
+
+
