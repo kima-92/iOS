@@ -32,8 +32,9 @@ class SnacksMainViewController: UIViewController {
     
     //MARK: Actions
     @IBAction func LogOutButtonTapped(_ sender: UIBarButtonItem) {
+        networkManager.logOut()
+        performSegue(withIdentifier: "LoginModalSegue", sender: self)
     }
-    
     
     // MARK: - Navigation
 
