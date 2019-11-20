@@ -12,7 +12,8 @@ class SnackDetailViewController: UIViewController {
     
     var snack: Snack?
     
-    //MARK: Outlets
+    //MARK: - Outlets
+    
     @IBOutlet weak var snackNameLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var servingsLabel: UILabel!
@@ -26,10 +27,20 @@ class SnackDetailViewController: UIViewController {
     @IBOutlet weak var carbsLabel: UILabel!
     @IBOutlet weak var allergensLabel: UILabel!
     
+    @IBOutlet weak var subscriptionAddButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         updateViews()
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func buyNowTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func subscriptionAddTapped(_ sender: UIButton) {
     }
     
     func updateViews() {

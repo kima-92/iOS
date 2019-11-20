@@ -296,7 +296,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="dZZ-Jn-TD8" kind="presentation" id="oMD-Uy-hMJ"/>
+                                                    <action selector="buyNowTapped:" destination="0TB-hm-mlU" eventType="touchUpInside" id="0xb-9r-hRX"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyh-c4-gUh">
@@ -306,6 +306,9 @@
                                                 <state key="normal" title="Request Subscription">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="subscriptionAddTapped:" destination="0TB-hm-mlU" eventType="touchUpInside" id="AAq-At-Os5"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -527,7 +530,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="g8A-jv-64b"/>
                     </view>
-                    <navigationItem key="navigationItem" id="mY9-14-7mR"/>
+                    <navigationItem key="navigationItem" id="mY9-14-7mR">
+                        <barButtonItem key="rightBarButtonItem" title="Place Order" image="cart" catalog="system" id="X4z-zS-wOk">
+                            <connections>
+                                <segue destination="dZZ-Jn-TD8" kind="presentation" identifier="PlaceOrderFromDetailVCSegue" id="Q3S-FL-222"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="allergensLabel" destination="UeC-J8-G63" id="fTx-Am-7Ys"/>
                         <outlet property="caloriesLabel" destination="riS-6R-XNq" id="l8Q-rM-Trm"/>
@@ -536,6 +545,7 @@
                         <outlet property="proteinLabel" destination="kVO-al-VFP" id="4hj-sB-o0B"/>
                         <outlet property="servingsLabel" destination="kJE-9Y-mkP" id="mrU-k7-6rS"/>
                         <outlet property="snackNameLabel" destination="o6I-4Z-BjW" id="Oq3-TF-2Y1"/>
+                        <outlet property="subscriptionAddButton" destination="gyh-c4-gUh" id="orE-Jq-p0P"/>
                         <outlet property="totalFatLabel" destination="JNL-gi-sJi" id="YHa-Qp-Wr8"/>
                         <outlet property="totalSugarLabel" destination="kJJ-Lx-Ua4" id="muD-4K-R4r"/>
                         <outlet property="totalWeightLabel" destination="cit-Jd-B5q" id="U3S-9J-F32"/>
@@ -733,6 +743,6 @@
         <image name="cart" catalog="system" width="64" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oMD-Uy-hMJ"/>
+        <segue reference="Q3S-FL-222"/>
     </inferredMetricsTieBreakers>
 </document>
