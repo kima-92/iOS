@@ -9,8 +9,29 @@
 import Foundation
 
 struct Subscription: Codable {
-    var name: String
-    var monthlyFee: Double
-    var lengthOfSubscription: DateInterval
-    var snacks: [Snack.Representation]
+    
+    let id: Int
+    let orgId: Int
+    let nameOfSubscription: String
+    let monthlyFee: Double
+    let lengthOfSubscription: DateInterval // Date()  ?
+    let snacks: [Snack.Representation]
+    
+    var representation: Representation?
+    
+    struct Representation: Codable {
+        let id: Int
+        let orgId: Int
+        let nameOfSubscription: String
+        let monthlyFee: Double
+        let lengthOfSubscription: DateInterval // Date()  ?
+    }
+    
+    init(fromRepresentation rep: Representation) {
+        self.id = rep.id
+        self.orgId = rep.orgId
+        self.nameOfSubscription = rep.nameOfSubscription
+        self.monthlyFee = rep.monthlyFee
+        self.lengthOfSubscription = rep.lengthOfSubscription
+    }
 }
