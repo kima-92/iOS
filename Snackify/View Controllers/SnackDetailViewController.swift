@@ -72,4 +72,15 @@ class SnackDetailViewController: UIViewController {
         carbsLabel.text = String(nutriInfo.carbs ?? 0)
         allergensLabel.text = String(nutriInfo.allergens ?? "")
     }
+    
+    lazy var madePurchaseAlert: UIAlertController = {
+        let alert = UIAlertController(
+            title: "\(snack!.name) purchased!",
+            message: "Your snack will be delivered with the next regular subscription delivery.",
+            preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { (alertAction) in
+            self.dismiss(animated: true, completion: nil)
+        })
+        return alert
+    }()
 }
