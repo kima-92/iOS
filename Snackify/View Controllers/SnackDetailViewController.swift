@@ -49,6 +49,7 @@ class SnackDetailViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func buyNowTapped(_ sender: UIButton) {
+        present(confirmPurchaseAlert, animated: true, completion: nil)
     }
     
     @IBAction func subscriptionAddTapped(_ sender: UIButton) {
@@ -72,6 +73,23 @@ class SnackDetailViewController: UIViewController {
         carbsLabel.text = String(nutriInfo.carbs ?? 0)
         allergensLabel.text = String(nutriInfo.allergens ?? "")
     }
+    
+    // MARK: - Purchase Alerts
+    
+    lazy var confirmPurchaseAlert: UIAlertController = {
+        var alert = UIAlertController(
+            title: "Purchase \(snack!.name)?",
+            message: "Are you sure you'd like to make a one time-purchase of \(snack!.name) for \(snack!.price)?",
+            preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { (alertAction) in
+            self.dismiss(animated: true, completion: nil)
+        })
+        alert.addAction(UIAlertAction(title: "Confirm", style: .default) { (alertAction) in
+            self.present(self.madePurchaseAlert, animated: true, completion: nil)
+        })
+            
+        return alert
+    }()
     
     lazy var madePurchaseAlert: UIAlertController = {
         let alert = UIAlertController(
