@@ -8,9 +8,9 @@
 
 import Foundation
 
-//struct Subscription: Codable {
-//    var name: String
-//    var monthlyFee: Double
-//    var lengthOfSubscription: DateInterval
-//    var snacks: [Snack]
-//}
+struct Subscription: Codable {
+    var name: String
+    var monthlyFee: Double
+    var lengthOfSubscription: DateInterval
+    var snacks: [Snack.Representation]
+}
