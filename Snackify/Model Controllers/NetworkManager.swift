@@ -128,16 +128,13 @@ class NetworkManager {
         
         return request
     }
+    
+    //MARK: Subscription Methods
 }
 
 // MARK: - Helper Types
 
-enum HTTPMethod: String {
-    case get = "GET"
-    case post = "POST"
-    case put = "PUT"
-    case delete = "DELETE"
-}
+
 
 enum NetworkError: String, Error {
     case otherError = "Unknown error occurred: see log for details."
