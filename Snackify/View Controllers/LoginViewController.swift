@@ -14,6 +14,7 @@ class LoginViewController: UIViewController {
     var authType = AuthType.logIn
     
     //MARK: Outlets
+    @IBOutlet weak var roleSegmentedControl: UISegmentedControl!
     @IBOutlet weak var loginSegmentedControl: UISegmentedControl!
     
     @IBOutlet weak var usernameTextField: UITextField!

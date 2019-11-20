@@ -700,6 +700,7 @@
                         <outlet property="organizationTextField" destination="9Mx-KO-zwx" id="Pq1-OK-iMl"/>
                         <outlet property="passwordTextField" destination="JdM-jb-UQq" id="8nf-aH-kpd"/>
                         <outlet property="phoneNumberTextField" destination="jCU-VD-2Rz" id="5NR-lV-XZ4"/>
+                        <outlet property="roleSegmentedControl" destination="gzL-IV-lBK" id="qdf-6q-lbx"/>
                         <outlet property="stateTextField" destination="r4U-QB-sTQ" id="CSk-Lb-aZz"/>
                         <outlet property="usernameTextField" destination="7wt-SZ-o4L" id="S0f-4i-jBr"/>
                         <outlet property="zipcodeTextField" destination="tsu-6e-rvK" id="v35-ch-RVA"/>
