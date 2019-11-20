@@ -12,6 +12,7 @@
 		9936AF47238337B100A9F99C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF46238337B100A9F99C /* NetworkManager.swift */; };
 		9936AF4B2383533E00A9F99C /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF4A2383533E00A9F99C /* Subscription.swift */; };
 		9936AF4D2383605300A9F99C /* SnackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF4C2383605300A9F99C /* SnackManager.swift */; };
+		99570C442385CB8F00DE6E65 /* UserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99570C432385CB8F00DE6E65 /* UserType.swift */; };
 		99D8270D23831B3000E147C7 /* Snack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D8270C23831B3000E147C7 /* Snack.swift */; };
 		99D8270F23831B3600E147C7 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D8270E23831B3600E147C7 /* Organization.swift */; };
 		FA806A4923830A92003907EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA806A4823830A92003907EE /* AppDelegate.swift */; };
@@ -38,6 +39,7 @@
 		9936AF4A2383533E00A9F99C /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		9936AF4C2383605300A9F99C /* SnackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SnackManager.swift; path = "Model Controllers/SnackManager.swift"; sourceTree = SOURCE_ROOT; };
 		9936AF4E238373A200A9F99C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		99570C432385CB8F00DE6E65 /* UserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserType.swift; sourceTree = "<group>"; };
 		99D8270C23831B3000E147C7 /* Snack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snack.swift; sourceTree = "<group>"; };
 		99D8270E23831B3600E147C7 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		FA806A4523830A92003907EE /* Snackify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snackify.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +154,7 @@
 				FAA7C8AE2384C6F400F46C0E /* HTTPMethods.swift */,
 				FAA7C8B02384C7AB00F46C0E /* NetworkError.swift */,
 				FAA7C8B22384C82400F46C0E /* AuthType.swift */,
+				99570C432385CB8F00DE6E65 /* UserType.swift */,
 				FAA7C8B42384C87C00F46C0E /* EncodableExtension.swift */,
 				FAA7C8B62384CE6800F46C0E /* HeaderNames.swift */,
 			);
@@ -231,6 +234,7 @@
 			files = (
 				FAA7C8B32384C82400F46C0E /* AuthType.swift in Sources */,
 				FA806A6723835462003907EE /* SnacksMainViewController.swift in Sources */,
+				99570C442385CB8F00DE6E65 /* UserType.swift in Sources */,
 				FA806A4923830A92003907EE /* AppDelegate.swift in Sources */,
 				FA806A65238353FC003907EE /* SnacksOrderViewController.swift in Sources */,
 				FA806A612383536C003907EE /* SnacksTableViewController.swift in Sources */,

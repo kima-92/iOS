@@ -16,12 +16,14 @@ class NetworkManager {
     private(set) var user: User?
     private(set) var bearer: Bearer?
     
+    private(set) var userType: UserType?
+    
     static let shared = NetworkManager()
     
     // MARK: - Login/Sign-up
     
     /// Handles sign-up for employees.
-    func signUp(with user: User, completion: @escaping (Result<Data,NetworkError>) -> Void) {
+    func signUp(with user: User, isOrganization: Bool, completion: @escaping (Result<Data,NetworkError>) -> Void) {
         let userRep = user.representation
         guard let userData = userRep.toJSONData() else {
             completion(.failure(.noEncode))
@@ -38,7 +40,7 @@ class NetworkManager {
         }.resume()
     }
     
-    func logIn(with username: String, password: String, completion: @escaping (Result<Bearer,NetworkError>) -> Void) {
+    func logIn(with username: String, password: String, isOrganization: Bool, completion: @escaping (Result<Bearer,NetworkError>) -> Void) {
         let userData: Data
         do {
             userData = try JSONEncoder().encode([
@@ -192,7 +194,6 @@ class NetworkManager {
         
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
         
-        //MARK: DataTask
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             if let error = error {

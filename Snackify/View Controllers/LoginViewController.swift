@@ -12,6 +12,7 @@ class LoginViewController: UIViewController {
     
     var networkManager: NetworkManager?
     var authType = AuthType.logIn
+    var userType = UserType.employee
     
     //MARK: Outlets
     @IBOutlet weak var roleSegmentedControl: UISegmentedControl!
@@ -31,15 +32,24 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationItem.hidesBackButton = true
+        loginSegmentedControl.selectedSegmentIndex = 1
+//        navigationItem.hidesBackButton = true
         updateViews()
     }
     
     //MARK: Actions
     
+    @IBAction func roleSegmentedControlChanged(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            userType = .employee
+            updateViews()
+        } else {
+            userType = .organization
+            updateViews()
+        }
+    }
+    
     @IBAction func loginSegmentedControlChanged(_ sender: UISegmentedControl) {
-        
         if sender.selectedSegmentIndex == 0 {
             authType = .signUp
             updateViews()
@@ -83,7 +93,7 @@ class LoginViewController: UIViewController {
     }
     
     func signUp(with user: User) {
-        networkManager?.signUp(with: user, completion: { (result) in
+        networkManager?.signUp(with: user, isOrganization: userType == .organization, completion: { (result) in
             do {
                 let _ = try result.get()
             } catch {
@@ -113,15 +123,13 @@ class LoginViewController: UIViewController {
     }
     
     func logIn(username: String, password: String) {
-        
-        networkManager?.logIn(with: username, password: password) { result in
+        networkManager?.logIn(with: username, password: password, isOrganization: userType == .organization) { result in
             
             do {
                 let bearer = try result.get()
                 print("Success! Bearer: \(bearer.token)")
                 
                 DispatchQueue.main.async {
-                    #warning("dismissing currently not working")
                     self.dismiss(animated: true, completion: nil)
                 }
             } catch {
@@ -131,64 +139,33 @@ class LoginViewController: UIViewController {
     }
     
     func updateViews() {
-        
         loginButton.layer.cornerRadius = 8.0
         passwordTextField.isSecureTextEntry = true
         
-        if authType == .logIn {
-            loginSegmentedControl.selectedSegmentIndex = 1
-            
-            fullNameTextField.alpha = 0
-            emailTextField.alpha = 0
-            phoneNumberTextField.alpha = 0
-            addressTextField.alpha = 0
-            stateTextField.alpha = 0
-            zipcodeTextField.alpha = 0
-            organizationTextField.alpha = 0
-            
-            fullNameTextField.isEnabled = false
-            emailTextField.isEnabled = false
-            phoneNumberTextField.isEnabled = false
-            addressTextField.isEnabled = false
-            stateTextField.isEnabled = false
-            zipcodeTextField.isEnabled = false
-            organizationTextField.isEnabled = false
-            
-            loginButton.setTitle("Log In", for: .normal)
-            
-            // TODO: WR  try to programmatically Constrain the logIn button under the password textfield
-            
-            //            loginButton.translatesAutoresizingMaskIntoConstraints = false
-            //            NSLayoutConstraint(item: loginButton,
-            //                               attribute: .top,
-            //                               relatedBy: .bottomAnchor,
-            //                               toItem: passwordTextField,
-            //                               attribute: <#T##NSLayoutConstraint.Attribute#>,
-            //                               multiplier: <#T##CGFloat#>,
-            //                               constant: <#T##CGFloat#>)
-            
+        let authTypeIsLogin = (authType == .logIn)
+        
+        fullNameTextField.isHidden = authTypeIsLogin
+        emailTextField.isHidden = authTypeIsLogin
+        phoneNumberTextField.isHidden = authTypeIsLogin
+        addressTextField.isHidden = authTypeIsLogin
+        stateTextField.isHidden = authTypeIsLogin
+        zipcodeTextField.isHidden = authTypeIsLogin
+        organizationTextField.isHidden = authTypeIsLogin || userType.isAdmin
+        
+        fullNameTextField.isEnabled = !authTypeIsLogin
+        emailTextField.isEnabled = !authTypeIsLogin
+        phoneNumberTextField.isEnabled = !authTypeIsLogin
+        addressTextField.isEnabled = !authTypeIsLogin
+        stateTextField.isEnabled = !authTypeIsLogin
+        zipcodeTextField.isEnabled = !authTypeIsLogin
+        organizationTextField.isEnabled = !(authTypeIsLogin || userType.isAdmin)
+        
+        loginButton.setTitle((authTypeIsLogin ? "Log In" : "Sign Up"), for: .normal)
+        
+        if userType.isAdmin {
+            fullNameTextField.placeholder = "Organization Name"
         } else {
-            
-            loginSegmentedControl.selectedSegmentIndex = 0
-            
-            
-            fullNameTextField.alpha = 1
-            emailTextField.alpha = 1
-            phoneNumberTextField.alpha = 1
-            addressTextField.alpha = 1
-            stateTextField.alpha = 1
-            zipcodeTextField.alpha = 1
-            organizationTextField.alpha = 1
-            
-            fullNameTextField.isEnabled = true
-            emailTextField.isEnabled = true
-            phoneNumberTextField.isEnabled = true
-            addressTextField.isEnabled = true
-            stateTextField.isEnabled = true
-            zipcodeTextField.isEnabled = true
-            organizationTextField.isEnabled = true
-            
-            loginButton.setTitle("Sign Up", for: .normal)
+            fullNameTextField.placeholder = "Full Name"
         }
     }
 }

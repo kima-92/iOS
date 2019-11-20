@@ -22,6 +22,7 @@ struct User {
     let orgId: Int = 1
     
     var isAdmin: Bool
+    var isOrganization: Bool
     
     var representation: Representation {
         #warning("Currently returns temporary values for `contactPerson`")
@@ -31,7 +32,8 @@ struct User {
     struct Representation: Codable {
         let username: String
         let password: String
-        let fullName: String
+        let fullName: String?
+        let organizationName: String?
         let email: String
         let phoneNumber: String
         let streetAddress: String
@@ -39,6 +41,6 @@ struct User {
         let zipcode: String
         let orgId: Int
         let contactPerson: String
-        let role: String
+        let role: String?
     }
 }
