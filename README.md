@@ -13,7 +13,7 @@ iOS Engineers
 	* a valid `zipcode` - String or Int
 	* `organizationName` (for `Organizations`) or `fullName` (for `Employees`)
 	* `contactPerson` - String
-- [ ] Authenticated `Organization` or `orgAdmin` or `employee` can view a list of available `snack`s. Each snack should have the following properties:
+- [x] Authenticated `Organization` or `orgAdmin` or `employee` can view a list of available `snack`s. Each snack should have the following properties:
 	* `name`
 	* `type`
 	* `numberOfServings`
