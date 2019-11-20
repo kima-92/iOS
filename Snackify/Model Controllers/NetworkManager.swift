@@ -54,7 +54,7 @@ class NetworkManager {
         }.resume()
     }
     
-    func logIn(with username: String, password: String, completion: @escaping (Result<Bearer,NetworkError>) -> Void) {
+    func logIn(with username: String, password: String, isOrganization: Bool, completion: @escaping (Result<Bearer,NetworkError>) -> Void) {
         let userData: Data
         do {
             userData = try JSONEncoder().encode([

@@ -33,7 +33,7 @@ class SnackManager {
     }
     
     func fetchSnackOptions(completion: @escaping (Result<[Snack],NetworkError>) -> Void) {
-        var request = networkManager.newRequest(
+        let request = networkManager.newRequest(
             url: baseURL.appendingPathComponent("snacks"),
             method: .get)
         
@@ -45,18 +45,6 @@ class SnackManager {
                         return Snack(fromRepresentation: snackRep)
                     }
                     self.allSnacksOptions = snacks
-                    for snack in snacks {
-                        let queue = DispatchQueue(label: "\(snack.id)")
-                        queue.async {
-                            self.getSnackNutritionInfo(for: snack) { (result) in
-                                do {
-                                    let _ = try result.get()
-                                } catch {
-                                    NSLog((error as? NetworkError)?.rawValue ?? "\(error)")
-                                }
-                            }
-                        }
-                    }
                     completion(.success(snacks))
                 } catch {
                     print(error)
