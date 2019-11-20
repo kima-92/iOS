@@ -91,12 +91,12 @@
                     <navigationItem key="navigationItem" id="X2F-tb-Hvr">
                         <barButtonItem key="leftBarButtonItem" title="Log Out" id="bPg-dk-TRa">
                             <connections>
-                                <action selector="LogOutButtonTapped:" destination="o00-jL-cHu" id="UEn-Nx-wS2"/>
+                                <action selector="logOutButtonTapped:" destination="o00-jL-cHu" id="UEn-Nx-wS2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="NextOrderDeadlineLabel" destination="ABy-75-GcM" id="jte-fl-xxA"/>
+                        <outlet property="nextOrderDeadlineLabel" destination="ABy-75-GcM" id="jte-fl-xxA"/>
                         <outlet property="subscribeButton" destination="fwj-jc-bjw" id="kcV-3N-XOK"/>
                         <outlet property="welcomeUserLabel" destination="Jfp-OJ-0CL" id="Iy7-dk-sh1"/>
                         <segue destination="I5M-1g-OVi" kind="presentation" identifier="LoginModalSegue" id="ySq-gQ-wig"/>
@@ -265,9 +265,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="XaY-CP-EmV"/>
                     <connections>
-                        <outlet property="OrderDeadlineLabel" destination="J2D-og-8Yy" id="Jku-Mx-Obc"/>
                         <outlet property="amountOfSnacksLabel" destination="r5h-iA-IZQ" id="fpT-De-1Ma"/>
                         <outlet property="priceTotalLabel" destination="hCX-Ws-UcD" id="oY5-PL-WVe"/>
+                        <outlet property="snacksListLabel" destination="tCB-jP-frT" id="qoc-Vv-RBx"/>
+                        <outlet property="subscriptionEndLabel" destination="J2D-og-8Yy" id="Jku-Mx-Obc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FyN-8J-csp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -296,7 +297,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="dZZ-Jn-TD8" kind="presentation" id="oMD-Uy-hMJ"/>
+                                                    <action selector="buyNowTapped:" destination="0TB-hm-mlU" eventType="touchUpInside" id="0xb-9r-hRX"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyh-c4-gUh">
@@ -306,6 +307,9 @@
                                                 <state key="normal" title="Request Subscription">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="subscriptionAddTapped:" destination="0TB-hm-mlU" eventType="touchUpInside" id="AAq-At-Os5"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -527,7 +531,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="g8A-jv-64b"/>
                     </view>
-                    <navigationItem key="navigationItem" id="mY9-14-7mR"/>
+                    <navigationItem key="navigationItem" id="mY9-14-7mR">
+                        <barButtonItem key="rightBarButtonItem" title="Place Order" image="cart" catalog="system" id="X4z-zS-wOk">
+                            <connections>
+                                <segue destination="dZZ-Jn-TD8" kind="presentation" identifier="PlaceOrderFromDetailVCSegue" id="Q3S-FL-222"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="allergensLabel" destination="UeC-J8-G63" id="fTx-Am-7Ys"/>
                         <outlet property="caloriesLabel" destination="riS-6R-XNq" id="l8Q-rM-Trm"/>
@@ -536,6 +546,7 @@
                         <outlet property="proteinLabel" destination="kVO-al-VFP" id="4hj-sB-o0B"/>
                         <outlet property="servingsLabel" destination="kJE-9Y-mkP" id="mrU-k7-6rS"/>
                         <outlet property="snackNameLabel" destination="o6I-4Z-BjW" id="Oq3-TF-2Y1"/>
+                        <outlet property="subscriptionAddButton" destination="gyh-c4-gUh" id="orE-Jq-p0P"/>
                         <outlet property="totalFatLabel" destination="JNL-gi-sJi" id="YHa-Qp-Wr8"/>
                         <outlet property="totalSugarLabel" destination="kJJ-Lx-Ua4" id="muD-4K-R4r"/>
                         <outlet property="totalWeightLabel" destination="cit-Jd-B5q" id="U3S-9J-F32"/>
@@ -700,6 +711,7 @@
                         <outlet property="organizationTextField" destination="9Mx-KO-zwx" id="Pq1-OK-iMl"/>
                         <outlet property="passwordTextField" destination="JdM-jb-UQq" id="8nf-aH-kpd"/>
                         <outlet property="phoneNumberTextField" destination="jCU-VD-2Rz" id="5NR-lV-XZ4"/>
+                        <outlet property="roleSegmentedControl" destination="gzL-IV-lBK" id="qdf-6q-lbx"/>
                         <outlet property="stateTextField" destination="r4U-QB-sTQ" id="CSk-Lb-aZz"/>
                         <outlet property="usernameTextField" destination="7wt-SZ-o4L" id="S0f-4i-jBr"/>
                         <outlet property="zipcodeTextField" destination="tsu-6e-rvK" id="v35-ch-RVA"/>
@@ -732,6 +744,6 @@
         <image name="cart" catalog="system" width="64" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oMD-Uy-hMJ"/>
+        <segue reference="Q3S-FL-222"/>
     </inferredMetricsTieBreakers>
 </document>
