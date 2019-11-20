@@ -138,10 +138,7 @@ class NetworkManager {
 
 
 
-enum AuthType: String {
-    case signUp = "Sign up"
-    case logIn = "Log in"
-}
+
 extension Encodable {
     func toJSONData() -> Data? {
         return try? JSONEncoder().encode(self)
