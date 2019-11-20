@@ -16,4 +16,6 @@ enum NetworkError: String, Error {
     case badImageURL = "The image URL could not be found."
     case badAuthURL = "The authorization URL could not be found."
     case noBearer = "The JSON web token is missing."
+    case badSubsRepresentation = "Bad Subscription Representation"
+    case unexpectedStatusCode = "Unexpected Status Code"
 }
