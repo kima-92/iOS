@@ -89,8 +89,6 @@ class NetworkManager {
                     } else {
                         self.userType = .employee
                     }
-                    print("message: " + token.message)
-                    print("token: " + token.token)
                     completion(.success(token))
                 } catch {
                     print(error)
