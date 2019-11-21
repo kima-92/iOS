@@ -11,6 +11,7 @@ import UIKit
 class SnacksOrderViewController: UIViewController {
     
     var snacks: [Snack]?
+    var subsDeadline: String?
     
     
     //MARK: Outlets
@@ -32,10 +33,15 @@ class SnacksOrderViewController: UIViewController {
     
     func updateViews() {
         
-//        guard let snacks = snacks else { return }
-//        
-//        priceTotalLabel.text = addSnacksTotal(snacks: snacks)
-//        subscriptionEndLabel.text =
+        guard let snacks = snacks,
+            let subsDeadline = subsDeadline else { return }
+        
+        let listOfSnacks = snacks.compactMap( { $0.name })
+
+        priceTotalLabel.text = addSnacksTotal(snacks: snacks)
+        subscriptionEndLabel.text = subsDeadline
+        snacksListLabel.text = listOfSnacks.joined(separator: ", ")
+        amountOfSnacksLabel.text = String(snacks.count)
     }
     
     
