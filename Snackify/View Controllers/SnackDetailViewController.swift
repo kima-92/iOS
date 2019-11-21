@@ -129,16 +129,6 @@ class SnackDetailViewController: UIViewController {
             
             orderVC.snackManager = snackManager
             orderVC.snacks = snacks
-        } else if segue.identifier == "RequestSnackForSubsSegue" {
-            guard let orderVC = segue.destination as? SnacksOrderViewController,
-                let snacks = snackManager?.currentOrderSnacks
-                else { return }
-            
-            orderVC.snackManager = snackManager
-            orderVC.snacks = snacks
         }
-        
-        
     }
-    
 }
