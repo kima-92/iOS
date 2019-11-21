@@ -16,20 +16,36 @@ class NetworkManager {
     private(set) var user: User?
     private(set) var bearer: Bearer?
     
+    private(set) var userType: UserType?
+    
     static let shared = NetworkManager()
     
     // MARK: - Login/Sign-up
     
     /// Handles sign-up for employees.
     func signUp(with user: User, completion: @escaping (Result<Data,NetworkError>) -> Void) {
-        let userRep = user.representation
-        guard let userData = userRep.toJSONData() else {
-            completion(.failure(.noEncode))
-            return
+        let userData: Data
+        let registrationEndpoint: String
+        if user.isOrganization {
+            guard let orgData = user.orgRepresentation?.toJSONData()
+                else {
+                    completion(.failure(.noEncode))
+                    return
+            }
+            userData = orgData
+            registrationEndpoint = "organization"
+        } else {
+            guard let employeeData = user.employeeRepresentation?.toJSONData()
+                else {
+                    completion(.failure(.noEncode))
+                    return
+            }
+            userData = employeeData
+            registrationEndpoint = "employee"
         }
         
         let request = newRequest(
-            url: baseURL.appendingPathComponent("/auth/register/employee"),
+            url: baseURL.appendingPathComponent("/auth/register/\(registrationEndpoint)"),
             method: .post,
             body: userData)
         
@@ -38,7 +54,7 @@ class NetworkManager {
         }.resume()
     }
     
-    func logIn(with username: String, password: String, completion: @escaping (Result<Bearer,NetworkError>) -> Void) {
+    func logIn(with username: String, password: String, isOrganization: Bool, completion: @escaping (Result<Bearer,NetworkError>) -> Void) {
         let userData: Data
         do {
             userData = try JSONEncoder().encode([
@@ -50,8 +66,10 @@ class NetworkManager {
             return
         }
         
+        let loginEndpoint = isOrganization ? "organization" : "employee"
+        
         let request = newRequest(
-            url: baseURL.appendingPathComponent("/auth/login/employee"),
+            url: baseURL.appendingPathComponent("/auth/login/\(loginEndpoint)"),
             method: .post,
             body: userData)
         
@@ -65,6 +83,12 @@ class NetworkManager {
                 do {
                     let token = try JSONDecoder().decode(Bearer.self, from: data)
                     self.bearer = token
+                    // TODO: parse response from token to get role
+                    if isOrganization {
+                        self.userType = .organization
+                    } else {
+                        self.userType = .employee
+                    }
                     completion(.success(token))
                 } catch {
                     print(error)
@@ -192,7 +216,6 @@ class NetworkManager {
         
         request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: HeaderNames.authorization.rawValue)
         
-        //MARK: DataTask
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             if let error = error {

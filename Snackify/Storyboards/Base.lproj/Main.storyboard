@@ -568,7 +568,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ki-XA-1Ut">
                                 <rect key="frame" x="20" y="20" width="374" height="200"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SNACKIFY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2p-sx-JXn">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SNACKIFY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O2p-sx-JXn">
                                         <rect key="frame" x="18.5" y="30" width="337" height="69.5"/>
                                         <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="60"/>
                                         <color key="textColor" red="1" green="0.38823529410000002" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -586,7 +586,7 @@
                                                 </segments>
                                                 <color key="selectedSegmentTintColor" red="0.40000000000000002" green="0.92549019610000005" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
-                                                    <action selector="loginSegmentedControlChanged:" destination="I5M-1g-OVi" eventType="valueChanged" id="Ysp-tK-SXX"/>
+                                                    <action selector="roleSegmentedControlChanged:" destination="I5M-1g-OVi" eventType="valueChanged" id="fGb-8O-SGo"/>
                                                 </connections>
                                             </segmentedControl>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="aDU-Rr-L5p">
@@ -609,15 +609,75 @@
                                     <constraint firstItem="O2p-sx-JXn" firstAttribute="centerX" secondItem="7Ki-XA-1Ut" secondAttribute="centerX" id="956-Ax-ZjK"/>
                                     <constraint firstItem="4Pe-1y-FEh" firstAttribute="top" secondItem="O2p-sx-JXn" secondAttribute="bottom" constant="8" id="DKm-Xj-sHF"/>
                                     <constraint firstAttribute="height" constant="200" id="IBh-4a-zTa"/>
+                                    <constraint firstAttribute="trailing" secondItem="O2p-sx-JXn" secondAttribute="trailing" constant="18.5" id="bdE-kv-iX1"/>
                                     <constraint firstItem="4Pe-1y-FEh" firstAttribute="centerX" secondItem="7Ki-XA-1Ut" secondAttribute="centerX" id="lwJ-R2-p0v"/>
                                     <constraint firstItem="O2p-sx-JXn" firstAttribute="top" secondItem="7Ki-XA-1Ut" secondAttribute="top" constant="30" id="mcS-lk-jUh"/>
+                                    <constraint firstItem="O2p-sx-JXn" firstAttribute="leading" secondItem="7Ki-XA-1Ut" secondAttribute="leading" constant="18.5" id="uWT-Sy-dH8"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mBx-v7-jRW">
                                 <rect key="frame" x="15" y="235" width="384" height="573"/>
                                 <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UQE-op-7DA">
+                                        <rect key="frame" x="16" y="16" width="352" height="370"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7wt-SZ-o4L">
+                                                <rect key="frame" x="0.0" y="0.0" width="352" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JdM-jb-UQq">
+                                                <rect key="frame" x="0.0" y="42" width="352" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="passwordTextField"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zcS-kV-QLx">
+                                                <rect key="frame" x="0.0" y="84" width="352" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="fullNameTextField"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P7T-zo-4Ad">
+                                                <rect key="frame" x="0.0" y="126" width="352" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="emailTextField"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jCU-VD-2Rz">
+                                                <rect key="frame" x="0.0" y="168" width="352" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="phoneNumTextField"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Street Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2yW-D6-CC6">
+                                                <rect key="frame" x="0.0" y="210" width="352" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="addressTextField"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r4U-QB-sTQ">
+                                                <rect key="frame" x="0.0" y="252" width="352" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="stateTextField"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zipcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tsu-6e-rvK">
+                                                <rect key="frame" x="0.0" y="294" width="352" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="zipcodeTextField"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Organization" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Mx-KO-zwx">
+                                                <rect key="frame" x="0.0" y="336" width="352" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="organizationTextField"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Lj-7r-jta">
-                                        <rect key="frame" x="20" y="445" width="344" height="38"/>
+                                        <rect key="frame" x="20" y="402" width="344" height="38"/>
                                         <color key="backgroundColor" red="0.94509803921568625" green="0.31372549019607843" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                         <state key="normal" title="Sign Up">
@@ -630,61 +690,14 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.38823529410000002" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="UQE-op-7DA" firstAttribute="top" secondItem="mBx-v7-jRW" secondAttribute="topMargin" constant="8" id="E9P-oa-NK9"/>
+                                    <constraint firstItem="UQE-op-7DA" firstAttribute="leading" secondItem="mBx-v7-jRW" secondAttribute="leadingMargin" constant="8" id="TNu-iq-8dS"/>
+                                    <constraint firstItem="6Lj-7r-jta" firstAttribute="top" secondItem="UQE-op-7DA" secondAttribute="bottom" constant="16" id="ld8-P4-WAp"/>
                                     <constraint firstAttribute="trailing" secondItem="6Lj-7r-jta" secondAttribute="trailing" constant="20" id="mA8-So-LAf"/>
                                     <constraint firstItem="6Lj-7r-jta" firstAttribute="leading" secondItem="mBx-v7-jRW" secondAttribute="leading" constant="20" id="na9-3v-dIw"/>
-                                    <constraint firstItem="6Lj-7r-jta" firstAttribute="top" secondItem="mBx-v7-jRW" secondAttribute="top" constant="445" id="xAa-k0-Sqb"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="UQE-op-7DA" secondAttribute="trailing" constant="8" id="oDr-q1-XTu"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UQE-op-7DA">
-                                <rect key="frame" x="20" y="250" width="374" height="370"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7wt-SZ-o4L">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JdM-jb-UQq">
-                                        <rect key="frame" x="0.0" y="42" width="374" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zcS-kV-QLx">
-                                        <rect key="frame" x="0.0" y="84" width="374" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P7T-zo-4Ad">
-                                        <rect key="frame" x="0.0" y="126" width="374" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jCU-VD-2Rz">
-                                        <rect key="frame" x="0.0" y="168" width="374" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Street Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2yW-D6-CC6">
-                                        <rect key="frame" x="0.0" y="210" width="374" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r4U-QB-sTQ">
-                                        <rect key="frame" x="0.0" y="252" width="374" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zipcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tsu-6e-rvK">
-                                        <rect key="frame" x="0.0" y="294" width="374" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Organization" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Mx-KO-zwx">
-                                        <rect key="frame" x="0.0" y="336" width="374" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000000000002" green="0.92549019610000005" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -695,9 +708,6 @@
                             <constraint firstItem="mBx-v7-jRW" firstAttribute="leading" secondItem="d1k-2H-FCY" secondAttribute="leading" constant="15" id="L5q-L2-BCP"/>
                             <constraint firstItem="7Ki-XA-1Ut" firstAttribute="leading" secondItem="d1k-2H-FCY" secondAttribute="leading" constant="20" id="Tug-h3-wIz"/>
                             <constraint firstItem="d1k-2H-FCY" firstAttribute="trailing" secondItem="mBx-v7-jRW" secondAttribute="trailing" constant="15" id="bHb-uS-2rU"/>
-                            <constraint firstItem="UQE-op-7DA" firstAttribute="leading" secondItem="d1k-2H-FCY" secondAttribute="leading" constant="20" id="iM5-va-INA"/>
-                            <constraint firstItem="d1k-2H-FCY" firstAttribute="trailing" secondItem="UQE-op-7DA" secondAttribute="trailing" constant="20" id="o4O-ax-s6a"/>
-                            <constraint firstItem="UQE-op-7DA" firstAttribute="top" secondItem="7Ki-XA-1Ut" secondAttribute="bottom" constant="30" id="pOB-ac-LRV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d1k-2H-FCY"/>
                     </view>

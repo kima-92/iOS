@@ -12,6 +12,7 @@
 		9936AF47238337B100A9F99C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF46238337B100A9F99C /* NetworkManager.swift */; };
 		9936AF4B2383533E00A9F99C /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF4A2383533E00A9F99C /* Subscription.swift */; };
 		9936AF4D2383605300A9F99C /* SnackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF4C2383605300A9F99C /* SnackManager.swift */; };
+		99570C442385CB8F00DE6E65 /* UserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99570C432385CB8F00DE6E65 /* UserType.swift */; };
 		99D8270D23831B3000E147C7 /* Snack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D8270C23831B3000E147C7 /* Snack.swift */; };
 		99D8270F23831B3600E147C7 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D8270E23831B3600E147C7 /* Organization.swift */; };
 		FA806A4923830A92003907EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA806A4823830A92003907EE /* AppDelegate.swift */; };
@@ -30,7 +31,26 @@
 		FAA7C8B32384C82400F46C0E /* AuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA7C8B22384C82400F46C0E /* AuthType.swift */; };
 		FAA7C8B52384C87C00F46C0E /* EncodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA7C8B42384C87C00F46C0E /* EncodableExtension.swift */; };
 		FAA7C8B72384CE6800F46C0E /* HeaderNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA7C8B62384CE6800F46C0E /* HeaderNames.swift */; };
+		FAA7C8BF2385D81E00F46C0E /* SnackifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA7C8BE2385D81E00F46C0E /* SnackifyTests.swift */; };
+		FAA7C8CD2385D8B800F46C0E /* SnackifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA7C8CC2385D8B800F46C0E /* SnackifyUITests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FAA7C8C12385D81E00F46C0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA806A3D23830A92003907EE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA806A4423830A92003907EE;
+			remoteInfo = Snackify;
+		};
+		FAA7C8CF2385D8B800F46C0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA806A3D23830A92003907EE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA806A4423830A92003907EE;
+			remoteInfo = Snackify;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9936AF442383371D00A9F99C /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
@@ -38,6 +58,7 @@
 		9936AF4A2383533E00A9F99C /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		9936AF4C2383605300A9F99C /* SnackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SnackManager.swift; path = "Model Controllers/SnackManager.swift"; sourceTree = SOURCE_ROOT; };
 		9936AF4E238373A200A9F99C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		99570C432385CB8F00DE6E65 /* UserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserType.swift; sourceTree = "<group>"; };
 		99D8270C23831B3000E147C7 /* Snack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snack.swift; sourceTree = "<group>"; };
 		99D8270E23831B3600E147C7 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		FA806A4523830A92003907EE /* Snackify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snackify.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,10 +79,30 @@
 		FAA7C8B22384C82400F46C0E /* AuthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthType.swift; sourceTree = "<group>"; };
 		FAA7C8B42384C87C00F46C0E /* EncodableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodableExtension.swift; sourceTree = "<group>"; };
 		FAA7C8B62384CE6800F46C0E /* HeaderNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderNames.swift; sourceTree = "<group>"; };
+		FAA7C8BC2385D81E00F46C0E /* SnackifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnackifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAA7C8BE2385D81E00F46C0E /* SnackifyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackifyTests.swift; sourceTree = "<group>"; };
+		FAA7C8C02385D81E00F46C0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAA7C8CA2385D8B800F46C0E /* SnackifyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnackifyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAA7C8CC2385D8B800F46C0E /* SnackifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackifyUITests.swift; sourceTree = "<group>"; };
+		FAA7C8CE2385D8B800F46C0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		FA806A4223830A92003907EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA7C8B92385D81E00F46C0E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA7C8C72385D8B800F46C0E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -102,6 +143,8 @@
 				99D8270B23831B0100E147C7 /* Models */,
 				99D82715238327EB00E147C7 /* Model Controllers */,
 				FA806A4723830A92003907EE /* Snackify */,
+				FAA7C8BD2385D81E00F46C0E /* SnackifyTests */,
+				FAA7C8CB2385D8B800F46C0E /* SnackifyUITests */,
 				FA806A4623830A92003907EE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -110,6 +153,8 @@
 			isa = PBXGroup;
 			children = (
 				FA806A4523830A92003907EE /* Snackify.app */,
+				FAA7C8BC2385D81E00F46C0E /* SnackifyTests.xctest */,
+				FAA7C8CA2385D8B800F46C0E /* SnackifyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,10 +197,29 @@
 				FAA7C8AE2384C6F400F46C0E /* HTTPMethods.swift */,
 				FAA7C8B02384C7AB00F46C0E /* NetworkError.swift */,
 				FAA7C8B22384C82400F46C0E /* AuthType.swift */,
+				99570C432385CB8F00DE6E65 /* UserType.swift */,
 				FAA7C8B42384C87C00F46C0E /* EncodableExtension.swift */,
 				FAA7C8B62384CE6800F46C0E /* HeaderNames.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		FAA7C8BD2385D81E00F46C0E /* SnackifyTests */ = {
+			isa = PBXGroup;
+			children = (
+				FAA7C8BE2385D81E00F46C0E /* SnackifyTests.swift */,
+				FAA7C8C02385D81E00F46C0E /* Info.plist */,
+			);
+			path = SnackifyTests;
+			sourceTree = "<group>";
+		};
+		FAA7C8CB2385D8B800F46C0E /* SnackifyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FAA7C8CC2385D8B800F46C0E /* SnackifyUITests.swift */,
+				FAA7C8CE2385D8B800F46C0E /* Info.plist */,
+			);
+			path = SnackifyUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +242,42 @@
 			productReference = FA806A4523830A92003907EE /* Snackify.app */;
 			productType = "com.apple.product-type.application";
 		};
+		FAA7C8BB2385D81E00F46C0E /* SnackifyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAA7C8C52385D81E00F46C0E /* Build configuration list for PBXNativeTarget "SnackifyTests" */;
+			buildPhases = (
+				FAA7C8B82385D81E00F46C0E /* Sources */,
+				FAA7C8B92385D81E00F46C0E /* Frameworks */,
+				FAA7C8BA2385D81E00F46C0E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAA7C8C22385D81E00F46C0E /* PBXTargetDependency */,
+			);
+			name = SnackifyTests;
+			productName = SnackifyTests;
+			productReference = FAA7C8BC2385D81E00F46C0E /* SnackifyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FAA7C8C92385D8B800F46C0E /* SnackifyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAA7C8D12385D8B800F46C0E /* Build configuration list for PBXNativeTarget "SnackifyUITests" */;
+			buildPhases = (
+				FAA7C8C62385D8B800F46C0E /* Sources */,
+				FAA7C8C72385D8B800F46C0E /* Frameworks */,
+				FAA7C8C82385D8B800F46C0E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAA7C8D02385D8B800F46C0E /* PBXTargetDependency */,
+			);
+			name = SnackifyUITests;
+			productName = SnackifyUITests;
+			productReference = FAA7C8CA2385D8B800F46C0E /* SnackifyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -190,6 +290,14 @@
 				TargetAttributes = {
 					FA806A4423830A92003907EE = {
 						CreatedOnToolsVersion = 11.2.1;
+					};
+					FAA7C8BB2385D81E00F46C0E = {
+						CreatedOnToolsVersion = 11.2.1;
+						TestTargetID = FA806A4423830A92003907EE;
+					};
+					FAA7C8C92385D8B800F46C0E = {
+						CreatedOnToolsVersion = 11.2.1;
+						TestTargetID = FA806A4423830A92003907EE;
 					};
 				};
 			};
@@ -207,6 +315,8 @@
 			projectRoot = "";
 			targets = (
 				FA806A4423830A92003907EE /* Snackify */,
+				FAA7C8BB2385D81E00F46C0E /* SnackifyTests */,
+				FAA7C8C92385D8B800F46C0E /* SnackifyUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -222,6 +332,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FAA7C8BA2385D81E00F46C0E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA7C8C82385D8B800F46C0E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -231,6 +355,7 @@
 			files = (
 				FAA7C8B32384C82400F46C0E /* AuthType.swift in Sources */,
 				FA806A6723835462003907EE /* SnacksMainViewController.swift in Sources */,
+				99570C442385CB8F00DE6E65 /* UserType.swift in Sources */,
 				FA806A4923830A92003907EE /* AppDelegate.swift in Sources */,
 				FA806A65238353FC003907EE /* SnacksOrderViewController.swift in Sources */,
 				FA806A612383536C003907EE /* SnacksTableViewController.swift in Sources */,
@@ -252,7 +377,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FAA7C8B82385D81E00F46C0E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAA7C8BF2385D81E00F46C0E /* SnackifyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA7C8C62385D8B800F46C0E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAA7C8CD2385D8B800F46C0E /* SnackifyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FAA7C8C22385D81E00F46C0E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA806A4423830A92003907EE /* Snackify */;
+			targetProxy = FAA7C8C12385D81E00F46C0E /* PBXContainerItemProxy */;
+		};
+		FAA7C8D02385D8B800F46C0E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA806A4423830A92003907EE /* Snackify */;
+			targetProxy = FAA7C8CF2385D8B800F46C0E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FA806A4E23830A92003907EE /* Main.storyboard */ = {
@@ -393,11 +547,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = Snackify/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.Snackify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -410,15 +566,91 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = Snackify/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.Snackify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FAA7C8C32385D81E00F46C0E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SnackifyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.SnackifyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Snackify.app/Snackify";
+			};
+			name = Debug;
+		};
+		FAA7C8C42385D81E00F46C0E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SnackifyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.SnackifyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Snackify.app/Snackify";
+			};
+			name = Release;
+		};
+		FAA7C8D22385D8B800F46C0E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SnackifyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.SnackifyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Snackify;
+			};
+			name = Debug;
+		};
+		FAA7C8D32385D8B800F46C0E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SnackifyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lambdaschool.SnackifyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Snackify;
 			};
 			name = Release;
 		};
@@ -439,6 +671,24 @@
 			buildConfigurations = (
 				FA806A5A23830A94003907EE /* Debug */,
 				FA806A5B23830A94003907EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAA7C8C52385D81E00F46C0E /* Build configuration list for PBXNativeTarget "SnackifyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAA7C8C32385D81E00F46C0E /* Debug */,
+				FAA7C8C42385D81E00F46C0E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAA7C8D12385D8B800F46C0E /* Build configuration list for PBXNativeTarget "SnackifyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAA7C8D22385D8B800F46C0E /* Debug */,
+				FAA7C8D32385D8B800F46C0E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
