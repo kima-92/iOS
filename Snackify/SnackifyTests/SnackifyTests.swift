@@ -52,15 +52,38 @@ class SnackifyTests: XCTestCase {
         wait(for: [loginPromise], timeout: 6)
         
     }
+    
+    func testSuccessfulEmployeeSignUp() {
+        
+        let signUpPromise = expectation(description: "Successful Sign Up")
+        
+        let user = User(username: "testingUser", password: "testingPassword", fullName: "test", email: "test", phoneNumber: "000-000-0000", streetAddress: "123 Street", state: "florida", zipCode: "55555", isAdmin: false, isOrganization: false)
+        
+        networkManager.signUp(with: user) { (result) in
+            do {
+                let _ = try result.get()
+                signUpPromise.fulfill()
+            } catch {
+                if let error = error as? NetworkError {
+                    NSLog("Error signing up: \(error.rawValue)")
+                } else {
+                    NSLog("Error signing up: \(error)")
+                }
+                return
+            }
+        }
+        wait(for: [signUpPromise], timeout: 6)
+    }
+    
 
 ////    var networkManager: NetworkManager?
 //        var authType = AuthType.logIn
 //        var userType = UserType.employee
-//        
+//
 //        //MARK: Outlets
 //        @IBOutlet weak var roleSegmentedControl: UISegmentedControl!
 //        @IBOutlet weak var loginSegmentedControl: UISegmentedControl!
-//        
+//
 //        @IBOutlet weak var usernameTextField: UITextField!
 //        @IBOutlet weak var passwordTextField: UITextField!
 //        @IBOutlet weak var fullNameTextField: UITextField!
@@ -70,18 +93,18 @@ class SnackifyTests: XCTestCase {
 //        @IBOutlet weak var stateTextField: UITextField!
 //        @IBOutlet weak var zipcodeTextField: UITextField!
 //        @IBOutlet weak var organizationTextField: UITextField!
-//        
+//
 //        @IBOutlet weak var loginButton: UIButton!
-//        
+//
 //        override func viewDidLoad() {
 //            super.viewDidLoad()
 //            loginSegmentedControl.selectedSegmentIndex = 1
 //    //        navigationItem.hidesBackButton = true
 //            updateViews()
 //        }
-//        
+//
 //        //MARK: Actions
-//        
+//
 //        @IBAction func roleSegmentedControlChanged(_ sender: UISegmentedControl) {
 //            if sender.selectedSegmentIndex == 0 {
 //                userType = .employee
@@ -91,7 +114,7 @@ class SnackifyTests: XCTestCase {
 //                updateViews()
 //            }
 //        }
-//        
+//
 //        @IBAction func loginSegmentedControlChanged(_ sender: UISegmentedControl) {
 //            if sender.selectedSegmentIndex == 0 {
 //                authType = .signUp
@@ -101,16 +124,16 @@ class SnackifyTests: XCTestCase {
 //                updateViews()
 //            }
 //        }
-//        
+//
 //        @IBAction func loginButtonTapped(_ sender: UIButton) {
-//            
+//
 //            // Creating a user
 //            guard let username = usernameTextField.text,
 //                let password = passwordTextField.text,
 //                username != "",
 //                password != ""
 //                else { return }
-//            
+//
 //            // perform login or sign up operation based on loginType
 //            if authType == .signUp {
 //                guard let fullname = fullNameTextField.text,
@@ -137,7 +160,7 @@ class SnackifyTests: XCTestCase {
 //                logIn(username: username, password: password)
 //            }
 //        }
-//        
+//
 //        func signUp(with user: User) {
 //            networkManager?.signUp(with: user, completion: { (result) in
 //                do {
@@ -153,11 +176,11 @@ class SnackifyTests: XCTestCase {
 //                let alert = UIAlertController(title: "Sign Up Successful!",
 //                                              message: "Please log in",
 //                                              preferredStyle: .alert)
-//                
+//
 //                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-//                
+//
 //                alert.addAction(okAction)
-//                
+//
 //                DispatchQueue.main.async {
 //                    self.present(alert, animated: true) {
 //                        self.authType = .logIn
@@ -166,7 +189,7 @@ class SnackifyTests: XCTestCase {
 //                }
 //            })
 //        }
-//        
+//
 //        func logIn(username: String, password: String) {
 //            networkManager?.logIn(with: username,
 //                                  password: password,
@@ -175,7 +198,7 @@ class SnackifyTests: XCTestCase {
 //                do {
 //                    let bearer = try result.get()
 //                    print("Success! Bearer: \(bearer.token)")
-//                    
+//
 //                    DispatchQueue.main.async {
 //                        self.dismiss(animated: true, completion: nil)
 //                    }
@@ -184,16 +207,16 @@ class SnackifyTests: XCTestCase {
 //                }
 //            }
 //        }
-//        
+//
 //        func updateViews() {
 //            loginButton.layer.cornerRadius = 8.0
 //            passwordTextField.isSecureTextEntry = true
-//            
+//
 //            let authTypeIsLogin = (authType == .logIn)
-//            
+//
 //            loginSegmentedControl.selectedSegmentIndex = authTypeIsLogin ? 1 : 0
 //            roleSegmentedControl.selectedSegmentIndex = (userType == UserType.organization) ? 1 : 0
-//            
+//
 //            fullNameTextField.isHidden = authTypeIsLogin
 //            emailTextField.isHidden = authTypeIsLogin
 //            phoneNumberTextField.isHidden = authTypeIsLogin
@@ -201,7 +224,7 @@ class SnackifyTests: XCTestCase {
 //            stateTextField.isHidden = authTypeIsLogin
 //            zipcodeTextField.isHidden = authTypeIsLogin
 //            organizationTextField.isHidden = authTypeIsLogin || userType.isAdmin
-//            
+//
 //            fullNameTextField.isEnabled = !authTypeIsLogin
 //            emailTextField.isEnabled = !authTypeIsLogin
 //            phoneNumberTextField.isEnabled = !authTypeIsLogin
@@ -209,19 +232,19 @@ class SnackifyTests: XCTestCase {
 //            stateTextField.isEnabled = !authTypeIsLogin
 //            zipcodeTextField.isEnabled = !authTypeIsLogin
 //            organizationTextField.isEnabled = !(authTypeIsLogin || userType.isAdmin)
-//            
+//
 //            loginButton.setTitle((authTypeIsLogin ? "Log In" : "Sign Up"), for: .normal)
-//            
+//
 //            fullNameTextField.placeholder = (userType == .organization) ? "Organization Name" : "Full Name"
 //        }
-//    
-//    
-//    
-//    
-//    
-//    
-//    
-//    
+//
+//
+//
+//
+//
+//
+//
+//
     
 
     func testPerformanceExample() {
