@@ -42,8 +42,13 @@ class SnacksOrderViewController: UIViewController {
 
         priceTotalLabel.text = addSnacksTotal(snacks: snacks)
         subscriptionEndLabel.text = subsDeadline
-        snacksListLabel.text = listOfSnacks.joined(separator: ", ")
         amountOfSnacksLabel.text = String(snacks.count)
+        
+        if listOfSnacks.count == 0 {
+            snacksListTextView.text = ""
+        } else {
+            snacksListTextView.text = "*" + listOfSnacks.joined(separator: "\n*")
+        }
     }
     
     
