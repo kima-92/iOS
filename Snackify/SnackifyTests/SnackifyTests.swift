@@ -7,21 +7,38 @@
 //
 
 import XCTest
+@testable import Snackify
 
 class SnackifyTests: XCTestCase {
+    
+    //MARK: Properties
+    private let networkManager = NetworkManager()
+//    private let snackManager = SnackManager(networkManager: networkManager)
+    
+    private let loginVC = LoginViewController()
+    private let snackTableVC = SnacksTableViewController()
+    private let snackDetailVC = SnackDetailViewController()
+    private let snacksOrderVC = SnacksOrderViewController()
+    private let snacksMainVC = SnacksMainViewController()
+    
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testFetchingSnacksFromSubs() {
+        
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     func testPerformanceExample() {
         // This is an example of a performance test case.
