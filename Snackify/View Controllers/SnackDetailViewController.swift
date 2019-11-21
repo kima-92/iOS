@@ -13,7 +13,6 @@ class SnackDetailViewController: UIViewController {
     var snack: Snack?
     var snackManager: SnackManager?
     
-    
     lazy var priceFormatter: NumberFormatter = {
         var formatter = NumberFormatter()
         formatter.currencySymbol = "$"
@@ -50,6 +49,34 @@ class SnackDetailViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default) { (alertAction) in
             self.dismiss(animated: true, completion: nil)
         })
+        return alert
+    }()
+    
+    lazy var addToSubscriptionAlert: UIAlertController = {
+        let titleText: String
+        let alertText: String
+        let confirmActionText: String
+        if let isAdmin = snackManager?.networkManager.userType?.isAdmin, isAdmin {
+            titleText = "Add \(snack!.name) subscription?"
+            alertText = "Are you sure you'd like to subscribe to \(snack!.name) for \(priceText)?\n(You will be able to review your order before checkout.)"
+            confirmActionText = "Add to subscription"
+        } else {
+            titleText = "Request \(snack!.name) subscription?"
+            alertText = "Are you sure you'd like to request that \(snack!.name) be added to your organization's snack subscription?"
+            confirmActionText = "Request subscription"
+        }
+        
+        var alert = UIAlertController(title: titleText, message: alertText, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { (alertAction) in
+            self.dismiss(animated: true, completion: nil)
+        })
+        alert.addAction(UIAlertAction(title: confirmActionText, style: .default) { (alertAction) in
+            if let isAdmin = self.snackManager?.networkManager.userType?.isAdmin, isAdmin {
+                self.snackManager?.AddSnackToCurrentSubscription(snack: self.snack!)
+            }
+            self.dismiss(animated: true, completion: nil)
+        })
+            
         return alert
     }()
     
@@ -93,11 +120,7 @@ class SnackDetailViewController: UIViewController {
     }
     
     @IBAction func subscriptionAddTapped(_ sender: UIButton) {
-        guard let snack = snack else { return }
-        
-        snackManager?.AddSnackToCurrentSubscription(snack: snack)
-        
-        
+        present(addToSubscriptionAlert, animated: true, completion: nil)
     }
     
     @IBAction func cartButtonTapped(_ sender: UIBarButtonItem) {
