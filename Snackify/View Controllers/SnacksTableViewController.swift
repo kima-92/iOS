@@ -17,8 +17,10 @@ class SnacksTableViewController: UITableViewController {
         super.viewDidLoad()
         if let isAdmin = snackManager?.networkManager.userType?.isAdmin, isAdmin {
             checkoutButton.isEnabled = true
+            navigationItem.rightBarButtonItem = checkoutButton
         } else {
             checkoutButton.isEnabled = false
+            navigationItem.rightBarButtonItem = nil
         }
         tableView.backgroundColor = UIColor(red: 102, green: 236, blue: 135, alpha: 1)
     }

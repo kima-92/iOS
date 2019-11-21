@@ -75,10 +75,11 @@ class SnackDetailViewController: UIViewController {
         let subscribeButtonText: String
         if let isAdmin = snackManager?.networkManager.userType?.isAdmin, isAdmin {
             subscribeButtonText = "Add to Subscription"
-            checkoutButton.isEnabled = true
+            navigationItem.rightBarButtonItem = checkoutButton
         } else {
             subscribeButtonText = "Request Subscription"
             checkoutButton.isEnabled = false
+            navigationItem.rightBarButtonItem = nil
         }
         subscriptionAddButton.setTitle(subscribeButtonText, for: .normal)
         updateViews()
