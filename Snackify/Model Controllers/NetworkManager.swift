@@ -91,6 +91,7 @@ class NetworkManager {
                     } else {
                         self.userType = .employee
                     }
+                    self.username = username
                     completion(.success(token))
                 } catch {
                     print(error)
