@@ -92,7 +92,6 @@ class SnacksTableViewController: UITableViewController {
                 }
             })
             detailVC.snack = snack
-            print("Going to snack detail for \(detailVC.snack?.name ?? "nil")")
         }
     }
 
