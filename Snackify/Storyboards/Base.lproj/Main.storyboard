@@ -155,11 +155,11 @@
             <objects>
                 <viewController id="dZZ-Jn-TD8" customClass="SnacksOrderViewController" customModule="Snackify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2oG-RP-GFQ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ne-ku-EUW">
-                                <rect key="frame" x="20" y="20" width="374" height="768"/>
+                                <rect key="frame" x="20" y="108" width="374" height="734"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place New Order" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2r5-4j-Ze2">
                                         <rect key="frame" x="48" y="40" width="278.5" height="39"/>
@@ -314,6 +314,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="subscriptionAddTapped:" destination="0TB-hm-mlU" eventType="touchUpInside" id="AAq-At-Os5"/>
+                                                    <segue destination="dZZ-Jn-TD8" kind="show" identifier="RequestSnackForSubsSegue" id="qhH-cd-vF0"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -523,6 +524,7 @@
                     <navigationItem key="navigationItem" id="mY9-14-7mR">
                         <barButtonItem key="rightBarButtonItem" title="Place Order" image="cart" catalog="system" id="X4z-zS-wOk">
                             <connections>
+                                <action selector="cartButtonTapped:" destination="0TB-hm-mlU" id="5gO-T3-7VQ"/>
                                 <segue destination="dZZ-Jn-TD8" kind="presentation" identifier="PlaceOrderFromDetailVCSegue" id="Q3S-FL-222"/>
                             </connections>
                         </barButtonItem>
@@ -743,6 +745,6 @@
         <image name="cart" catalog="system" width="64" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ueE-77-U8b"/>
+        <segue reference="qhH-cd-vF0"/>
     </inferredMetricsTieBreakers>
 </document>
