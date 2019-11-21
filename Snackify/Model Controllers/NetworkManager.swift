@@ -13,7 +13,7 @@ class NetworkManager {
     
     let baseURL: URL = URL(string: "https://snackify7.herokuapp.com")!
     
-    private(set) var user: User?
+    private(set) var username: String?
     private(set) var bearer: Bearer?
     
     private(set) var userType: UserType?
@@ -86,9 +86,12 @@ class NetworkManager {
                     // TODO: parse response from token to get role
                     if isOrganization {
                         self.userType = .organization
+                    } else if token.message.contains("orgAdmin") {
+                        self.userType = .orgAdmin
                     } else {
                         self.userType = .employee
                     }
+                    self.username = username
                     completion(.success(token))
                 } catch {
                     print(error)

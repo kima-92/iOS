@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
     var networkManager: NetworkManager?
     var authType = AuthType.logIn
     var userType = UserType.employee
+    var delegate: SnacksMainViewController?
     
     //MARK: Outlets
     @IBOutlet weak var roleSegmentedControl: UISegmentedControl!
@@ -134,6 +135,7 @@ class LoginViewController: UIViewController {
                 print("Success! Bearer: \(bearer.token)")
                 
                 DispatchQueue.main.async {
+                    self.delegate?.updateViews()
                     self.dismiss(animated: true, completion: nil)
                 }
             } catch {
