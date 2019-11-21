@@ -35,6 +35,15 @@ class SnacksMainViewController: UIViewController {
         performSegue(withIdentifier: "LoginModalSegue", sender: self)
     }
     
+    func updateViews() {
+        welcomeUserLabel.text = "Welcome, \(networkManager.username ?? "user")!"
+        if let isAdmin = networkManager.userType?.isAdmin, isAdmin == true {
+            subscribeButton.isHidden = false
+        } else {
+            subscribeButton.isHidden = true
+        }
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
