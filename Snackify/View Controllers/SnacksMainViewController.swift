@@ -37,6 +37,8 @@ class SnacksMainViewController: UIViewController {
     
     func updateViews() {
         welcomeUserLabel.text = "Welcome, \(networkManager.username ?? "user")!"
+        nextOrderDeadlineLabel.text = snackManager?.subsOrderDeadline
+        
         if let isAdmin = networkManager.userType?.isAdmin, isAdmin == true {
             subscribeButton.isHidden = false
         } else {
