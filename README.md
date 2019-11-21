@@ -27,6 +27,8 @@ iOS Engineers
 	 * `totalWeight` - Double/Float
 	 * `price` - Double/Float
 - [x] Authenticated `Employees`/organizations/orgadmins can make "one-time purchases" of `snack`s that can be delivered with the next upcoming `Organization` subscription order.
-- [ ] organization can sign up/log in
+- [x] organization can sign up
+- [ ] organization can log in
 - [ ] Authenticated `Employees` can request `snack` choices to request to be added to the next upcoming `Organization` subscription order.
 - [ ] Authenticated `Organization` or `orgAdmin` can create, read, update and delete a list of `snack`s that they would like to have included in their order/subscription.
+- [ ] parse login response data to get role and id

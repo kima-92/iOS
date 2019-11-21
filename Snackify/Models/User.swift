@@ -51,7 +51,8 @@ struct User {
             streetAddress: streetAddress,
             state: state,
             zipcode: zipCode,
-            contactPerson: "")
+            contactPerson: "",
+            role: "organization")
         } else { return nil }
     }
     
@@ -79,5 +80,6 @@ struct User {
         let state: String
         let zipcode: String
         let contactPerson: String
+        let role: String
     }
 }
