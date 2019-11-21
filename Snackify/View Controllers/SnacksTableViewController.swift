@@ -11,9 +11,15 @@ import UIKit
 class SnacksTableViewController: UITableViewController {
     
     var snackManager: SnackManager?
-
+    @IBOutlet weak var checkoutButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let isAdmin = snackManager?.networkManager.userType?.isAdmin, isAdmin {
+            checkoutButton.isEnabled = true
+        } else {
+            checkoutButton.isEnabled = false
+        }
         tableView.backgroundColor = UIColor(red: 102, green: 236, blue: 135, alpha: 1)
     }
 

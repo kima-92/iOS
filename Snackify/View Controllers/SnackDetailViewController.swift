@@ -68,15 +68,17 @@ class SnackDetailViewController: UIViewController {
     
     @IBOutlet weak var subscriptionAddButton: UIButton!
     
+    @IBOutlet weak var checkoutButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let subscribeButtonText: String
         if let isAdmin = snackManager?.networkManager.userType?.isAdmin, isAdmin {
             subscribeButtonText = "Add to Subscription"
-            
+            checkoutButton.isEnabled = true
         } else {
             subscribeButtonText = "Request Subscription"
-            
+            checkoutButton.isEnabled = false
         }
         subscriptionAddButton.setTitle(subscribeButtonText, for: .normal)
         updateViews()
