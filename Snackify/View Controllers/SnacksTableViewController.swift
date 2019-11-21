@@ -22,7 +22,7 @@ class SnacksTableViewController: UITableViewController {
             checkoutButton.isEnabled = false
             navigationItem.rightBarButtonItem = nil
         }
-        tableView.backgroundColor = UIColor(red: 102, green: 236, blue: 135, alpha: 1)
+//        tableView.backgroundColor = UIColor(red: 102, green: 236, blue: 135, alpha: 1)
     }
 
     // MARK: - Table view data source
