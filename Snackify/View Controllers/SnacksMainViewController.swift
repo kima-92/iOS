@@ -24,9 +24,17 @@ class SnacksMainViewController: UIViewController {
         // transition to login view if conditions require
         if networkManager.bearer == nil {
             performSegue(withIdentifier: "LoginModalSegue", sender: self)
-        } else {
-            snackManager = SnackManager(networkManager: networkManager)
         }
+//        else {
+//        snackManager = SnackManager(networkManager: networkManager)
+//        updateViews()
+//        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        snackManager = SnackManager(networkManager: networkManager)
+        updateViews()
+        
     }
     
     //MARK: Actions
