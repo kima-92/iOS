@@ -54,7 +54,6 @@ class SnackDetailViewController: UIViewController {
     //MARK: - Outlets
     
     @IBOutlet weak var snackNameLabel: UILabel!
-    @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var servingsLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var totalWeightLabel: UILabel!
@@ -84,15 +83,14 @@ class SnackDetailViewController: UIViewController {
     }
     
     func updateViews() {
-        guard let snack = snack,
-            let nutriInfo = snack.nutritionInfo
-            else { return }
+        guard let snack = snack else { return }
         
         snackNameLabel.text = snack.name
-        typeLabel.text = snack.type
         servingsLabel.text = String(snack.numberOfServings)
         priceLabel.text = priceText
         totalWeightLabel.text = String(snack.totalWeight)
+        
+        guard let nutriInfo = snack.nutritionInfo else { return }
         
         caloriesLabel.text = String(nutriInfo.calories ?? 0)
         totalFatLabel.text = String(nutriInfo.totalFat ?? 0)
