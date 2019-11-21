@@ -96,6 +96,11 @@ class SnackDetailViewController: UIViewController {
         guard let snack = snack else { return }
         
         snackManager?.AddSnackToCurrentSubscription(snack: snack)
+        
+        
+    }
+    
+    @IBAction func cartButtonTapped(_ sender: UIBarButtonItem) {
     }
     
     func updateViews() {
