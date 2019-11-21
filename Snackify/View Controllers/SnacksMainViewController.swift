@@ -31,11 +31,11 @@ class SnacksMainViewController: UIViewController {
 //        }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         snackManager = SnackManager(networkManager: networkManager)
         updateViews()
-        
     }
+    
     
     //MARK: Actions
     @IBAction func logOutButtonTapped(_ sender: UIBarButtonItem) {
