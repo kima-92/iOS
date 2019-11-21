@@ -34,13 +34,13 @@ class SnacksOrderViewController: UIViewController {
     
     func updateViews() {
         
-        guard let snacks = snacks else { return }
-//            let subsDeadline = subsDeadline else { return }
+        guard let snacks = snacks,
+            let subsDeadline = subsDeadline else { return }
         
         let listOfSnacks = snacks.compactMap( { $0.name })
 
         priceTotalLabel.text = addSnacksTotal(snacks: snacks)
-//        subscriptionEndLabel.text = subsDeadline
+        subscriptionEndLabel.text = subsDeadline
         snacksListLabel.text = listOfSnacks.joined(separator: ", ")
         amountOfSnacksLabel.text = String(snacks.count)
     }

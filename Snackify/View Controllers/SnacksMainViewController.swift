@@ -24,9 +24,17 @@ class SnacksMainViewController: UIViewController {
         // transition to login view if conditions require
         if networkManager.bearer == nil {
             performSegue(withIdentifier: "LoginModalSegue", sender: self)
-        } else {
-            snackManager = SnackManager(networkManager: networkManager)
         }
+//        else {
+//        snackManager = SnackManager(networkManager: networkManager)
+//        updateViews()
+//        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        snackManager = SnackManager(networkManager: networkManager)
+        updateViews()
+        
     }
     
     //MARK: Actions
@@ -37,6 +45,8 @@ class SnacksMainViewController: UIViewController {
     
     func updateViews() {
         welcomeUserLabel.text = "Welcome, \(networkManager.username ?? "user")!"
+        nextOrderDeadlineLabel.text = snackManager?.subsOrderDeadline
+        
         if let isAdmin = networkManager.userType?.isAdmin, isAdmin == true {
             subscribeButton.isHidden = false
         } else {
@@ -74,6 +84,12 @@ class SnacksMainViewController: UIViewController {
                         }
                     })
                 }
+            }
+        } else if segue.identifier == "SubscriptionOrderFromMain" {
+            if let orderVC = segue.destination as? SnacksOrderViewController {
+                orderVC.snackManager = snackManager
+                orderVC.snacks = snackManager?.currentOrderSnacks
+                orderVC.subsDeadline = snackManager?.subsOrderDeadline
             }
         }
     }
