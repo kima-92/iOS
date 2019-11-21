@@ -140,6 +140,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="checkoutButton" destination="ESq-wK-N2b" id="Ol5-x7-LhY"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pss-gw-GoJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -526,6 +529,7 @@
                         <outlet property="allergensLabel" destination="UeC-J8-G63" id="fTx-Am-7Ys"/>
                         <outlet property="caloriesLabel" destination="riS-6R-XNq" id="l8Q-rM-Trm"/>
                         <outlet property="carbsLabel" destination="Nl4-Dk-Ijh" id="GPS-qd-CBU"/>
+                        <outlet property="checkoutButton" destination="X4z-zS-wOk" id="V8B-Uz-gBg"/>
                         <outlet property="priceLabel" destination="dan-v5-svg" id="u0X-jL-DMN"/>
                         <outlet property="proteinLabel" destination="kVO-al-VFP" id="4hj-sB-o0B"/>
                         <outlet property="servingsLabel" destination="kJE-9Y-mkP" id="mrU-k7-6rS"/>
@@ -737,6 +741,6 @@
         <image name="cart" catalog="system" width="64" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ueE-77-U8b"/>
+        <segue reference="Q3S-FL-222"/>
     </inferredMetricsTieBreakers>
 </document>
