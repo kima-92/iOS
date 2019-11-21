@@ -91,6 +91,7 @@ class SnacksTableViewController: UITableViewController {
                     }
                 }
             })
+            detailVC.snackManager = snackManager
             detailVC.snack = snack
         }
     }

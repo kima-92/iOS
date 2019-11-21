@@ -11,6 +11,7 @@ import UIKit
 class SnackDetailViewController: UIViewController {
     
     var snack: Snack?
+    var snackManager: SnackManager?
     
     lazy var priceFormatter: NumberFormatter = {
         var formatter = NumberFormatter()
@@ -69,7 +70,15 @@ class SnackDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let subscribeButtonText: String
+        if let isAdmin = snackManager?.networkManager.userType?.isAdmin, isAdmin {
+            subscribeButtonText = "Add to Subscription"
+            
+        } else {
+            subscribeButtonText = "Request Subscription"
+            
+        }
+        subscriptionAddButton.setTitle(subscribeButtonText, for: .normal)
         updateViews()
     }
     
