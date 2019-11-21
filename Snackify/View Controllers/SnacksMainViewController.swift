@@ -81,6 +81,7 @@ class SnacksMainViewController: UIViewController {
             if let orderVC = segue.destination as? SnacksOrderViewController {
                 orderVC.snackManager = snackManager
                 orderVC.snacks = snackManager?.currentOrderSnacks
+                orderVC.subsDeadline = snackManager?.subsOrderDeadline
             }
         }
     }
