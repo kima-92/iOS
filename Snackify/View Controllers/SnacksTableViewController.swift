@@ -102,6 +102,13 @@ class SnacksTableViewController: UITableViewController {
             detailVC.snackManager = snackManager
             detailVC.snack = snack
         }
+        else if segue.identifier == "PlaceOrderFromTableVCSegue" {
+            guard let orderVC = segue.destination as? SnacksOrderViewController else { return }
+            
+            orderVC.snackManager = snackManager
+            orderVC.snacks = snackManager?.currentOrderSnacks
+            orderVC.subsDeadline = snackManager?.subsOrderDeadline
+        }
     }
 
 }

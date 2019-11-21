@@ -18,7 +18,8 @@ class SnacksOrderViewController: UIViewController {
     //MARK: Outlets
     
     @IBOutlet weak var amountOfSnacksLabel: UILabel!
-    @IBOutlet weak var snacksListLabel: UILabel!
+//    @IBOutlet weak var snacksListLabel: UILabel!
+    @IBOutlet weak var snacksListTextView: UITextView!
     @IBOutlet weak var priceTotalLabel: UILabel!
     @IBOutlet weak var subscriptionEndLabel: UILabel!
     
@@ -30,6 +31,7 @@ class SnacksOrderViewController: UIViewController {
     
     //MARK: Actions
     @IBAction func placeOrderButtonTapped(_ sender: UIButton) {
+        present(submittedOrderAlert, animated: true)
     }
     
     func updateViews() {
@@ -41,8 +43,13 @@ class SnacksOrderViewController: UIViewController {
 
         priceTotalLabel.text = addSnacksTotal(snacks: snacks)
         subscriptionEndLabel.text = subsDeadline
-        snacksListLabel.text = listOfSnacks.joined(separator: ", ")
         amountOfSnacksLabel.text = String(snacks.count)
+        
+        if listOfSnacks.count == 0 {
+            snacksListTextView.text = ""
+        } else {
+            snacksListTextView.text = "*" + listOfSnacks.joined(separator: "\n*")
+        }
     }
     
     
@@ -66,17 +73,15 @@ class SnacksOrderViewController: UIViewController {
         return totalString
     }
     
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+ lazy var submittedOrderAlert: UIAlertController = {
+        let alert = UIAlertController(
+            title: "Subscription Order has been submitted!",
+            message: "Your order is set to arrive on 11/29/2019",
+            preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default) { (alertAction) in
+            self.dismiss(animated: true, completion: nil)
+        })
+        return alert
+    }()
 
 }
