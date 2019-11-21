@@ -18,7 +18,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GHl-Vg-7O5">
                                 <rect key="frame" x="20" y="108" width="374" height="704"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome User!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jfp-OJ-0CL">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome User!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jfp-OJ-0CL">
                                         <rect key="frame" x="66" y="40" width="242" height="39"/>
                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="30"/>
                                         <color key="textColor" red="1" green="0.38823529410000002" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -67,9 +67,11 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="KcR-NL-dN5" firstAttribute="centerX" secondItem="GHl-Vg-7O5" secondAttribute="centerX" id="3Jv-qZ-h6n"/>
+                                    <constraint firstItem="Jfp-OJ-0CL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GHl-Vg-7O5" secondAttribute="leading" constant="20" id="6j2-So-l9E"/>
                                     <constraint firstItem="KcR-NL-dN5" firstAttribute="top" secondItem="Qso-nf-VYM" secondAttribute="bottom" constant="125" id="BGs-Sc-JaS"/>
                                     <constraint firstItem="ABy-75-GcM" firstAttribute="top" secondItem="KcR-NL-dN5" secondAttribute="bottom" constant="50" id="BzH-6H-DSw"/>
                                     <constraint firstAttribute="trailing" secondItem="Qso-nf-VYM" secondAttribute="trailing" constant="10" id="FQw-IU-XlA"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Jfp-OJ-0CL" secondAttribute="trailing" constant="20" id="HPI-sN-lzU"/>
                                     <constraint firstItem="Qso-nf-VYM" firstAttribute="top" secondItem="Jfp-OJ-0CL" secondAttribute="bottom" constant="120" id="VeY-4i-EKp"/>
                                     <constraint firstItem="ABy-75-GcM" firstAttribute="centerX" secondItem="GHl-Vg-7O5" secondAttribute="centerX" id="dTx-Yv-HHC"/>
                                     <constraint firstItem="Jfp-OJ-0CL" firstAttribute="centerX" secondItem="GHl-Vg-7O5" secondAttribute="centerX" id="dcg-OG-jxh"/>
@@ -741,6 +743,6 @@
         <image name="cart" catalog="system" width="64" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Q3S-FL-222"/>
+        <segue reference="ueE-77-U8b"/>
     </inferredMetricsTieBreakers>
 </document>
