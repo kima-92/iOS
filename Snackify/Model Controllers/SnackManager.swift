@@ -16,8 +16,8 @@ class SnackManager {
     let baseURL: URL
     
     var allSnacksOptions: [Snack]?
-    
     var currentOrderSnacks: [Snack] = []
+    var subsOrderDeadline: String = "12/22/2019"
     
     init(networkManager: NetworkManager) {
         self.networkManager = networkManager
