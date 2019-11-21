@@ -152,6 +152,7 @@ class SnackDetailViewController: UIViewController {
             
             orderVC.snackManager = snackManager
             orderVC.snacks = snacks
+            orderVC.subsDeadline = snackManager?.subsOrderDeadline
         }
     }
 }
