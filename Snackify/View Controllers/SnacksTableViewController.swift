@@ -11,7 +11,7 @@ import UIKit
 class SnacksTableViewController: UITableViewController {
     
     var snackManager: SnackManager?
-    @IBOutlet weak var checkoutButton: UIBarButtonItem!
+    @IBOutlet var checkoutButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()

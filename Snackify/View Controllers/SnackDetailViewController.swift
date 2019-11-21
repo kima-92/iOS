@@ -68,7 +68,7 @@ class SnackDetailViewController: UIViewController {
     
     @IBOutlet weak var subscriptionAddButton: UIButton!
     
-    @IBOutlet weak var checkoutButton: UIBarButtonItem!
+    @IBOutlet var checkoutButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
