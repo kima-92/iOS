@@ -86,6 +86,8 @@ class NetworkManager {
                     // TODO: parse response from token to get role
                     if isOrganization {
                         self.userType = .organization
+                    } else if token.message.contains("orgAdmin") {
+                        self.userType = .orgAdmin
                     } else {
                         self.userType = .employee
                     }
