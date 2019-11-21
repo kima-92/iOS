@@ -75,6 +75,11 @@ class SnacksMainViewController: UIViewController {
                     })
                 }
             }
+        } else if segue.identifier == "SubscriptionOrderFromMain" {
+            if let orderVC = segue.destination as? SnacksOrderViewController {
+                orderVC.snackManager = snackManager
+                orderVC.snacks = snackManager?.currentOrderSnacks
+            }
         }
     }
 }
