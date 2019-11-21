@@ -13,6 +13,7 @@ class SnackDetailViewController: UIViewController {
     var snack: Snack?
     var snackManager: SnackManager?
     
+    
     lazy var priceFormatter: NumberFormatter = {
         var formatter = NumberFormatter()
         formatter.currencySymbol = "$"
@@ -92,6 +93,9 @@ class SnackDetailViewController: UIViewController {
     }
     
     @IBAction func subscriptionAddTapped(_ sender: UIButton) {
+        guard let snack = snack else { return }
+        
+        snackManager?.AddSnackToCurrentSubscription(snack: snack)
     }
     
     func updateViews() {
@@ -110,5 +114,16 @@ class SnackDetailViewController: UIViewController {
         proteinLabel.text = String(nutriInfo.protein ?? 0)
         carbsLabel.text = String(nutriInfo.carbs ?? 0)
         allergensLabel.text = String(nutriInfo.allergens ?? "")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PlaceOrderFromDetailVCSegue" {
+            guard let orderVC = segue.destination as? SnacksOrderViewController,
+                let snacks = snackManager?.currentOrderSnacks
+                else { return }
+            
+            orderVC.snackManager = snackManager
+            orderVC.snacks = snacks
+        }
     }
 }

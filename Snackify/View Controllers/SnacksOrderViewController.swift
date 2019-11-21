@@ -12,6 +12,7 @@ class SnacksOrderViewController: UIViewController {
     
     var snacks: [Snack]?
     var subsDeadline: String?
+    var snackManager: SnackManager?
     
     
     //MARK: Outlets
