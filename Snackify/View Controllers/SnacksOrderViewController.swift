@@ -18,7 +18,8 @@ class SnacksOrderViewController: UIViewController {
     //MARK: Outlets
     
     @IBOutlet weak var amountOfSnacksLabel: UILabel!
-    @IBOutlet weak var snacksListLabel: UILabel!
+//    @IBOutlet weak var snacksListLabel: UILabel!
+    @IBOutlet weak var snacksListTextView: UITextView!
     @IBOutlet weak var priceTotalLabel: UILabel!
     @IBOutlet weak var subscriptionEndLabel: UILabel!
     
