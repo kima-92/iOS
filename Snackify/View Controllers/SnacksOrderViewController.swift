@@ -10,6 +10,10 @@ import UIKit
 
 class SnacksOrderViewController: UIViewController {
     
+    var snacks: [Snack]?
+    var subsDeadline: String?
+    
+    
     //MARK: Outlets
     
     @IBOutlet weak var amountOfSnacksLabel: UILabel!
@@ -20,12 +24,49 @@ class SnacksOrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        updateViews()
     }
     
     //MARK: Actions
     @IBAction func placeOrderButtonTapped(_ sender: UIButton) {
     }
+    
+    func updateViews() {
+        
+        guard let snacks = snacks,
+            let subsDeadline = subsDeadline else { return }
+        
+        let listOfSnacks = snacks.compactMap( { $0.name })
+
+        priceTotalLabel.text = addSnacksTotal(snacks: snacks)
+        subscriptionEndLabel.text = subsDeadline
+        snacksListLabel.text = listOfSnacks.joined(separator: ", ")
+        amountOfSnacksLabel.text = String(snacks.count)
+    }
+    
+    
+    func addSnacksTotal(snacks: [Snack]) -> String {
+        
+        let priceFormatter: NumberFormatter = {
+            let formatter = NumberFormatter()
+            formatter.currencySymbol = "$"
+            formatter.numberStyle = .currency
+            return formatter
+        }()
+        
+        var totalDouble: Double = 0.0
+        var totalString: String = ""
+        
+        for snack in snacks {
+            totalDouble += snack.price
+        }
+        
+        totalString = priceFormatter.string(from: NSNumber(value: totalDouble)) ?? ""
+        return totalString
+    }
+    
+    
+    
     
     /*
     // MARK: - Navigation
