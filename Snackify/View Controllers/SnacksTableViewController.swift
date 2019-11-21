@@ -81,9 +81,18 @@ class SnacksTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowSnackDetailSegue" {
             guard let detailVC = segue.destination as? SnackDetailViewController,
-                let selectedRow = tableView.indexPathForSelectedRow?.row
+                let selectedRow = tableView.indexPathForSelectedRow?.row,
+                let snack = snackManager?.allSnacksOptions?[selectedRow]
                 else { return }
-            detailVC.snack = snackManager?.allSnacksOptions?[selectedRow]
+            snackManager?.getSnackNutritionInfo(for: snack, completion: { (result) in
+                DispatchQueue.main.async {
+                    if detailVC.isViewLoaded {
+                        detailVC.updateViews()
+                    }
+                }
+            })
+            detailVC.snack = snack
+            print("Going to snack detail for \(detailVC.snack?.name ?? "nil")")
         }
     }
 
