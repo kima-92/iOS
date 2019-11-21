@@ -11,6 +11,7 @@ import UIKit
 class SnackDetailViewController: UIViewController {
     
     var snack: Snack?
+    var snackManager: SnackManager?
     
     lazy var priceFormatter: NumberFormatter = {
         var formatter = NumberFormatter()
@@ -51,10 +52,37 @@ class SnackDetailViewController: UIViewController {
         return alert
     }()
     
+    lazy var addToSubscriptionAlert: UIAlertController = {
+        let titleText: String
+        let alertText: String
+        let confirmActionText: String
+        if let isAdmin = snackManager?.networkManager.userType?.isAdmin, isAdmin {
+            titleText = "Add \(snack!.name) subscription?"
+            alertText = "Are you sure you'd like to subscribe to \(snack!.name) for \(priceText)?\n(You will be able to review your order before checkout.)"
+            confirmActionText = "Add to subscription"
+        } else {
+            titleText = "Request \(snack!.name) subscription?"
+            alertText = "Are you sure you'd like to request that \(snack!.name) be added to your organization's snack subscription?"
+            confirmActionText = "Request subscription"
+        }
+        
+        var alert = UIAlertController(title: titleText, message: alertText, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { (alertAction) in
+            self.dismiss(animated: true, completion: nil)
+        })
+        alert.addAction(UIAlertAction(title: confirmActionText, style: .default) { (alertAction) in
+            if let isAdmin = self.snackManager?.networkManager.userType?.isAdmin, isAdmin {
+                self.snackManager?.AddSnackToCurrentSubscription(snack: self.snack!)
+            }
+            self.dismiss(animated: true, completion: nil)
+        })
+            
+        return alert
+    }()
+    
     //MARK: - Outlets
     
     @IBOutlet weak var snackNameLabel: UILabel!
-    @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var servingsLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var totalWeightLabel: UILabel!
@@ -68,9 +96,20 @@ class SnackDetailViewController: UIViewController {
     
     @IBOutlet weak var subscriptionAddButton: UIButton!
     
+    @IBOutlet var checkoutButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let subscribeButtonText: String
+        if let isAdmin = snackManager?.networkManager.userType?.isAdmin, isAdmin {
+            subscribeButtonText = "Add to Subscription"
+            navigationItem.rightBarButtonItem = checkoutButton
+        } else {
+            subscribeButtonText = "Request Subscription"
+            checkoutButton.isEnabled = false
+            navigationItem.rightBarButtonItem = nil
+        }
+        subscriptionAddButton.setTitle(subscribeButtonText, for: .normal)
         updateViews()
     }
     
@@ -81,18 +120,21 @@ class SnackDetailViewController: UIViewController {
     }
     
     @IBAction func subscriptionAddTapped(_ sender: UIButton) {
+        present(addToSubscriptionAlert, animated: true, completion: nil)
+    }
+    
+    @IBAction func cartButtonTapped(_ sender: UIBarButtonItem) {
     }
     
     func updateViews() {
-        guard let snack = snack,
-            let nutriInfo = snack.nutritionInfo
-            else { return }
+        guard let snack = snack else { return }
         
         snackNameLabel.text = snack.name
-        typeLabel.text = snack.type
         servingsLabel.text = String(snack.numberOfServings)
         priceLabel.text = priceText
         totalWeightLabel.text = String(snack.totalWeight)
+        
+        guard let nutriInfo = snack.nutritionInfo else { return }
         
         caloriesLabel.text = String(nutriInfo.calories ?? 0)
         totalFatLabel.text = String(nutriInfo.totalFat ?? 0)
@@ -100,5 +142,17 @@ class SnackDetailViewController: UIViewController {
         proteinLabel.text = String(nutriInfo.protein ?? 0)
         carbsLabel.text = String(nutriInfo.carbs ?? 0)
         allergensLabel.text = String(nutriInfo.allergens ?? "")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PlaceOrderFromDetailVCSegue" {
+            guard let orderVC = segue.destination as? SnacksOrderViewController,
+                let snacks = snackManager?.currentOrderSnacks
+                else { return }
+            
+            orderVC.snackManager = snackManager
+            orderVC.snacks = snacks
+            orderVC.subsDeadline = snackManager?.subsOrderDeadline
+        }
     }
 }

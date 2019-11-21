@@ -10,5 +10,14 @@ import Foundation
 
 struct Bearer: Codable {
     let message: String
+    let orgID: String?
+    let role: String
     let token: String
+    
+    enum CodingKeys: String, CodingKey {
+        case message
+        case orgID = "OrgId"
+        case role = "Role"
+        case token
+    }
 }

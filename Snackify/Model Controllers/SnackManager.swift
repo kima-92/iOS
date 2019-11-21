@@ -16,6 +16,8 @@ class SnackManager {
     let baseURL: URL
     
     var allSnacksOptions: [Snack]?
+    var currentOrderSnacks: [Snack] = []
+    var subsOrderDeadline: String = "11/23/2019"
     
     init(networkManager: NetworkManager) {
         self.networkManager = networkManager
@@ -75,6 +77,24 @@ class SnackManager {
                 }
             }
         }.resume()
+    }
+    
+    func AddSnackToCurrentSubscription(snack: Snack) {
+        currentOrderSnacks.append(snack)
+    }
+    
+    func deleteSnackFromCurrentSubscription(snack: Snack) {
+        
+        //test
+        var currentListTest = currentOrderSnacks.map( { $0.name })
+        print("Current list \(currentListTest) ")
+        
+        var snack = currentOrderSnacks.filter( { $0.id != snack.id })
+        
+        //test
+        currentListTest = currentOrderSnacks.map( { $0.name })
+        print("Current list after filtering \(currentListTest)")
+//        currentOrderSnacks.remove
     }
     
     /// For regular/non-admin employees, make one-time purchases or request additions to the organization snack subscription. If user is an authorized organization administrator, purchase snacks as one-time orders or add them to their regular subscription.

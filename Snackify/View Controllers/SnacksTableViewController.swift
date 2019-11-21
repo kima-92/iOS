@@ -11,10 +11,18 @@ import UIKit
 class SnacksTableViewController: UITableViewController {
     
     var snackManager: SnackManager?
-
+    @IBOutlet var checkoutButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundColor = UIColor(red: 102, green: 236, blue: 135, alpha: 1)
+        if let isAdmin = snackManager?.networkManager.userType?.isAdmin, isAdmin {
+            checkoutButton.isEnabled = true
+            navigationItem.rightBarButtonItem = checkoutButton
+        } else {
+            checkoutButton.isEnabled = false
+            navigationItem.rightBarButtonItem = nil
+        }
+//        tableView.backgroundColor = UIColor(red: 102, green: 236, blue: 135, alpha: 1)
     }
 
     // MARK: - Table view data source
@@ -81,9 +89,25 @@ class SnacksTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowSnackDetailSegue" {
             guard let detailVC = segue.destination as? SnackDetailViewController,
-                let selectedRow = tableView.indexPathForSelectedRow?.row
+                let selectedRow = tableView.indexPathForSelectedRow?.row,
+                let snack = snackManager?.allSnacksOptions?[selectedRow]
                 else { return }
-            detailVC.snack = snackManager?.allSnacksOptions?[selectedRow]
+            snackManager?.getSnackNutritionInfo(for: snack, completion: { (result) in
+                DispatchQueue.main.async {
+                    if detailVC.isViewLoaded {
+                        detailVC.updateViews()
+                    }
+                }
+            })
+            detailVC.snackManager = snackManager
+            detailVC.snack = snack
+        }
+        else if segue.identifier == "PlaceOrderFromTableVCSegue" {
+            guard let orderVC = segue.destination as? SnacksOrderViewController else { return }
+            
+            orderVC.snackManager = snackManager
+            orderVC.snacks = snackManager?.currentOrderSnacks
+            orderVC.subsDeadline = snackManager?.subsOrderDeadline
         }
     }
 
