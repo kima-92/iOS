@@ -13,7 +13,7 @@ class NetworkManager {
     
     let baseURL: URL = URL(string: "https://snackify7.herokuapp.com")!
     
-    private(set) var user: User?
+    private(set) var username: String?
     private(set) var bearer: Bearer?
     
     private(set) var userType: UserType?
