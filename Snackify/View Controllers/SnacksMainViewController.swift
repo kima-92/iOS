@@ -42,6 +42,7 @@ class SnacksMainViewController: UIViewController {
         if segue.identifier == "LoginModalSegue" {
             if let loginVC = segue.destination as? LoginViewController {
                 loginVC.networkManager = networkManager
+                loginVC.delegate = self
             }
             return
         }
