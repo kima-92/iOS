@@ -76,15 +76,18 @@ class LoginViewController: UIViewController {
                 let address = addressTextField.text,
                 let state = stateTextField.text,
                 let zipcode = zipcodeTextField.text,
-                let organization = organizationTextField.text,
                 fullname != "",
                 email != "",
                 phoneNum != "",
                 address != "",
                 state != "",
-                zipcode != "",
-                organization != ""
+                zipcode != ""
                 else { return }
+            if !(userType == .organization) {
+                guard let organization = organizationTextField.text,
+                    organization != ""
+                    else { return }
+            }
             let user = User(username: username, password: password, fullName: fullname, email: email, phoneNumber: phoneNum, streetAddress: address, state: state, zipCode: zipcode, isAdmin: false, isOrganization: userType == .organization)
             signUp(with: user)
         } else {
@@ -115,16 +118,17 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.async {
                 self.present(alert, animated: true) {
                     self.authType = .logIn
-                    self.loginSegmentedControl.selectedSegmentIndex = 1
-                    self.loginButton.setTitle("Log In", for: .normal)
+                    self.updateViews()
                 }
             }
         })
     }
     
     func logIn(username: String, password: String) {
-        networkManager?.logIn(with: username, password: password) { result in
-            
+        networkManager?.logIn(with: username,
+                              password: password,
+                              isOrganization: userType == .organization
+        ) { result in
             do {
                 let bearer = try result.get()
                 print("Success! Bearer: \(bearer.token)")
@@ -144,6 +148,9 @@ class LoginViewController: UIViewController {
         
         let authTypeIsLogin = (authType == .logIn)
         
+        loginSegmentedControl.selectedSegmentIndex = authTypeIsLogin ? 1 : 0
+        roleSegmentedControl.selectedSegmentIndex = (userType == UserType.organization) ? 1 : 0
+        
         fullNameTextField.isHidden = authTypeIsLogin
         emailTextField.isHidden = authTypeIsLogin
         phoneNumberTextField.isHidden = authTypeIsLogin
@@ -162,10 +169,6 @@ class LoginViewController: UIViewController {
         
         loginButton.setTitle((authTypeIsLogin ? "Log In" : "Sign Up"), for: .normal)
         
-        if userType.isAdmin {
-            fullNameTextField.placeholder = "Organization Name"
-        } else {
-            fullNameTextField.placeholder = "Full Name"
-        }
+        fullNameTextField.placeholder = (userType == .organization) ? "Organization Name" : "Full Name"
     }
 }

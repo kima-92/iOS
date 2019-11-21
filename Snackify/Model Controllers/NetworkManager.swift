@@ -54,7 +54,7 @@ class NetworkManager {
         }.resume()
     }
     
-    func logIn(with username: String, password: String, completion: @escaping (Result<Bearer,NetworkError>) -> Void) {
+    func logIn(with username: String, password: String, isOrganization: Bool, completion: @escaping (Result<Bearer,NetworkError>) -> Void) {
         let userData: Data
         do {
             userData = try JSONEncoder().encode([
@@ -66,8 +66,10 @@ class NetworkManager {
             return
         }
         
+        let loginEndpoint = isOrganization ? "organization" : "employee"
+        
         let request = newRequest(
-            url: baseURL.appendingPathComponent("/auth/login/employee"),
+            url: baseURL.appendingPathComponent("/auth/login/\(loginEndpoint)"),
             method: .post,
             body: userData)
         
@@ -81,6 +83,14 @@ class NetworkManager {
                 do {
                     let token = try JSONDecoder().decode(Bearer.self, from: data)
                     self.bearer = token
+                    // TODO: parse response from token to get role
+                    if isOrganization {
+                        self.userType = .organization
+                    } else {
+                        self.userType = .employee
+                    }
+                    print("message: " + token.message)
+                    print("token: " + token.token)
                     completion(.success(token))
                 } catch {
                     print(error)
