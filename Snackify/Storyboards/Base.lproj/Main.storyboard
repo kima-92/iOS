@@ -532,7 +532,6 @@
                     <navigationItem key="navigationItem" id="mY9-14-7mR">
                         <barButtonItem key="rightBarButtonItem" title="Place Order" image="cart" catalog="system" id="X4z-zS-wOk">
                             <connections>
-                                <action selector="cartButtonTapped:" destination="0TB-hm-mlU" id="5gO-T3-7VQ"/>
                                 <segue destination="dZZ-Jn-TD8" kind="presentation" identifier="PlaceOrderFromDetailVCSegue" id="Q3S-FL-222"/>
                             </connections>
                         </barButtonItem>

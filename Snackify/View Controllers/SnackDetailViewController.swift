@@ -10,6 +10,8 @@ import UIKit
 
 class SnackDetailViewController: UIViewController {
     
+    // MARK: - Properties
+    
     var snack: Snack?
     var snackManager: SnackManager?
     
@@ -23,6 +25,39 @@ class SnackDetailViewController: UIViewController {
     lazy var priceText: String = {
         return self.priceFormatter.string(from: NSNumber(value: snack?.price ?? 0.0)) ?? ""
     }()
+    
+    //MARK: - Outlets
+    
+    @IBOutlet weak var snackNameLabel: UILabel!
+    @IBOutlet weak var servingsLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var totalWeightLabel: UILabel!
+    
+    @IBOutlet weak var caloriesLabel: UILabel!
+    @IBOutlet weak var totalFatLabel: UILabel!
+    @IBOutlet weak var totalSugarLabel: UILabel!
+    @IBOutlet weak var proteinLabel: UILabel!
+    @IBOutlet weak var carbsLabel: UILabel!
+    @IBOutlet weak var allergensLabel: UILabel!
+    
+    @IBOutlet weak var subscriptionAddButton: UIButton!
+    
+    @IBOutlet var checkoutButton: UIBarButtonItem!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let subscribeButtonText: String
+        if let isAdmin = snackManager?.networkManager.userType?.isAdmin, isAdmin {
+            subscribeButtonText = "Add to Subscription"
+            navigationItem.rightBarButtonItem = checkoutButton
+        } else {
+            subscribeButtonText = "Request Subscription"
+            checkoutButton.isEnabled = false
+            navigationItem.rightBarButtonItem = nil
+        }
+        subscriptionAddButton.setTitle(subscribeButtonText, for: .normal)
+        updateViews()
+    }
     
     // MARK: - Purchase Alerts
     
@@ -80,40 +115,7 @@ class SnackDetailViewController: UIViewController {
         return alert
     }()
     
-    //MARK: - Outlets
-    
-    @IBOutlet weak var snackNameLabel: UILabel!
-    @IBOutlet weak var servingsLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var totalWeightLabel: UILabel!
-    
-    @IBOutlet weak var caloriesLabel: UILabel!
-    @IBOutlet weak var totalFatLabel: UILabel!
-    @IBOutlet weak var totalSugarLabel: UILabel!
-    @IBOutlet weak var proteinLabel: UILabel!
-    @IBOutlet weak var carbsLabel: UILabel!
-    @IBOutlet weak var allergensLabel: UILabel!
-    
-    @IBOutlet weak var subscriptionAddButton: UIButton!
-    
-    @IBOutlet var checkoutButton: UIBarButtonItem!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let subscribeButtonText: String
-        if let isAdmin = snackManager?.networkManager.userType?.isAdmin, isAdmin {
-            subscribeButtonText = "Add to Subscription"
-            navigationItem.rightBarButtonItem = checkoutButton
-        } else {
-            subscribeButtonText = "Request Subscription"
-            checkoutButton.isEnabled = false
-            navigationItem.rightBarButtonItem = nil
-        }
-        subscriptionAddButton.setTitle(subscribeButtonText, for: .normal)
-        updateViews()
-    }
-    
-    // MARK: - Actions
+    // MARK: - Methods
     
     @IBAction func buyNowTapped(_ sender: UIButton) {
         present(confirmPurchaseAlert, animated: true, completion: nil)
@@ -121,9 +123,6 @@ class SnackDetailViewController: UIViewController {
     
     @IBAction func subscriptionAddTapped(_ sender: UIButton) {
         present(addToSubscriptionAlert, animated: true, completion: nil)
-    }
-    
-    @IBAction func cartButtonTapped(_ sender: UIBarButtonItem) {
     }
     
     func updateViews() {
