@@ -22,7 +22,6 @@ class NetworkManager {
     
     // MARK: - Login/Sign-up
     
-    /// Handles sign-up for employees.
     func signUp(with user: User, completion: @escaping (Result<Data,NetworkError>) -> Void) {
         let userData: Data
         let registrationEndpoint: String
@@ -156,7 +155,8 @@ class NetworkManager {
         return request
     }
     
-    //MARK: Subscription Methods
+    // MARK: - Subscription Methods
+    // Currently unused
     
     func addNewSubscription(subscription: Subscription, completion: @escaping () -> Void = { }) {
         
@@ -247,5 +247,3 @@ class NetworkManager {
         }.resume()
     }
 }
-
-
