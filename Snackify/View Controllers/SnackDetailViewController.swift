@@ -121,18 +121,18 @@ class SnackDetailViewController: UIViewController {
         guard let snack = snack else { return }
         
         snackNameLabel.text = snack.name
-        servingsLabel.text = String(snack.numberOfServings)
+        servingsLabel.text = "\(snack.numberOfServings)"
         priceLabel.text = priceText
-        totalWeightLabel.text = String(snack.totalWeight)
+        totalWeightLabel.text = "\(snack.totalWeight) oz"
         
         guard let nutriInfo = snack.nutritionInfo else { return }
         
-        caloriesLabel.text = String(nutriInfo.calories ?? 0)
-        totalFatLabel.text = String(nutriInfo.totalFat ?? 0)
-        totalSugarLabel.text = String(nutriInfo.totalSugars ?? 0)
-        proteinLabel.text = String(nutriInfo.protein ?? 0)
-        carbsLabel.text = String(nutriInfo.carbs ?? 0)
-        allergensLabel.text = String(nutriInfo.allergens ?? "")
+        caloriesLabel.text = "\(Int(nutriInfo.calories ?? 0))"
+        totalFatLabel.text = "\(Int(nutriInfo.totalFat ?? 0)) g"
+        totalSugarLabel.text = "\(Int(nutriInfo.totalSugars ?? 0)) g"
+        proteinLabel.text = "\(Int(nutriInfo.protein ?? 0)) g"
+        carbsLabel.text = "\(Int(nutriInfo.carbs ?? 0)) g"
+        allergensLabel.text = "\(nutriInfo.allergens ?? "")"
     }
     
     // MARK: - Actions

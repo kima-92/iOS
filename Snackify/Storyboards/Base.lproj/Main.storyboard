@@ -24,8 +24,8 @@
                                         <color key="textColor" red="1" green="0.38823529410000002" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End of subscription:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KcR-NL-dN5">
-                                        <rect key="frame" x="110.5" y="413" width="153" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deadline to update subscription:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KcR-NL-dN5">
+                                        <rect key="frame" x="63" y="413" width="248" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -108,7 +108,7 @@
             </objects>
             <point key="canvasLocation" x="1230" y="-14"/>
         </scene>
-        <!--Snacks Table View Controller-->
+        <!--Available Snacks-->
         <scene sceneID="cyo-1G-OZG">
             <objects>
                 <tableViewController id="krH-DD-96s" customClass="SnacksTableViewController" customModule="Snackify" customModuleProvider="target" sceneMemberID="viewController">
@@ -135,7 +135,7 @@
                             <outlet property="delegate" destination="krH-DD-96s" id="QSW-zp-8Kp"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="nhq-xx-Cc6">
+                    <navigationItem key="navigationItem" title="Available Snacks" id="nhq-xx-Cc6">
                         <barButtonItem key="rightBarButtonItem" title="Place Order" image="cart" catalog="system" id="ESq-wK-N2b">
                             <connections>
                                 <segue destination="dZZ-Jn-TD8" kind="presentation" identifier="PlaceOrderFromTableVCSegue" id="ZSh-dE-Ra8"/>
@@ -240,8 +240,8 @@
                                             <action selector="placeOrderButtonTapped:" destination="dZZ-Jn-TD8" eventType="touchUpInside" id="kVC-Xs-khw"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscription End" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRz-QA-Ccp">
-                                        <rect key="frame" x="122" y="520.5" width="130" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deadline to update subscription:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRz-QA-Ccp">
+                                        <rect key="frame" x="63" y="520.5" width="248" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -751,6 +751,6 @@
         <image name="cart" catalog="system" width="64" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZSh-dE-Ra8"/>
+        <segue reference="ueE-77-U8b"/>
     </inferredMetricsTieBreakers>
 </document>
