@@ -26,7 +26,7 @@ class SnackDetailViewController: UIViewController {
         return self.priceFormatter.string(from: NSNumber(value: snack?.price ?? 0.0)) ?? ""
     }()
     
-    //MARK: - Outlets
+    //MARK: Outlets
     
     @IBOutlet weak var snackNameLabel: UILabel!
     @IBOutlet weak var servingsLabel: UILabel!
@@ -59,7 +59,7 @@ class SnackDetailViewController: UIViewController {
         updateViews()
     }
     
-    // MARK: - Purchase Alerts
+    // MARK: Purchase Alerts
     
     lazy var confirmPurchaseAlert: UIAlertController = {
         var alert = UIAlertController(
@@ -115,15 +115,7 @@ class SnackDetailViewController: UIViewController {
         return alert
     }()
     
-    // MARK: - Methods
-    
-    @IBAction func buyNowTapped(_ sender: UIButton) {
-        present(confirmPurchaseAlert, animated: true, completion: nil)
-    }
-    
-    @IBAction func subscriptionAddTapped(_ sender: UIButton) {
-        present(addToSubscriptionAlert, animated: true, completion: nil)
-    }
+    // MARK: - View Setup
     
     func updateViews() {
         guard let snack = snack else { return }
@@ -142,6 +134,18 @@ class SnackDetailViewController: UIViewController {
         carbsLabel.text = String(nutriInfo.carbs ?? 0)
         allergensLabel.text = String(nutriInfo.allergens ?? "")
     }
+    
+    // MARK: - Actions
+    
+    @IBAction func buyNowTapped(_ sender: UIButton) {
+        present(confirmPurchaseAlert, animated: true, completion: nil)
+    }
+    
+    @IBAction func subscriptionAddTapped(_ sender: UIButton) {
+        present(addToSubscriptionAlert, animated: true, completion: nil)
+    }
+    
+    // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PlaceOrderFromDetailVCSegue" {

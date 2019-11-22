@@ -10,9 +10,13 @@ import UIKit
 
 class SnacksTableViewController: UITableViewController {
     
+    // MARK: - Properties
+    
     var snackManager: SnackManager?
     
     @IBOutlet var checkoutButton: UIBarButtonItem!
+    
+    // MARK: - View Setup
     
     override func viewDidLoad() {
         super.viewDidLoad()

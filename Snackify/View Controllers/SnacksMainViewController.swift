@@ -10,13 +10,18 @@ import UIKit
 
 class SnacksMainViewController: UIViewController {
     
+    // MARK: - Properties
+    
     var networkManager = NetworkManager()
     var snackManager: SnackManager?
     
-    //MARK: Outlets
+    // MARK: Outlets
+    
     @IBOutlet weak var welcomeUserLabel: UILabel!
     @IBOutlet weak var nextOrderDeadlineLabel: UILabel!
     @IBOutlet weak var subscribeButton: UIButton!
+    
+    // MARK: - View Setup
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,22 +30,10 @@ class SnacksMainViewController: UIViewController {
         if networkManager.bearer == nil {
             performSegue(withIdentifier: "LoginModalSegue", sender: self)
         }
-//        else {
-//        snackManager = SnackManager(networkManager: networkManager)
-//        updateViews()
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         updateViews()
-    }
-    
-    
-    //MARK: Actions
-    @IBAction func logOutButtonTapped(_ sender: UIBarButtonItem) {
-        networkManager.logOut()
-        snackManager = nil
-        performSegue(withIdentifier: "LoginModalSegue", sender: self)
     }
     
     func updateViews() {
@@ -54,9 +47,16 @@ class SnacksMainViewController: UIViewController {
         }
     }
     
+    // MARK: - Actions
+    
+    @IBAction func logOutButtonTapped(_ sender: UIBarButtonItem) {
+        networkManager.logOut()
+        snackManager = nil
+        performSegue(withIdentifier: "LoginModalSegue", sender: self)
+    }
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "LoginModalSegue" {
             if let loginVC = segue.destination as? LoginViewController {
