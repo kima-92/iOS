@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Currently unused
 struct Subscription: Codable {
     
     let id: Int

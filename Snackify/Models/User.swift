@@ -9,6 +9,9 @@
 import Foundation
 
 struct User {
+    
+    // MARK: - Properties
+    
     let id: Int? = nil
     
     let username: String
@@ -23,6 +26,8 @@ struct User {
     
     var isAdmin: Bool
     var isOrganization: Bool
+    
+    // MARK: Representations
     
     var employeeRepresentation: EmployeeRepresentation? {
         if isOrganization { return nil } else {
@@ -55,6 +60,8 @@ struct User {
             role: "organization")
         } else { return nil }
     }
+    
+    // MARK: Representation Structs
     
     struct EmployeeRepresentation: Codable {
         let username: String

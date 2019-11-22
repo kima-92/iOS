@@ -8,16 +8,18 @@
 
 import Foundation
 
-// MARK: - Snack
-
 class Snack {
+    
+    // MARK: - Properties
     let id: Int
     let name: String
-    let type: String = "??" // not sure what to do with this
+    let type: String = "" // unused
     let numberOfServings: Int
     var nutritionInfo: NutritionInfo? = nil // fetched when needed
-    let totalWeight: Double // grams
+    let totalWeight: Double
     let price: Double
+    
+    // MARK: - Representation
     
     var representation: Representation?
     
@@ -45,19 +47,8 @@ struct NutritionInfo: Codable {
     let snackId: Int
     let calories: Double?
     let totalFat: Double?
-    let totalSugars: Double? // cannot get from backend currently (2019-11-19 15:29)
+    let totalSugars: Double?
     let protein: Double?
     let carbs: Double?
     let allergens: String?
 }
-
-//// MARK: - Allergen
-//
-//enum Allergen: String, Codable {
-//    case peanuts
-//    case dairy
-//    case egg
-//    case gluten
-//    case meat
-//    case shellfish
-//}
