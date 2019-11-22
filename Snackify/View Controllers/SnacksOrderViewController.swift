@@ -16,6 +16,8 @@ class SnacksOrderViewController: UIViewController {
     var subsDeadline: String?
     var snackManager: SnackManager?
     
+    @IBOutlet weak var cartTableView: UITableView!
+    
     lazy var submittedOrderAlert: UIAlertController = {
            let alert = UIAlertController(
                title: "Subscription Order has been submitted!",
@@ -30,7 +32,6 @@ class SnacksOrderViewController: UIViewController {
     // MARK: Outlets
     
     @IBOutlet weak var amountOfSnacksLabel: UILabel!
-    @IBOutlet weak var snacksListTextView: UITextView!
     @IBOutlet weak var priceTotalLabel: UILabel!
     @IBOutlet weak var subscriptionEndLabel: UILabel!
     
@@ -44,18 +45,12 @@ class SnacksOrderViewController: UIViewController {
     func updateViews() {
         guard let snacks = snacks,
             let subsDeadline = subsDeadline else { return }
-        
-        let listOfSnacks = snacks.compactMap( { $0.name })
 
         priceTotalLabel.text = addSnacksTotal(snacks: snacks)
         subscriptionEndLabel.text = subsDeadline
         amountOfSnacksLabel.text = String(snacks.count)
         
-        if listOfSnacks.count == 0 {
-            snacksListTextView.text = ""
-        } else {
-            snacksListTextView.text = "*" + listOfSnacks.joined(separator: "\n*")
-        }
+        cartTableView.reloadData()
     }
     
     // MARK: - Actions
@@ -83,5 +78,23 @@ class SnacksOrderViewController: UIViewController {
         
         totalString = priceFormatter.string(from: NSNumber(value: totalDouble)) ?? ""
         return totalString
+    }
+}
+
+// MARK: - Table View Data Source
+
+extension SnacksOrderViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return snackManager?.currentOrderSnacks.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = cartTableView.dequeueReusableCell(withIdentifier: "cartCell", for: indexPath)
+        guard let snack = snackManager?.currentOrderSnacks[indexPath.row] else { return cell }
+        
+        cell.textLabel?.text = snack.name
+        cell.detailTextLabel?.text = snack.priceText
+        
+        return cell
     }
 }
