@@ -257,11 +257,11 @@
                                     <constraint firstItem="2r5-4j-Ze2" firstAttribute="centerX" secondItem="6ne-ku-EUW" secondAttribute="centerX" id="GZp-jl-Y1c"/>
                                     <constraint firstItem="vIq-TN-i0v" firstAttribute="top" secondItem="2r5-4j-Ze2" secondAttribute="bottom" constant="50" id="GpM-gr-nPw"/>
                                     <constraint firstAttribute="bottom" secondItem="goI-oA-E7S" secondAttribute="bottom" constant="60" id="JAb-jA-ygH"/>
-                                    <constraint firstItem="J2D-og-8Yy" firstAttribute="leading" secondItem="6ne-ku-EUW" secondAttribute="leading" constant="88.5" id="RxQ-uX-T2t"/>
+                                    <constraint firstItem="J2D-og-8Yy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6ne-ku-EUW" secondAttribute="leading" constant="8" id="RxQ-uX-T2t"/>
                                     <constraint firstAttribute="trailing" secondItem="vIq-TN-i0v" secondAttribute="trailing" constant="20" id="cC6-8e-z4i"/>
                                     <constraint firstItem="J2D-og-8Yy" firstAttribute="top" secondItem="LRz-QA-Ccp" secondAttribute="bottom" constant="25" id="cZE-si-AXA"/>
                                     <constraint firstAttribute="trailing" secondItem="goI-oA-E7S" secondAttribute="trailing" constant="20" id="jvf-fF-GWE"/>
-                                    <constraint firstAttribute="trailing" secondItem="J2D-og-8Yy" secondAttribute="trailing" constant="88.5" id="nYi-eZ-kYx"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="J2D-og-8Yy" secondAttribute="trailing" constant="8" id="nYi-eZ-kYx"/>
                                     <constraint firstItem="LRz-QA-Ccp" firstAttribute="top" secondItem="vIq-TN-i0v" secondAttribute="bottom" constant="45" id="oFL-ma-6eF"/>
                                 </constraints>
                             </view>
