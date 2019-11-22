@@ -8,6 +8,15 @@
 
 import UIKit
 
+// MARK: - Delegate Protocol
+
+protocol LoginViewControllerDelegate {
+    var snackManager: SnackManager? { get set }
+    
+    func showRequestAlertIfAdmin()
+    func updateViews()
+}
+
 class LoginViewController: UIViewController {
     
     // MARK: - Properties
@@ -15,7 +24,7 @@ class LoginViewController: UIViewController {
     var networkManager: NetworkManager?
     var authType = AuthType.logIn
     var userType = UserType.employee
-    var delegate: SnacksMainViewController?
+    var delegate: LoginViewControllerDelegate?
     
     // MARK: Outlets
     

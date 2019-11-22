@@ -1,5 +1,5 @@
 //
-//  EncodableExtension.swift
+//  Encodable+ToJSON.swift
 //  Snackify
 //
 //  Created by macbook on 11/19/19.
