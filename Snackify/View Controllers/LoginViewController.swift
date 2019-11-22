@@ -43,6 +43,36 @@ class LoginViewController: UIViewController {
         updateViews()
     }
     
+    func updateViews() {
+        loginButton.layer.cornerRadius = 8.0
+        passwordTextField.isSecureTextEntry = true
+        
+        let authTypeIsLogin = (authType == .logIn)
+        
+        loginSegmentedControl.selectedSegmentIndex = authTypeIsLogin ? 1 : 0
+        roleSegmentedControl.selectedSegmentIndex = (userType == UserType.organization) ? 1 : 0
+        
+        fullNameTextField.isHidden = authTypeIsLogin
+        emailTextField.isHidden = authTypeIsLogin
+        phoneNumberTextField.isHidden = authTypeIsLogin
+        addressTextField.isHidden = authTypeIsLogin
+        stateTextField.isHidden = authTypeIsLogin
+        zipcodeTextField.isHidden = authTypeIsLogin
+        organizationTextField.isHidden = authTypeIsLogin || userType.isAdmin
+        
+        fullNameTextField.isEnabled = !authTypeIsLogin
+        emailTextField.isEnabled = !authTypeIsLogin
+        phoneNumberTextField.isEnabled = !authTypeIsLogin
+        addressTextField.isEnabled = !authTypeIsLogin
+        stateTextField.isEnabled = !authTypeIsLogin
+        zipcodeTextField.isEnabled = !authTypeIsLogin
+        organizationTextField.isEnabled = !(authTypeIsLogin || userType.isAdmin)
+        
+        loginButton.setTitle((authTypeIsLogin ? "Log In" : "Sign Up"), for: .normal)
+        
+        fullNameTextField.placeholder = (userType == .organization) ? "Organization Name" : "Full Name"
+    }
+    
     //MARK: Actions
     
     @IBAction func roleSegmentedControlChanged(_ sender: UISegmentedControl) {
@@ -152,33 +182,5 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func updateViews() {
-        loginButton.layer.cornerRadius = 8.0
-        passwordTextField.isSecureTextEntry = true
-        
-        let authTypeIsLogin = (authType == .logIn)
-        
-        loginSegmentedControl.selectedSegmentIndex = authTypeIsLogin ? 1 : 0
-        roleSegmentedControl.selectedSegmentIndex = (userType == UserType.organization) ? 1 : 0
-        
-        fullNameTextField.isHidden = authTypeIsLogin
-        emailTextField.isHidden = authTypeIsLogin
-        phoneNumberTextField.isHidden = authTypeIsLogin
-        addressTextField.isHidden = authTypeIsLogin
-        stateTextField.isHidden = authTypeIsLogin
-        zipcodeTextField.isHidden = authTypeIsLogin
-        organizationTextField.isHidden = authTypeIsLogin || userType.isAdmin
-        
-        fullNameTextField.isEnabled = !authTypeIsLogin
-        emailTextField.isEnabled = !authTypeIsLogin
-        phoneNumberTextField.isEnabled = !authTypeIsLogin
-        addressTextField.isEnabled = !authTypeIsLogin
-        stateTextField.isEnabled = !authTypeIsLogin
-        zipcodeTextField.isEnabled = !authTypeIsLogin
-        organizationTextField.isEnabled = !(authTypeIsLogin || userType.isAdmin)
-        
-        loginButton.setTitle((authTypeIsLogin ? "Log In" : "Sign Up"), for: .normal)
-        
-        fullNameTextField.placeholder = (userType == .organization) ? "Organization Name" : "Full Name"
     }
 }
