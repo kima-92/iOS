@@ -14,9 +14,10 @@
 - [x] Current snacks list total is changing
 - [x] "Subscription end" should be "Subscription update deadline"
 - [x] On DetailVC, snack info labels should display units of measurement
+- [x] Admin user should be able to remove items from cart
+- [x] Admin user should not be able to check out if cart is empty
 - [ ] On LoginVC, keyboard should not cover up text fields
 - [ ] On login/signup fail, a helpful and accurate reason should be given for why failure occurred
 - [ ] Display dynamic update deadline
 - [ ] Display dynamic shipping date
-- [ ] Admin user should be able to remove items from cart
 - [ ] Admin user should be able to set quantity of items to buy
