@@ -24,8 +24,8 @@
                             <constraint firstItem="oTr-Jn-azm" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="3Gw-eo-Tl6"/>
                             <constraint firstItem="oTr-Jn-azm" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="20" id="4D0-fo-8nN"/>
                             <constraint firstItem="oTr-Jn-azm" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="JNm-8O-qEu"/>
-                            <constraint firstItem="oTr-Jn-azm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" id="Mha-7M-5b3"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oTr-Jn-azm" secondAttribute="trailing" constant="20" id="Oj5-My-PLo"/>
+                            <constraint firstItem="oTr-Jn-azm" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" id="Mha-7M-5b3"/>
+                            <constraint firstAttribute="trailing" secondItem="oTr-Jn-azm" secondAttribute="trailing" constant="20" id="Oj5-My-PLo"/>
                             <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="oTr-Jn-azm" secondAttribute="bottom" constant="20" id="l8v-Vu-pqQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
