@@ -9,7 +9,7 @@ Bugs Report:
 - [ ] On OrderVC, correctly display Subscription End date
 - [x] On OrderVC, correctly display order info
 - [x] Employee should only be allowed to make a one-time purchase and add a snack to an subscription order, NOT make a subscription order.
-- [x] If user in an employee, (as the app currently stands..) user should never have access to the OrderVC
+- [x] If user in an employee, (as the app currently stands...) user should never have access to the OrderVC
 - [ ] Polish UI
 - [x] Current snacks list total is changing
 - [ ] "Subscription end" should be "Subscription update deadline"
