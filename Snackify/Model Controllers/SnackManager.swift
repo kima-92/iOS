@@ -84,7 +84,7 @@ class SnackManager {
         }.resume()
     }
     
-    func AddSnackToCurrentSubscription(snack: Snack) {
+    func addSnackToCurrentSubscription(_ snack: Snack) {
         currentOrderSnacks.append(snack)
     }
 }

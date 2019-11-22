@@ -107,7 +107,7 @@ class SnackDetailViewController: UIViewController {
         })
         alert.addAction(UIAlertAction(title: confirmActionText, style: .default) { (alertAction) in
             if let isAdmin = self.snackManager?.networkManager.userType?.isAdmin, isAdmin {
-                self.snackManager?.AddSnackToCurrentSubscription(snack: self.snack!)
+                self.snackManager?.addSnackToCurrentSubscription(self.snack!)
             }
             self.dismiss(animated: true, completion: nil)
         })
