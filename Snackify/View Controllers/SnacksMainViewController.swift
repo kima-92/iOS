@@ -51,8 +51,34 @@ class SnacksMainViewController: UIViewController {
     
     @IBAction func logOutButtonTapped(_ sender: UIBarButtonItem) {
         networkManager.logOut()
-        snackManager = nil
+//        snackManager = nil
         performSegue(withIdentifier: "LoginModalSegue", sender: self)
+    }
+    
+    func showRequestAlertIfAdmin() {
+        guard let isAdmin = networkManager.userType?.isAdmin,
+            isAdmin,
+            let noSnackRequests = snackManager?.snackRequests.isEmpty,
+            !noSnackRequests
+            else { return }
+//        guard (networkManager.userType?.isAdmin ?? false) && !(snackManager?.snackRequests.isEmpty ?? true) else { return }
+        let requestAlert: UIAlertController = {
+            let alert = UIAlertController(
+                title: "New subscription requests!",
+                message: "Your employees have requested new subscription items. Add them to your subscription order?\n(You'll have time to review these before checkout.)",
+                preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Clear requests", style: .cancel) { (alertAction) in
+                self.snackManager?.snackRequests = []
+            })
+            alert.addAction(UIAlertAction(title: "Add items to order", style: .default) { (alertAction) in
+                guard let snackRequests = self.snackManager?.snackRequests else { return }
+                for snack in snackRequests {
+                    self.snackManager?.addSnackToCurrentSubscription(snack)
+                }
+            })
+            return alert
+        }()
+        self.present(requestAlert, animated: true, completion: nil)
     }
     
     // MARK: - Navigation
