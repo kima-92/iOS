@@ -10,7 +10,6 @@
 		993032142384440900C3F7D4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF4E238373A200A9F99C /* User.swift */; };
 		9936AF452383371D00A9F99C /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF442383371D00A9F99C /* Bearer.swift */; };
 		9936AF47238337B100A9F99C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF46238337B100A9F99C /* NetworkManager.swift */; };
-		9936AF4B2383533E00A9F99C /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF4A2383533E00A9F99C /* Subscription.swift */; };
 		9936AF4D2383605300A9F99C /* SnackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF4C2383605300A9F99C /* SnackManager.swift */; };
 		99570C442385CB8F00DE6E65 /* UserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99570C432385CB8F00DE6E65 /* UserType.swift */; };
 		99D8270D23831B3000E147C7 /* Snack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D8270C23831B3000E147C7 /* Snack.swift */; };
@@ -54,7 +53,6 @@
 /* Begin PBXFileReference section */
 		9936AF442383371D00A9F99C /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		9936AF46238337B100A9F99C /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = "Model Controllers/NetworkManager.swift"; sourceTree = SOURCE_ROOT; };
-		9936AF4A2383533E00A9F99C /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		9936AF4C2383605300A9F99C /* SnackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SnackManager.swift; path = "Model Controllers/SnackManager.swift"; sourceTree = SOURCE_ROOT; };
 		9936AF4E238373A200A9F99C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		99570C432385CB8F00DE6E65 /* UserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserType.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 				9936AF4E238373A200A9F99C /* User.swift */,
 				99D8270C23831B3000E147C7 /* Snack.swift */,
 				9936AF442383371D00A9F99C /* Bearer.swift */,
-				9936AF4A2383533E00A9F99C /* Subscription.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -358,7 +355,6 @@
 				FA806A612383536C003907EE /* SnacksTableViewController.swift in Sources */,
 				FAA7C8B72384CE6800F46C0E /* HeaderNames.swift in Sources */,
 				FA806A4B23830A92003907EE /* SceneDelegate.swift in Sources */,
-				9936AF4B2383533E00A9F99C /* Subscription.swift in Sources */,
 				993032142384440900C3F7D4 /* User.swift in Sources */,
 				9936AF452383371D00A9F99C /* Bearer.swift in Sources */,
 				9936AF47238337B100A9F99C /* NetworkManager.swift in Sources */,
