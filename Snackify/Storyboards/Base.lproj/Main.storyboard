@@ -108,7 +108,7 @@
             </objects>
             <point key="canvasLocation" x="1230" y="-14"/>
         </scene>
-        <!--Snacks Table View Controller-->
+        <!--Available Snacks-->
         <scene sceneID="cyo-1G-OZG">
             <objects>
                 <tableViewController id="krH-DD-96s" customClass="SnacksTableViewController" customModule="Snackify" customModuleProvider="target" sceneMemberID="viewController">
@@ -135,7 +135,7 @@
                             <outlet property="delegate" destination="krH-DD-96s" id="QSW-zp-8Kp"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="nhq-xx-Cc6">
+                    <navigationItem key="navigationItem" title="Available Snacks" id="nhq-xx-Cc6">
                         <barButtonItem key="rightBarButtonItem" title="Place Order" image="cart" catalog="system" id="ESq-wK-N2b">
                             <connections>
                                 <segue destination="dZZ-Jn-TD8" kind="presentation" identifier="PlaceOrderFromTableVCSegue" id="ZSh-dE-Ra8"/>
