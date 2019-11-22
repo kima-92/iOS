@@ -10,12 +10,15 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    // MARK: - Properties
+    
     var networkManager: NetworkManager?
     var authType = AuthType.logIn
     var userType = UserType.employee
     var delegate: SnacksMainViewController?
     
-    //MARK: Outlets
+    // MARK: - Outlets
+    
     @IBOutlet weak var roleSegmentedControl: UISegmentedControl!
     @IBOutlet weak var loginSegmentedControl: UISegmentedControl!
     
@@ -31,11 +34,43 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
     
+    // MARK: - View Setup
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loginSegmentedControl.selectedSegmentIndex = 1
 //        navigationItem.hidesBackButton = true
         updateViews()
+    }
+    
+    func updateViews() {
+        loginButton.layer.cornerRadius = 8.0
+        passwordTextField.isSecureTextEntry = true
+        
+        let authTypeIsLogin = (authType == .logIn)
+        
+        loginSegmentedControl.selectedSegmentIndex = authTypeIsLogin ? 1 : 0
+        roleSegmentedControl.selectedSegmentIndex = (userType == UserType.organization) ? 1 : 0
+        
+        fullNameTextField.isHidden = authTypeIsLogin
+        emailTextField.isHidden = authTypeIsLogin
+        phoneNumberTextField.isHidden = authTypeIsLogin
+        addressTextField.isHidden = authTypeIsLogin
+        stateTextField.isHidden = authTypeIsLogin
+        zipcodeTextField.isHidden = authTypeIsLogin
+        organizationTextField.isHidden = authTypeIsLogin || userType.isAdmin
+        
+        fullNameTextField.isEnabled = !authTypeIsLogin
+        emailTextField.isEnabled = !authTypeIsLogin
+        phoneNumberTextField.isEnabled = !authTypeIsLogin
+        addressTextField.isEnabled = !authTypeIsLogin
+        stateTextField.isEnabled = !authTypeIsLogin
+        zipcodeTextField.isEnabled = !authTypeIsLogin
+        organizationTextField.isEnabled = !(authTypeIsLogin || userType.isAdmin)
+        
+        loginButton.setTitle((authTypeIsLogin ? "Log In" : "Sign Up"), for: .normal)
+        
+        fullNameTextField.placeholder = (userType == .organization) ? "Organization Name" : "Full Name"
     }
     
     //MARK: Actions
@@ -96,6 +131,8 @@ class LoginViewController: UIViewController {
         }
     }
     
+    // MARK: - Login/Sign-up methods
+    
     func signUp(with user: User) {
         networkManager?.signUp(with: user, completion: { (result) in
             do {
@@ -103,8 +140,12 @@ class LoginViewController: UIViewController {
             } catch {
                 if let error = error as? NetworkError {
                     NSLog("Error signing up: \(error.rawValue)")
+                    DispatchQueue.main.async {
+                        self.showNetworkFailAlert(withAuthType: .signUp, error: error)
+                    }
                 } else {
                     NSLog("Error signing up: \(error)")
+                    self.showNetworkFailAlert(withAuthType: .signUp, error: .otherError)
                 }
                 return
             }
@@ -141,37 +182,19 @@ class LoginViewController: UIViewController {
                 }
             } catch {
                 NSLog("Error loginng in: \(error)")
+                let caughtError = error as? NetworkError ?? NetworkError.otherError
+                DispatchQueue.main.async {
+                    self.showNetworkFailAlert(withAuthType: .logIn, error: caughtError)
+                }
             }
         }
     }
     
-    func updateViews() {
-        loginButton.layer.cornerRadius = 8.0
-        passwordTextField.isSecureTextEntry = true
-        
-        let authTypeIsLogin = (authType == .logIn)
-        
-        loginSegmentedControl.selectedSegmentIndex = authTypeIsLogin ? 1 : 0
-        roleSegmentedControl.selectedSegmentIndex = (userType == UserType.organization) ? 1 : 0
-        
-        fullNameTextField.isHidden = authTypeIsLogin
-        emailTextField.isHidden = authTypeIsLogin
-        phoneNumberTextField.isHidden = authTypeIsLogin
-        addressTextField.isHidden = authTypeIsLogin
-        stateTextField.isHidden = authTypeIsLogin
-        zipcodeTextField.isHidden = authTypeIsLogin
-        organizationTextField.isHidden = authTypeIsLogin || userType.isAdmin
-        
-        fullNameTextField.isEnabled = !authTypeIsLogin
-        emailTextField.isEnabled = !authTypeIsLogin
-        phoneNumberTextField.isEnabled = !authTypeIsLogin
-        addressTextField.isEnabled = !authTypeIsLogin
-        stateTextField.isEnabled = !authTypeIsLogin
-        zipcodeTextField.isEnabled = !authTypeIsLogin
-        organizationTextField.isEnabled = !(authTypeIsLogin || userType.isAdmin)
-        
-        loginButton.setTitle((authTypeIsLogin ? "Log In" : "Sign Up"), for: .normal)
-        
-        fullNameTextField.placeholder = (userType == .organization) ? "Organization Name" : "Full Name"
+    func showNetworkFailAlert(withAuthType authType: AuthType, error: NetworkError) {
+        let alert = UIAlertController(title: "\(authType.rawValue) failed!", message: "Network failure. \(error.rawValue)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
+//            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
 }
