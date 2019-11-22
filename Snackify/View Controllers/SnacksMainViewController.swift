@@ -32,7 +32,6 @@ class SnacksMainViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        snackManager = SnackManager(networkManager: networkManager)
         updateViews()
     }
     
@@ -40,6 +39,7 @@ class SnacksMainViewController: UIViewController {
     //MARK: Actions
     @IBAction func logOutButtonTapped(_ sender: UIBarButtonItem) {
         networkManager.logOut()
+        snackManager = nil
         performSegue(withIdentifier: "LoginModalSegue", sender: self)
     }
     
@@ -64,9 +64,6 @@ class SnacksMainViewController: UIViewController {
                 loginVC.delegate = self
             }
             return
-        }
-        if snackManager == nil {
-            snackManager = SnackManager(networkManager: networkManager)
         }
         if segue.identifier == "ShowAvailableSnacksSegue" {
             if let tableVC = segue.destination as? SnacksTableViewController {

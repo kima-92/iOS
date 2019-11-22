@@ -135,6 +135,7 @@ class LoginViewController: UIViewController {
                 print("Success! Bearer: \(bearer.token)")
                 
                 DispatchQueue.main.async {
+                    self.delegate?.snackManager = SnackManager(networkManager: self.networkManager!)
                     self.delegate?.updateViews()
                     self.dismiss(animated: true, completion: nil)
                 }
