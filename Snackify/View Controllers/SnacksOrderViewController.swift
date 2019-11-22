@@ -10,32 +10,38 @@ import UIKit
 
 class SnacksOrderViewController: UIViewController {
     
+    // MARK: - Properties
+    
     var snacks: [Snack]?
     var subsDeadline: String?
     var snackManager: SnackManager?
     
+    lazy var submittedOrderAlert: UIAlertController = {
+           let alert = UIAlertController(
+               title: "Subscription Order has been submitted!",
+               message: "Your order is set to arrive on 11/29/2019",
+               preferredStyle: .alert)
+           alert.addAction(UIAlertAction(title: "Dismiss", style: .default) { (alertAction) in
+               self.dismiss(animated: true, completion: nil)
+           })
+           return alert
+       }()
     
-    //MARK: Outlets
+    // MARK: Outlets
     
     @IBOutlet weak var amountOfSnacksLabel: UILabel!
-//    @IBOutlet weak var snacksListLabel: UILabel!
     @IBOutlet weak var snacksListTextView: UITextView!
     @IBOutlet weak var priceTotalLabel: UILabel!
     @IBOutlet weak var subscriptionEndLabel: UILabel!
     
+    // MARK: - View Setup
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         updateViews()
     }
     
-    //MARK: Actions
-    @IBAction func placeOrderButtonTapped(_ sender: UIButton) {
-        present(submittedOrderAlert, animated: true)
-    }
-    
     func updateViews() {
-        
         guard let snacks = snacks,
             let subsDeadline = subsDeadline else { return }
         
@@ -52,9 +58,15 @@ class SnacksOrderViewController: UIViewController {
         }
     }
     
+    // MARK: - Actions
+    
+    @IBAction func placeOrderButtonTapped(_ sender: UIButton) {
+        present(submittedOrderAlert, animated: true)
+    }
+    
+    // MARK: - Helper Methods
     
     func addSnacksTotal(snacks: [Snack]) -> String {
-        
         let priceFormatter: NumberFormatter = {
             let formatter = NumberFormatter()
             formatter.currencySymbol = "$"
@@ -72,16 +84,4 @@ class SnacksOrderViewController: UIViewController {
         totalString = priceFormatter.string(from: NSNumber(value: totalDouble)) ?? ""
         return totalString
     }
-    
- lazy var submittedOrderAlert: UIAlertController = {
-        let alert = UIAlertController(
-            title: "Subscription Order has been submitted!",
-            message: "Your order is set to arrive on 11/29/2019",
-            preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .default) { (alertAction) in
-            self.dismiss(animated: true, completion: nil)
-        })
-        return alert
-    }()
-
 }

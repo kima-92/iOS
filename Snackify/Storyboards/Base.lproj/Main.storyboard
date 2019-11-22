@@ -176,14 +176,13 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="m59-iv-6XJ">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="[snacks in cart]" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="m59-iv-6XJ">
                                                 <rect key="frame" x="0.0" y="30.5" width="334" height="255"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="334" id="Ibz-kO-Xc5"/>
                                                     <constraint firstAttribute="height" constant="255" id="qJt-sL-paI"/>
                                                 </constraints>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -258,11 +257,11 @@
                                     <constraint firstItem="2r5-4j-Ze2" firstAttribute="centerX" secondItem="6ne-ku-EUW" secondAttribute="centerX" id="GZp-jl-Y1c"/>
                                     <constraint firstItem="vIq-TN-i0v" firstAttribute="top" secondItem="2r5-4j-Ze2" secondAttribute="bottom" constant="50" id="GpM-gr-nPw"/>
                                     <constraint firstAttribute="bottom" secondItem="goI-oA-E7S" secondAttribute="bottom" constant="60" id="JAb-jA-ygH"/>
-                                    <constraint firstItem="J2D-og-8Yy" firstAttribute="leading" secondItem="6ne-ku-EUW" secondAttribute="leading" constant="88.5" id="RxQ-uX-T2t"/>
+                                    <constraint firstItem="J2D-og-8Yy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6ne-ku-EUW" secondAttribute="leading" constant="8" id="RxQ-uX-T2t"/>
                                     <constraint firstAttribute="trailing" secondItem="vIq-TN-i0v" secondAttribute="trailing" constant="20" id="cC6-8e-z4i"/>
                                     <constraint firstItem="J2D-og-8Yy" firstAttribute="top" secondItem="LRz-QA-Ccp" secondAttribute="bottom" constant="25" id="cZE-si-AXA"/>
                                     <constraint firstAttribute="trailing" secondItem="goI-oA-E7S" secondAttribute="trailing" constant="20" id="jvf-fF-GWE"/>
-                                    <constraint firstAttribute="trailing" secondItem="J2D-og-8Yy" secondAttribute="trailing" constant="88.5" id="nYi-eZ-kYx"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="J2D-og-8Yy" secondAttribute="trailing" constant="8" id="nYi-eZ-kYx"/>
                                     <constraint firstItem="LRz-QA-Ccp" firstAttribute="top" secondItem="vIq-TN-i0v" secondAttribute="bottom" constant="45" id="oFL-ma-6eF"/>
                                 </constraints>
                             </view>
@@ -532,7 +531,6 @@
                     <navigationItem key="navigationItem" id="mY9-14-7mR">
                         <barButtonItem key="rightBarButtonItem" title="Place Order" image="cart" catalog="system" id="X4z-zS-wOk">
                             <connections>
-                                <action selector="cartButtonTapped:" destination="0TB-hm-mlU" id="5gO-T3-7VQ"/>
                                 <segue destination="dZZ-Jn-TD8" kind="presentation" identifier="PlaceOrderFromDetailVCSegue" id="Q3S-FL-222"/>
                             </connections>
                         </barButtonItem>

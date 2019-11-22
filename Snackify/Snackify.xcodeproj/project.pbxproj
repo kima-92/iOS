@@ -10,7 +10,6 @@
 		993032142384440900C3F7D4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF4E238373A200A9F99C /* User.swift */; };
 		9936AF452383371D00A9F99C /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF442383371D00A9F99C /* Bearer.swift */; };
 		9936AF47238337B100A9F99C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF46238337B100A9F99C /* NetworkManager.swift */; };
-		9936AF4B2383533E00A9F99C /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF4A2383533E00A9F99C /* Subscription.swift */; };
 		9936AF4D2383605300A9F99C /* SnackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9936AF4C2383605300A9F99C /* SnackManager.swift */; };
 		99570C442385CB8F00DE6E65 /* UserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99570C432385CB8F00DE6E65 /* UserType.swift */; };
 		99D8270D23831B3000E147C7 /* Snack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D8270C23831B3000E147C7 /* Snack.swift */; };
@@ -25,7 +24,6 @@
 		FA806A63238353AB003907EE /* SnackDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA806A62238353AB003907EE /* SnackDetailViewController.swift */; };
 		FA806A65238353FC003907EE /* SnacksOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA806A64238353FC003907EE /* SnacksOrderViewController.swift */; };
 		FA806A6723835462003907EE /* SnacksMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA806A6623835462003907EE /* SnacksMainViewController.swift */; };
-		FAA7C8AA238456BD00F46C0E /* CRUDMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA7C8A9238456BD00F46C0E /* CRUDMethods.swift */; };
 		FAA7C8AF2384C6F500F46C0E /* HTTPMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA7C8AE2384C6F400F46C0E /* HTTPMethods.swift */; };
 		FAA7C8B12384C7AB00F46C0E /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA7C8B02384C7AB00F46C0E /* NetworkError.swift */; };
 		FAA7C8B32384C82400F46C0E /* AuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA7C8B22384C82400F46C0E /* AuthType.swift */; };
@@ -55,7 +53,6 @@
 /* Begin PBXFileReference section */
 		9936AF442383371D00A9F99C /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
 		9936AF46238337B100A9F99C /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = "Model Controllers/NetworkManager.swift"; sourceTree = SOURCE_ROOT; };
-		9936AF4A2383533E00A9F99C /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		9936AF4C2383605300A9F99C /* SnackManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SnackManager.swift; path = "Model Controllers/SnackManager.swift"; sourceTree = SOURCE_ROOT; };
 		9936AF4E238373A200A9F99C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		99570C432385CB8F00DE6E65 /* UserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserType.swift; sourceTree = "<group>"; };
@@ -73,7 +70,6 @@
 		FA806A62238353AB003907EE /* SnackDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackDetailViewController.swift; sourceTree = "<group>"; };
 		FA806A64238353FC003907EE /* SnacksOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnacksOrderViewController.swift; sourceTree = "<group>"; };
 		FA806A6623835462003907EE /* SnacksMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnacksMainViewController.swift; sourceTree = "<group>"; };
-		FAA7C8A9238456BD00F46C0E /* CRUDMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CRUDMethods.swift; path = Models/CRUDMethods.swift; sourceTree = SOURCE_ROOT; };
 		FAA7C8AE2384C6F400F46C0E /* HTTPMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethods.swift; sourceTree = "<group>"; };
 		FAA7C8B02384C7AB00F46C0E /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		FAA7C8B22384C82400F46C0E /* AuthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthType.swift; sourceTree = "<group>"; };
@@ -119,7 +115,6 @@
 				9936AF4E238373A200A9F99C /* User.swift */,
 				99D8270C23831B3000E147C7 /* Snack.swift */,
 				9936AF442383371D00A9F99C /* Bearer.swift */,
-				9936AF4A2383533E00A9F99C /* Subscription.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -129,7 +124,6 @@
 			children = (
 				9936AF46238337B100A9F99C /* NetworkManager.swift */,
 				9936AF4C2383605300A9F99C /* SnackManager.swift */,
-				FAA7C8A9238456BD00F46C0E /* CRUDMethods.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -137,11 +131,11 @@
 		FA806A3C23830A92003907EE = {
 			isa = PBXGroup;
 			children = (
-				FAA7C8AD2384C6CE00F46C0E /* Helpers */,
 				FA806A5D2383510C003907EE /* View Controllers */,
 				FA806A5C23830AA8003907EE /* Storyboards */,
 				99D8270B23831B0100E147C7 /* Models */,
 				99D82715238327EB00E147C7 /* Model Controllers */,
+				FAA7C8AD2384C6CE00F46C0E /* Helpers */,
 				FA806A4723830A92003907EE /* Snackify */,
 				FAA7C8BD2385D81E00F46C0E /* SnackifyTests */,
 				FAA7C8CB2385D8B800F46C0E /* SnackifyUITests */,
@@ -361,7 +355,6 @@
 				FA806A612383536C003907EE /* SnacksTableViewController.swift in Sources */,
 				FAA7C8B72384CE6800F46C0E /* HeaderNames.swift in Sources */,
 				FA806A4B23830A92003907EE /* SceneDelegate.swift in Sources */,
-				9936AF4B2383533E00A9F99C /* Subscription.swift in Sources */,
 				993032142384440900C3F7D4 /* User.swift in Sources */,
 				9936AF452383371D00A9F99C /* Bearer.swift in Sources */,
 				9936AF47238337B100A9F99C /* NetworkManager.swift in Sources */,
@@ -370,7 +363,6 @@
 				FAA7C8B52384C87C00F46C0E /* EncodableExtension.swift in Sources */,
 				99D8270F23831B3600E147C7 /* Organization.swift in Sources */,
 				FAA7C8AF2384C6F500F46C0E /* HTTPMethods.swift in Sources */,
-				FAA7C8AA238456BD00F46C0E /* CRUDMethods.swift in Sources */,
 				FAA7C8B12384C7AB00F46C0E /* NetworkError.swift in Sources */,
 				FA806A63238353AB003907EE /* SnackDetailViewController.swift in Sources */,
 				9936AF4D2383605300A9F99C /* SnackManager.swift in Sources */,

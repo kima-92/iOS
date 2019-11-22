@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
     var userType = UserType.employee
     var delegate: SnacksMainViewController?
     
-    // MARK: - Outlets
+    // MARK: Outlets
     
     @IBOutlet weak var roleSegmentedControl: UISegmentedControl!
     @IBOutlet weak var loginSegmentedControl: UISegmentedControl!
@@ -73,7 +73,7 @@ class LoginViewController: UIViewController {
         fullNameTextField.placeholder = (userType == .organization) ? "Organization Name" : "Full Name"
     }
     
-    //MARK: Actions
+    // MARK: - Actions
     
     @IBAction func roleSegmentedControlChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
@@ -192,9 +192,7 @@ class LoginViewController: UIViewController {
     
     func showNetworkFailAlert(withAuthType authType: AuthType, error: NetworkError) {
         let alert = UIAlertController(title: "\(authType.rawValue) failed!", message: "Network failure. \(error.rawValue)", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
-//            self.dismiss(animated: true, completion: nil)
-        }))
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 }
