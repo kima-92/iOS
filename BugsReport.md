@@ -15,3 +15,4 @@ Bugs Report:
 - [ ] "Subscription end" should be "Subscription update deadline"
 - [ ] On LoginVC, keyboard should not cover up text fields
 - [ ] On login/signup fail, a helpful and accurate reason should be given for why failure occurred
+- [ ] On DetailVC, snack info labels should display units of measurement
