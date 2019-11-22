@@ -172,9 +172,7 @@ class LoginViewController: UIViewController {
                               isOrganization: userType == .organization
         ) { result in
             do {
-                let bearer = try result.get()
-                print("Success! Bearer: \(bearer.token)")
-                
+                let _ = try result.get()
                 DispatchQueue.main.async {
                     self.delegate?.snackManager = SnackManager(networkManager: self.networkManager!)
                     self.delegate?.updateViews()

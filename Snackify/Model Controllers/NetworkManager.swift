@@ -59,7 +59,7 @@ class NetworkManager {
                 "username": username,
                 "password": password])
         } catch {
-            print(error)
+            NSLog("\(error)")
             completion(.failure(.noEncode))
             return
         }
@@ -94,7 +94,7 @@ class NetworkManager {
                     
                     completion(.success(token))
                 } catch {
-                    print(error)
+                    NSLog("\(error)")
                     completion(.failure(.noDecode))
                 }
             }
@@ -113,7 +113,7 @@ class NetworkManager {
             return
         }
         if let error = error {
-            print(error)
+            NSLog("\(error)")
             dataHandler(.failure(.otherError))
             return
         }
@@ -149,8 +149,8 @@ class NetworkManager {
     func dataTaskDidSucceed(with response: URLResponse?) -> Bool {
         if let response = response as? HTTPURLResponse,
             response.statusCode < 200 || response.statusCode >= 300 {
-            print(response)
-            print(NSError(domain: "", code: response.statusCode, userInfo: nil))
+            NSLog("\(response)")
+            NSLog("\(NSError(domain: "", code: response.statusCode, userInfo: nil))")
             return false
         }
         return true

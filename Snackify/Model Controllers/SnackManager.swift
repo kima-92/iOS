@@ -28,10 +28,11 @@ class SnackManager {
         fetchSnackOptions { result in
             do {
                 self.allSnacksOptions = try result.get()
-                print("Fetched all snacks")
             } catch {
                 if let error = error as? NetworkError {
-                    print(error.rawValue)
+                    NSLog(error.rawValue)
+                } else {
+                    NSLog("\(error)")
                 }
             }
         }
@@ -54,7 +55,7 @@ class SnackManager {
                     self.allSnacksOptions = snacks
                     completion(.success(snacks))
                 } catch {
-                    print(error)
+                    NSLog("\(error)")
                     completion(.failure(.noDecode))
                 }
             }
@@ -76,7 +77,7 @@ class SnackManager {
                     if let networkError = error as? NetworkError {
                         completion(.failure(networkError))
                     } else {
-                        print(error)
+                        NSLog("\(error)")
                         completion(.failure(.otherError))
                     }
                 }
