@@ -117,3 +117,7 @@ class SnacksMainViewController: UIViewController {
         }
     }
 }
+
+// MARK: - LoginVC Delegate
+
+extension SnacksMainViewController: LoginViewControllerDelegate {}
