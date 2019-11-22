@@ -140,8 +140,12 @@ class LoginViewController: UIViewController {
             } catch {
                 if let error = error as? NetworkError {
                     NSLog("Error signing up: \(error.rawValue)")
+                    DispatchQueue.main.async {
+                        self.showNetworkFailAlert(withAuthType: .signUp, error: error)
+                    }
                 } else {
                     NSLog("Error signing up: \(error)")
+                    self.showNetworkFailAlert(withAuthType: .signUp, error: .otherError)
                 }
                 return
             }
@@ -178,9 +182,19 @@ class LoginViewController: UIViewController {
                 }
             } catch {
                 NSLog("Error loginng in: \(error)")
+                let caughtError = error as? NetworkError ?? NetworkError.otherError
+                DispatchQueue.main.async {
+                    self.showNetworkFailAlert(withAuthType: .logIn, error: caughtError)
+                }
             }
         }
     }
     
+    func showNetworkFailAlert(withAuthType authType: AuthType, error: NetworkError) {
+        let alert = UIAlertController(title: "\(authType.rawValue) failed!", message: "Network failure. \(error.rawValue)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
+//            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
 }
