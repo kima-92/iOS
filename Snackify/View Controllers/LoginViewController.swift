@@ -174,9 +174,12 @@ class LoginViewController: UIViewController {
             do {
                 let _ = try result.get()
                 DispatchQueue.main.async {
-                    self.delegate?.snackManager = SnackManager(networkManager: self.networkManager!)
+                    if self.delegate?.snackManager == nil {
+                        self.delegate?.snackManager = SnackManager(networkManager: self.networkManager!)
+                    }
                     self.delegate?.updateViews()
                     self.dismiss(animated: true, completion: nil)
+                    self.delegate?.showRequestAlertIfAdmin()
                 }
             } catch {
                 NSLog("Error loginng in: \(error)")

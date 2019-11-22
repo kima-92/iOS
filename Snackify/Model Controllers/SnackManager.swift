@@ -18,6 +18,7 @@ class SnackManager {
     
     var allSnacksOptions: [Snack]?
     var currentOrderSnacks: [Snack] = []
+    var snackRequests: [Snack] = []
     var subsOrderDeadline: String = "11/23/2019"
     
     // MARK: - Init
@@ -87,5 +88,9 @@ class SnackManager {
     
     func addSnackToCurrentSubscription(_ snack: Snack) {
         currentOrderSnacks.append(snack)
+    }
+    
+    func requestSnackForSubscription(_ snack: Snack) {
+        snackRequests.append(snack)
     }
 }
