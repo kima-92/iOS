@@ -10,12 +10,15 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    // MARK: - Properties
+    
     var networkManager: NetworkManager?
     var authType = AuthType.logIn
     var userType = UserType.employee
     var delegate: SnacksMainViewController?
     
-    //MARK: Outlets
+    // MARK: - Outlets
+    
     @IBOutlet weak var roleSegmentedControl: UISegmentedControl!
     @IBOutlet weak var loginSegmentedControl: UISegmentedControl!
     
@@ -30,6 +33,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var organizationTextField: UITextField!
     
     @IBOutlet weak var loginButton: UIButton!
+    
+    // MARK: - View Setup
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,6 +100,8 @@ class LoginViewController: UIViewController {
             logIn(username: username, password: password)
         }
     }
+    
+    // MARK: - Login/Sign-up methods
     
     func signUp(with user: User) {
         networkManager?.signUp(with: user, completion: { (result) in
