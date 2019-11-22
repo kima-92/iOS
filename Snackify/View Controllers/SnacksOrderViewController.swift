@@ -43,6 +43,7 @@ class SnacksOrderViewController: UIViewController {
     }
     
     func updateViews() {
+        snacks = snackManager?.currentOrderSnacks
         guard let snacks = snacks,
             let subsDeadline = subsDeadline else { return }
 
