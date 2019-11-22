@@ -1,4 +1,4 @@
-Bugs Report:
+# Bugs Report:
 
 - [x] User should not be able to go to the main screen if login wasn't successful.
 - [x] On the mainVC, "Welcome User!" should display "Welcome \(User.fullName)!"
