@@ -19,15 +19,24 @@ class SnacksOrderViewController: UIViewController {
     @IBOutlet weak var cartTableView: UITableView!
     
     lazy var submittedOrderAlert: UIAlertController = {
-           let alert = UIAlertController(
-               title: "Subscription Order has been submitted!",
-               message: "Your order is set to arrive on 11/29/2019",
-               preferredStyle: .alert)
-           alert.addAction(UIAlertAction(title: "Dismiss", style: .default) { (alertAction) in
-               self.dismiss(animated: true, completion: nil)
-           })
-           return alert
-       }()
+        var alertTitle = ""
+        var alertBody = ""
+        if let snacks = snacks, !snacks.isEmpty {
+            alertTitle = "Subscription order submitted!"
+            alertBody = "Your order is set to arrive on 11/29/2019"
+        } else {
+            alertTitle = "Subscription is empty!"
+            alertBody = "You must add snacks to your subscription before checkout."
+        }
+        let alert = UIAlertController(
+            title: alertTitle,
+            message: alertBody,
+            preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { (alertAction) in
+            self.dismiss(animated: true, completion: nil)
+        })
+        return alert
+    }()
     
     // MARK: Outlets
     
