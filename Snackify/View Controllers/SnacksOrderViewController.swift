@@ -98,4 +98,18 @@ extension SnacksOrderViewController: UITableViewDataSource, UITableViewDelegate 
         
         return cell
     }
+    
+    // remove snack from cart
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            snackManager?.currentOrderSnacks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            updateViews()
+        }
+    }
+    
+    // prevent selection of rows
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
