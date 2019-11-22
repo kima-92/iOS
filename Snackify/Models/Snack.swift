@@ -19,6 +19,19 @@ class Snack {
     let totalWeight: Double
     let price: Double
     
+    // MARK: Price Formatting
+    
+    private lazy var priceFormatter: NumberFormatter = {
+        var formatter = NumberFormatter()
+        formatter.currencySymbol = "$"
+        formatter.numberStyle = .currency
+        return formatter
+    }()
+    
+    var priceText: String {
+        return priceFormatter.string(from: NSNumber(value: price )) ?? "$0.00"
+    }
+    
     // MARK: - Representation
     
     var representation: Representation?

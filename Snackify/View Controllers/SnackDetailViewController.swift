@@ -15,17 +15,6 @@ class SnackDetailViewController: UIViewController {
     var snack: Snack?
     var snackManager: SnackManager?
     
-    lazy var priceFormatter: NumberFormatter = {
-        var formatter = NumberFormatter()
-        formatter.currencySymbol = "$"
-        formatter.numberStyle = .currency
-        return formatter
-    }()
-    
-    lazy var priceText: String = {
-        return self.priceFormatter.string(from: NSNumber(value: snack?.price ?? 0.0)) ?? ""
-    }()
-    
     //MARK: Outlets
     
     @IBOutlet weak var snackNameLabel: UILabel!
@@ -64,7 +53,7 @@ class SnackDetailViewController: UIViewController {
     lazy var confirmPurchaseAlert: UIAlertController = {
         var alert = UIAlertController(
             title: "Purchase \(snack!.name)?",
-            message: "Are you sure you'd like to make a one time-purchase of \(snack!.name) for \(priceText)?",
+            message: "Are you sure you'd like to make a one time-purchase of \(snack!.name) for \(snack!.priceText)?",
             preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { (alertAction) in
             self.dismiss(animated: true, completion: nil)
@@ -93,7 +82,7 @@ class SnackDetailViewController: UIViewController {
         let confirmActionText: String
         if let isAdmin = snackManager?.networkManager.userType?.isAdmin, isAdmin {
             titleText = "Add \(snack!.name) subscription?"
-            alertText = "Are you sure you'd like to subscribe to \(snack!.name) for \(priceText)?\n(You will be able to review your order before checkout.)"
+            alertText = "Are you sure you'd like to subscribe to \(snack!.name) for \(snack!.priceText)?\n(You will be able to review your order before checkout.)"
             confirmActionText = "Add to subscription"
         } else {
             titleText = "Request \(snack!.name) subscription?"
@@ -122,7 +111,7 @@ class SnackDetailViewController: UIViewController {
         
         snackNameLabel.text = snack.name
         servingsLabel.text = "\(snack.numberOfServings)"
-        priceLabel.text = priceText
+        priceLabel.text = snack.priceText
         totalWeightLabel.text = "\(snack.totalWeight) oz"
         
         guard let nutriInfo = snack.nutritionInfo else { return }
