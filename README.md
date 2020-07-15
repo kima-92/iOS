@@ -1,34 +1,14 @@
 # iOS
 iOS Engineers
 
-## To-do
+Office Sanck subscription service. 
 
-- [x] User can signup/register for an authenticated account as ~~either a `Organization` or~~ an `Employee` of a currently registered `Organization`. Each account must have the following properties at a minimum:
-  * a unique `username` - String
-	* a strong `password` - String
-	* a unique and valid `email` - String
-	* a valid `phoneNumber` - String or Int
-	* a valid `streetAddress` - String
-	* a valid `state` - String
-	* a valid `zipcode` - String or Int
-	* `organizationName` (for `Organizations`) or `fullName` (for `Employees`)
-	* `contactPerson` - String
-- [x] Authenticated `Organization` or `orgAdmin` or `employee` can view a list of available `snack`s. Each snack should have the following properties:
-	* `name`
-	* `type`
-	* `numberOfServings`
-	* `nutritionInfo` object with:
-		- `calories` (per serving) - Double/Float
-		- `totalFat` (per serving)- Double/Float
-		- `totalSugars` (per serving) - Double/Float
-		- `protein` (per serving) - Double/Float
-		- `carbs` (per serving) - Double/Float
-		- `allergens` - String
-	 * `totalWeight` - Double/Float
-	 * `price` - Double/Float
-- [x] Authenticated `Employees`/organizations/orgadmins can make "one-time purchases" of `snack`s that can be delivered with the next upcoming `Organization` subscription order.
-- [x] organization can sign up
-- [x] organization can log in
-- [ ] Authenticated `Employees` can request `snack` choices to request to be added to the next upcoming `Organization` subscription order.
-- [ ] Authenticated `Organization` or `orgAdmin` can create, read, update and delete a list of `snack`s that they would like to have included in their order/subscription.
-- [ ] parse login response data to get role and id
+## Goal
+
+Companies can create a subscription and allow employees to log in, and select the snacks that will be delivered in the next shipment
+
+## Demo 
+
+A prototype iOS app built by [Jon Bash](http://www.jonbash.com) and [Wilmari Rodriguez](https://www.linkedin.com/in/wilmari-rodriguez/) and
+
+https://www.youtube.com/watch?v=t5JnN6r9C-s
