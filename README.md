@@ -9,6 +9,6 @@ Companies can create a subscription and allow employees to log in, and select th
 
 ## Demo 
 
-A prototype iOS app built by [Jon Bash](http://www.jonbash.com) and [Wilmari Rodriguez](https://www.linkedin.com/in/wilmari-rodriguez/) and
+A prototype iOS app built by [Jon Bash](http://www.jonbash.com) and [Wilmari Rodriguez](https://www.linkedin.com/in/wilmari-rodriguez/).
 
-https://www.youtube.com/watch?v=t5JnN6r9C-s
+(https://www.youtube.com/watch?v=t5JnN6r9C-s)
