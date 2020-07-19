@@ -11,5 +11,5 @@ Companies can create a subscription and allow employees to log in, and select th
 
 A prototype iOS app built by [Jon Bash](http://www.jonbash.com) and [Wilmari Rodriguez](https://www.linkedin.com/in/wilmari-rodriguez/).
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/t5JnN6r9C-s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/t5JnN6r9C-s">
 </iframe>
