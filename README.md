@@ -1,11 +1,9 @@
-# iOS
+# iOS Track
 iOS Engineers
-
-Office Sanck subscription service. 
 
 ## Goal
 
-Companies can create a subscription and allow employees to log in, and select the snacks that will be delivered in the next shipment
+Office Snack subscription service for Companies and they're employees. They can create a subscription and allow employees to log in and select the snacks that will be delivered in the next shipment
 
 ## Demo 
 
